@@ -1926,7 +1926,7 @@ Metrics/BlockLength:
   VersionAdded: '0.44'
   VersionChanged: '0.87'
   CountComments: false  # count full line comments?
-  Max: 25
+  Max: 50
   CountAsOne: []
   ExcludedMethods:
     # By default, exclude the `#refine` method, as it tends to have larger
