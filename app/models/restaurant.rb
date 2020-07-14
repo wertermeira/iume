@@ -1,6 +1,8 @@
 class Restaurant < ApplicationRecord
   has_secure_password
 
+  has_many :authenticate_tokens, as: :authenticateable, dependent: :destroy
+
   enum account_status: { pending: 0, verified: 1, blocked: 2 }, _prefix: :account
 
   before_create do

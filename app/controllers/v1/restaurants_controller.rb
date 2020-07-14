@@ -3,7 +3,8 @@ module V1
     def create
       @restaurant = Restaurant.new(restaurant_params)
       if @restaurant.save
-        render json: @restaurant, serializer: V1::RestaurantSerializer, status: :created
+        token = AuthService.create_token(authenticator: @user, request: request)
+        render json: token, status: :created
       else
         render json: @restaurant.errors, status: :unprocessable_entity
       end
