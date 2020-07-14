@@ -1,6 +1,6 @@
-class CreateUsers < ActiveRecord::Migration[6.0]
+class CreateRestaurants < ActiveRecord::Migration[6.0]
   def change
-    create_table :users do |t|
+    create_table :restaurants do |t|
       t.string :name
       t.string :email
       t.string :provider
@@ -9,6 +9,6 @@ class CreateUsers < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :users, %i[email provider], unique: true
+    add_index :restaurants, :email, unique: true
   end
 end

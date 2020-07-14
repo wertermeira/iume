@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :user do
+  factory :restaurant do
     name { Faker::Name.name }
     email { Faker::Internet.email }
     provider { 'email' }
