@@ -3,6 +3,10 @@ class User < ApplicationRecord
 
   enum account_status: { pending: 0, verified: 1, blocked: 2 }, _prefix: :account
 
+  before_create do
+    self.provider = 'email'
+  end
+
   validates :name, :email, presence: true
   validates :password, presence: true, on: :create
   validates :name, length: { minimum: 3, maximum: 200 }, allow_blank: true
