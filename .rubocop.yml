@@ -2425,7 +2425,7 @@ Style/BlockDelimiters:
                 always ugly).
                 Prefer {...} over do...end for single-line blocks.
   StyleGuide: '#single-line-blocks'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.30'
   VersionChanged: '0.35'
   EnforcedStyle: line_count_based
