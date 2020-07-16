@@ -1,4 +1,4 @@
-class Restaurant < ApplicationRecord
+class Owner < ApplicationRecord
   has_secure_password
 
   has_many :authenticate_tokens, as: :authenticateable, dependent: :destroy

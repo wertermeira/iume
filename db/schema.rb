@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_192049) do
     t.index ["body"], name: "index_authenticate_tokens_on_body", unique: true
   end
 
-  create_table "restaurants", force: :cascade do |t|
+  create_table "owners", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "provider"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_192049) do
     t.integer "account_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_restaurants_on_email", unique: true
+    t.index ["email"], name: "index_owners_on_email", unique: true
   end
 
 end

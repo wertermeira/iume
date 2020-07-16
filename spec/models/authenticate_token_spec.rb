@@ -16,12 +16,12 @@ RSpec.describe AuthenticateToken, type: :model do
   end
 
   context 'when update token' do
-    let(:restaurant) { create(:restaurant) }
+    let(:owner) { create(:owner) }
 
     it 'new token' do
-      old_token = create(:authenticate_token, authenticator: restaurant).body
-      restaurant.authenticate_tokens.last.update_token
-      new_token = restaurant.authenticate_tokens.last.body
+      old_token = create(:authenticate_token, authenticator: owner).body
+      owner.authenticate_tokens.last.update_token
+      new_token = owner.authenticate_tokens.last.body
       expect(old_token).not_to eq(new_token)
     end
   end
