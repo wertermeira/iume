@@ -44,7 +44,7 @@ RSpec.describe 'Owners management', type: :request do
     context 'when owner update' do
       before do
         put '/v1/owners/me', params: owner_attrs.to_json,
-                                  headers: header_with_authentication(owner)
+                             headers: header_with_authentication(owner)
       end
 
       it { expect(response).to have_http_status(:accepted) }
@@ -54,7 +54,7 @@ RSpec.describe 'Owners management', type: :request do
       before do
         owner_attrs[:owner][:email] = 'email'
         put '/v1/owners/me', params: owner_attrs.to_json,
-                                  headers: header_with_authentication(owner)
+                             headers: header_with_authentication(owner)
       end
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
