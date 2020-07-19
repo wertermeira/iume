@@ -141,6 +141,9 @@ en:
         other: is the wrong length (should be %{count} characters)
       invalid_email_address: Email is invalid
       unauthorized: not authorized
+      login:
+        email_not_found: Email not found
+        invalid_password: Password wrong
     template:
       body: 'There were problems with the following fields:'
       header:

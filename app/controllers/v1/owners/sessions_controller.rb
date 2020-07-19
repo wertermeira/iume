@@ -8,11 +8,12 @@ module V1
         validation = LoginValidation.new(session_params.merge(model: Owner))
         return response_unprocessable_entity(validation.errors) unless validation.valid?
 
-        if user.find_by(email: session_params.dig(:email)).authenticate(session_params.dig(:password))
-          token = AuthService.create_token(authenticator: user, request: request)
+        owner = Owner.find_by(email: session_params.dig(:email)).authenticate(session_params.dig(:password))
+        if owner
+          token = AuthService.create_token(authenticator: owner, request: request)
           render json: { token: token }, status: :created
         else
-          response_unprocessable_entity({ password: [I18n.t('errors.messages.invalid_password')] })
+          response_unprocessable_entity({ password: [I18n.t('errors.messages.login.invalid_password')] })
         end
       end
 

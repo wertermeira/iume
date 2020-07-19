@@ -24,7 +24,7 @@ RSpec.describe LoginValidation, type: :model do
     it 'when email retorn error message' do
       described = described_class.new(email: 'email_xx@xx.com', password: 'xxxxxxx', model: Owner)
       described.valid?
-      expect(described.errors[:email]).to match_array([I18n.t('errors.messages.email_not_found')])
+      expect(described.errors[:email]).to match_array([I18n.t('errors.messages.login.email_not_found')])
     end
   end
 end
