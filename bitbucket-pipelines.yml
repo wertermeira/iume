@@ -1,0 +1,42 @@
+# This is a sample build configuration for Ruby.
+# Check our guides at https://confluence.atlassian.com/x/8r-5Mw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: circleci/ruby:2.5.1-stretch-node
+
+pipelines:
+  default:
+    - step: &buildtest
+        caches:
+          - bundler
+        script: # Modify the commands below to build your repository.
+          - export DATABASE_URL=postgresql://test_user:test_user_password@localhost/pipelines
+          - export ELASTICSEARCH_URL=localhost:9250
+          - export REDIS_URL=redis://localhost:6379/0
+          - bundle install --path vendor
+          - bundle exec brakeman
+          - bundle exec rspec spec -f d
+        services:
+          - postgres
+          - redis
+  branches:
+    master:
+      - step: *buildtest
+      - step:
+          script:
+            - export HEROKU_APP_NAME="imenu-dev"
+            - deploy/heroku
+
+definitions:
+  caches:
+    bundler: ./vendor
+  services:
+    redis:
+      image: redis:5.0.3
+    postgres:
+      image: postgres
+      environment:
+        POSTGRES_DB: pipelines
+        POSTGRES_USER: test_user
+        POSTGRES_PASSWORD: test_user_password
