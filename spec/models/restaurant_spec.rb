@@ -16,7 +16,12 @@ RSpec.describe Restaurant, type: :model do
   end
 
   describe 'when validation' do
+    subject { create(:restaurant) }
+
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_least(3).is_at_most(200) }
+    it { is_expected.to allow_value('xx22xx2').for(:slug) }
+    it { is_expected.not_to allow_value('Xx1').for(:slug) }
+    it { is_expected.to validate_uniqueness_of(:slug) }
   end
 end

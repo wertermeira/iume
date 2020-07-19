@@ -114,6 +114,7 @@ en:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      slugger_invalid: Slug invalid
       email_not_found: Email not found
       accepted: must be accepted
       blank: can't be blank

@@ -2,7 +2,7 @@ class Owner < ApplicationRecord
   has_secure_password
 
   has_many :authenticate_tokens, as: :authenticateable, dependent: :destroy
-  has_one :restaurant, dependent: :destroy
+  has_many :restaurants, dependent: :destroy
 
   enum account_status: { pending: 0, verified: 1, blocked: 2 }, _prefix: :account
 
