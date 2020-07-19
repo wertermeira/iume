@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :v1, default: { format: :json } do
     namespace :owners do
       resources :sessions, only: %i[create destroy]
+      resources :restaurants, only: %i[index create update show]
     end
     resources :owners, only: %i[create update show]
     resources :recover_password, path: 'recover_password/:model', only: %i[create update]

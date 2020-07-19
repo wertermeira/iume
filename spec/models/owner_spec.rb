@@ -14,6 +14,7 @@ RSpec.describe Owner, type: :model do
   it { is_expected.to have_secure_password }
 
   context 'when have associations' do
+    it { is_expected.to have_many(:restaurants).dependent(:destroy) }
   end
 
   describe 'when validation' do

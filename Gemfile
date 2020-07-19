@@ -5,6 +5,8 @@ ruby '2.5.1'
 
 # ActiveModel::Serializer implementation and Rails hooks
 gem 'active_model_serializers', '~> 0.10.0'
+# FriendlyId is the 'Swiss Army bulldozer' of slugging and permalink plugins for
+gem 'friendly_id', '~> 5.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 # Use postgresql as the database for Active Record
