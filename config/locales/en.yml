@@ -9,7 +9,9 @@ en:
           has_many: Cannot delete record because dependent %{record} exist
   mailer:
     messages:
-      check_your_mailbox: check your mailbox
+      reset_password: Reset your password
+      check_your_mailbox: Check your mailbox
+      welcome: Welcome
   date:
     abbr_day_names:
     - Sun

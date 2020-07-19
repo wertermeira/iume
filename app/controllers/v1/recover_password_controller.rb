@@ -8,6 +8,7 @@ module V1
       model = params[:model].classify.safe_constantize.find_by(email: password_params.dig(:email))
       if model
         token = AuthService.create_token(authenticator: model, request: request)
+        RecoverPasswordMailer.send_to_user(user: model, token: token).deliver_later!
         render json: { message: I18n.t('mailer.messages.check_your_mailbox') }, status: :created
       else
         render json: { errors: { email: I18n.t('errors.messages.email_not_found') } },

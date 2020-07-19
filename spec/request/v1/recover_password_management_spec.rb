@@ -23,9 +23,9 @@ RSpec.describe 'RecoverPassword management', type: :request do
 
       it { expect(response).to have_http_status(:created) }
 
-      it do
-        expect(json_body['message']).to eq(I18n.t('mailer.messages.check_your_mailbox'))
-      end
+      it { expect(json_body['message']).to eq(I18n.t('mailer.messages.check_your_mailbox')) }
+
+      it { expect(ActiveJob::Base.queue_adapter.enqueued_jobs.count).to eq(1) }
     end
 
     context 'when recover email invalid' do
