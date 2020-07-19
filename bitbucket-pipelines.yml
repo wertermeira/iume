@@ -15,6 +15,7 @@ pipelines:
           - export ELASTICSEARCH_URL=localhost:9250
           - export REDIS_URL=redis://localhost:6379/0
           - bundle install --path vendor
+          - bundle exec rubcop
           - bundle exec brakeman
           - bundle exec rspec spec -f d
         services:
