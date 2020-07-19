@@ -27,5 +27,12 @@ RSpec.describe Owner, type: :model do
     it { is_expected.to allow_value('owner@site.com').for(:email) }
     it { is_expected.not_to allow_value('owner@site').for(:email) }
     it { is_expected.to validate_confirmation_of(:password) }
+    it { is_expected.to validate_presence_of(:email) }
+
+    context 'when validation password' do
+      subject { described_class.new(password: '') }
+
+      it { is_expected.to validate_presence_of(:password).on(%i[create update_passoword]) }
+    end
   end
 end

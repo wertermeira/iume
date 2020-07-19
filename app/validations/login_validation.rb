@@ -15,6 +15,6 @@ class LoginValidation
 
     return if model.find_by(email: email)
 
-    errors.add(:email, I18n.t('errors.messages.login.email_not_found'))
+    errors.add(:email, I18n.t('errors.messages.email_not_found'))
   end
 end

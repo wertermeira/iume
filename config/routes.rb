@@ -5,5 +5,6 @@ Rails.application.routes.draw do
       resources :sessions, only: %i[create destroy]
     end
     resources :owners, only: %i[create update show]
+    resources :recover_password, path: 'recover_password/:model', only: %i[create update]
   end
 end

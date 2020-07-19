@@ -31,7 +31,7 @@ RSpec.describe 'Sessions Managements', type: :request do
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
 
-      it { expect(json_body['email']).to match_array([I18n.t('errors.messages.login.email_not_found')]) }
+      it { expect(json_body['email']).to match_array([I18n.t('errors.messages.email_not_found')]) }
     end
 
     context 'when login password is wrong' do

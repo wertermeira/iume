@@ -31,8 +31,10 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -97,4 +99,19 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+	config.action_mailer.default_url_options = { host: ENV['APP_HOST'] }
+
+	ActionMailer::Base.smtp_settings = {
+    :port           => ENV['MAILER_PORT'].to_i,
+    :address        => ENV['MAILER_ADDRESS'],
+    :domain         => ENV['MAILER_DOMAIN'],
+    :user_name      => ENV['MAILER_USER'],
+    :password       => ENV['MAILER_PASSWORD'],
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end

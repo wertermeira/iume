@@ -15,7 +15,7 @@ Rails.application.configure do
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
-    config.cache_store = :memory_store
+    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
@@ -41,6 +41,22 @@ Rails.application.configure do
 
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
+
+  config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  ActionMailer::Base.smtp_settings = {
+    :port           => ENV['MAILER_PORT'],
+    :address        => ENV['MAILER_ADDRESS'],
+    :domain         => ENV['MAILER_DOMAIN'],
+    :user_name      => ENV['MAILER_USER'],
+    :password       => ENV['MAILER_PASSWORD'],
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 
 
   # Raises error for missing translations.
