@@ -10,7 +10,7 @@ class Owner < ApplicationRecord
     self.email = email&.downcase
   end
 
-  validates :name, :email, presence: true
+  validates :email, presence: true
   validates :password, presence: true, on: %i[create update_password]
   validates :name, length: { minimum: 3, maximum: 200 }, allow_blank: true
   validates :password, length: { minimum: 8, maximum: 20 }, allow_blank: true
