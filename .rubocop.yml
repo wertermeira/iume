@@ -878,7 +878,7 @@ Layout/LineLength:
   VersionAdded: '0.25'
   VersionChanged: '0.84'
   AutoCorrect: false
-  Max: 120
+  Max: 150
   # To make it possible to copy or click on URIs in the code, we allow lines
   # containing a URI to be longer than Max.
   AllowHeredoc: true
@@ -1918,15 +1918,15 @@ Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be an Integer or
   # a Float.
   IgnoredMethods: []
-  Max: 15
+  Max: 20
 
 Metrics/BlockLength:
   Description: 'Avoid long blocks with many lines.'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.44'
   VersionChanged: '0.87'
   CountComments: false  # count full line comments?
-  Max: 25
+  Max: 50
   CountAsOne: []
   ExcludedMethods:
     # By default, exclude the `#refine` method, as it tends to have larger
@@ -1971,7 +1971,7 @@ Metrics/MethodLength:
   VersionAdded: '0.25'
   VersionChanged: '0.87'
   CountComments: false  # count full line comments?
-  Max: 10
+  Max: 15
   CountAsOne: []
   ExcludedMethods: []
 
@@ -2425,7 +2425,7 @@ Style/BlockDelimiters:
                 always ugly).
                 Prefer {...} over do...end for single-line blocks.
   StyleGuide: '#single-line-blocks'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.30'
   VersionChanged: '0.35'
   EnforcedStyle: line_count_based
