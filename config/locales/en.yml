@@ -7,6 +7,9 @@ en:
         restrict_dependent_destroy:
           has_one: Cannot delete record because a dependent %{record} exists
           has_many: Cannot delete record because dependent %{record} exist
+  mailer:
+    messages:
+      check_your_mailbox: check your mailbox
   date:
     abbr_day_names:
     - Sun
@@ -109,6 +112,7 @@ en:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      email_not_found: Email not found
       accepted: must be accepted
       blank: can't be blank
       confirmation: doesn't match %{attribute}
@@ -142,7 +146,6 @@ en:
       invalid_email_address: Email is invalid
       unauthorized: not authorized
       login:
-        email_not_found: Email not found
         invalid_password: Password wrong
     template:
       body: 'There were problems with the following fields:'
