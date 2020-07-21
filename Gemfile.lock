@@ -201,6 +201,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rb-readline (0.5.5)
+    redis (4.2.1)
     reek (6.0.1)
       kwalify (~> 0.7.0)
       parser (>= 2.5.0.0, < 2.8, != 2.5.1.1)
@@ -330,6 +331,7 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.2)
   rails-controller-testing
   rb-readline
+  redis (~> 4.0)
   rspec-rails
   rubocop-performance
   rubocop-rails
