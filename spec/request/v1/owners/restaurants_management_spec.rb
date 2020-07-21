@@ -5,7 +5,8 @@ RSpec.describe 'Restaurants management', type: :request do
   let(:restaurant_attrs) {
     {
       restaurant: {
-        name: Faker::Company.name
+        name: Faker::Company.name,
+        active: true
       }
     }
   }
@@ -30,6 +31,8 @@ RSpec.describe 'Restaurants management', type: :request do
       before { post '/v1/owners/restaurants', params: restaurant_attrs.to_json, headers: header_with_authentication(owner) }
 
       it { expect(response).to have_http_status(:created) }
+
+      it { expect(json_body.dig('data', 'attributes', 'active')).to be_truthy }
     end
 
     context 'when create failt (limit)' do
