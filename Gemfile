@@ -20,6 +20,8 @@ gem 'bcrypt', '~> 3.1.7'
 # storage base and validtions
 gem 'active_storage_base64'
 gem 'active_storage_validations'
+# The official AWS SDK for Ruby.
+gem 'aws-sdk-s3', require: false
 
 # redis cache memory
 gem 'redis', '~> 4.0'
