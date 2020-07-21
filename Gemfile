@@ -19,6 +19,8 @@ gem 'puma', '~> 4.1'
 gem 'bcrypt', '~> 3.1.7'
 # redis cache memory
 gem 'redis', '~> 4.0'
+# The authorization Gem for Ruby on Rails.
+gem 'cancancan'
 # Simple, efficient background processing for Ruby
 gem 'sidekiq', '6.0.4'
 # Use Active Storage variant
