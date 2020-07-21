@@ -25,6 +25,15 @@ RSpec.describe 'Section management', type: :request do
 
       it { expect(json_body.dig('data').length).to eq(section_count) }
     end
+
+    context 'when count restaurants unauthorized' do
+      before do
+        create_list(:section, section_count, restaurant: restaurant)
+        create_list(:section, section_count)
+        get "/v1/owners/restaurants/#{restaurant.id}/sections", headers: header_with_authentication(create(:owner))
+      end
+      it { expect(response).to have_http_status(:unauthorized) }
+    end
   end
 
   describe 'POST /v1/owners/restaurants/{restaurant_id}/sections' do

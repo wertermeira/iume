@@ -4,7 +4,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.references :section, null: false, foreign_key: true
       t.string :name
       t.text :description
-      t.integer :price, :decimal, :precision => 8, :scale => 2
+      t.decimal :price, precision: 8, scale: 2
       t.integer :position
       t.boolean :active, default: false
 

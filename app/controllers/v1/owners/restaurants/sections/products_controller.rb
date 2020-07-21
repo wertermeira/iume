@@ -4,31 +4,49 @@ module V1
       module Sections
         class ProductsController < V1Controller
           before_action :set_product, only: %i[show update destroy]
+          before_action :set_section
+          load_and_authorize_resource :section
+          load_and_authorize_resource through: :section, shallow: false
 
           def index
-            @products = @section.products
-            render json: @products, status: :ok
+            @products = @section.products.sort_by_position
+            render json: @products, each_serializer: V1::ProductSerializer, status: :ok
           end
 
           def create
-            @product = Product.new(product_params.expect(:section_id))
+            ids = @section.products.sort_by_position.ids
+            @product = Product.new(product_params.except(:section_id))
+            @product.section = @section
             if @product.save
-              render json: @product, status: :created
+              position = @section.position.presence || 0
+              SortableService.new(model: 'Product').update_sort(ids: ids.insert(position, @product.id))
+              render json: @product, serializer: V1::ProductSerializer, status: :created
             else
-              render json: @products.errors, status: :unprocessable_entity
+              render json: @product.errors, status: :unprocessable_entity
             end
           end
 
           def update
+            ids = @section.products.sort_by_position.ids
             if @product.update(product_params)
-              render json: @product, status: :accepted
+              ids -= [@product.id]
+              SortableService.new(model: 'Product').update_sort(ids: ids.insert(@product.position, @product.id)) if @product.position.present?
+              render json: @product, serializer: V1::ProductSerializer, status: :accepted
             else
-              render json: @products.errors, status: :unprocessable_entity
+              render json: @product.errors, status: :unprocessable_entity
             end
           end
 
+          def sort
+            ids = @section.products.ids
+            ids.each { |id| ids.delete(id) unless @section.products.ids.include?(id) }
+            SortableService.new(model: 'Product').update_sort(ids: product_params_ids.dig(:ids))
+
+            render json: @section.products.sort_by_position, each_serializer: V1::ProductSerializer, status: :ok
+          end
+
           def show
-            render json: @product, status: :ok
+            render json: @product, serializer: V1::ProductSerializer, status: :ok
           end
 
           def destroy
@@ -42,8 +60,20 @@ module V1
             @product = Product.find(params[:id])
           end
 
+          def set_section
+            @section = Section.find(params[:section_id])
+          end
+
           def product_params
-            params.require(:product).permit(:name, :description, :active, :section_id, image: [:data])
+            params.require(:product).permit(:name, :description, :position, :active, :price, :section_id, image: [:data])
+          end
+
+          def product_params_ids
+            params.require(:product).permit(ids: [])
+          end
+
+          def current_ability
+            OwnerAbility.new(current_user)
           end
         end
       end

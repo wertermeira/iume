@@ -16,10 +16,11 @@ RSpec.describe Product, type: :model do
   end
 
   describe 'when validation' do
-
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:price) }
     it { is_expected.to validate_length_of(:name).is_at_most(200) }
     it { is_expected.to validate_length_of(:description).is_at_least(20).is_at_most(500) }
+    it { is_expected.to validate_numericality_of(:price) }
 
     context 'when image' do
       let(:types_allow) { %w[image/png image/gif image/jpg image/jpeg] }

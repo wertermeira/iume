@@ -1,5 +1,6 @@
 class V1Controller < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
+  rescue_from CanCan::AccessDenied, with: :autorization_error
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ArgumentError, with: :argument_error
   before_action :require_login
@@ -39,5 +40,9 @@ class V1Controller < ActionController::API
 
   def build_pagination_params(type:)
     params[:page].try(:[], type)
+  end
+
+  def autorization_error
+    render json: { errors: { status: 401, message: 'Not autorization' } }, status: :unauthorized
   end
 end

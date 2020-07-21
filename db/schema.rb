@@ -76,8 +76,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_120756) do
     t.bigint "section_id", null: false
     t.string "name"
     t.text "description"
-    t.integer "price"
-    t.integer "decimal"
+    t.decimal "price", precision: 8, scale: 2
     t.integer "position"
     t.boolean "active", default: false
     t.datetime "created_at", precision: 6, null: false
