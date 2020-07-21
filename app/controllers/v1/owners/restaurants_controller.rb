@@ -40,7 +40,7 @@ module V1
       end
 
       def restaurant_params
-        params.require(:restaurant).permit(:name, :slug)
+        params.require(:restaurant).permit(:name, :slug, :active)
       end
 
       def current_ability

@@ -50,6 +50,8 @@ RSpec.describe 'Product management', type: :request do
       end
 
       it { expect(response).to have_http_status(:created) }
+
+      it { expect(json_body.dig('data', 'attributes', 'active')).to be_truthy }
     end
 
     context 'when create fail' do
