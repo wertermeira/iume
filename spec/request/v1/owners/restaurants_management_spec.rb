@@ -108,7 +108,7 @@ RSpec.describe 'Restaurants management', type: :request do
         get "/v1/owners/restaurants/#{restaurant.id}", headers: header_with_authentication(create(:owner))
       end
 
-      it { expect(response).to have_http_status(:not_found) }
+      it { expect(response).to have_http_status(:unauthorized) }
     end
   end
 end

@@ -4,6 +4,8 @@ module V1
       class SectionsController < V1Controller
         before_action :set_restaurant
         before_action :set_section, only: %i[show update destroy]
+        load_and_authorize_resource :restaurant
+        load_and_authorize_resource through: :restaurant, shallow: false
 
         def index
           @sections = @restaurant.sections.sort_by_position
@@ -56,7 +58,7 @@ module V1
         end
 
         def set_restaurant
-          @restaurant = current_user.restaurants.find(params[:restaurant_id])
+          @restaurant = Restaurant.find(params[:restaurant_id])
         end
 
         def section_params
@@ -65,6 +67,10 @@ module V1
 
         def section_params_ids
           params.require(:section).permit(ids: [])
+        end
+
+        def current_ability
+          OwnerAbility.new(current_user)
         end
       end
     end

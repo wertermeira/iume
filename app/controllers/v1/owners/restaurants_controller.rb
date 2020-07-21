@@ -2,9 +2,10 @@ module V1
   module Owners
     class RestaurantsController < V1Controller
       before_action :set_restaurant, only: %i[show update]
+      load_and_authorize_resource
 
       def index
-        @restaurants = current_user.restaurants
+        @restaurants = Restaurant.accessible_by(current_ability)
         render json: @restaurants, each_serializer: V1::RestaurantSerializer, status: :ok
       end
 
@@ -35,11 +36,15 @@ module V1
       private
 
       def set_restaurant
-        @restaurant = current_user.restaurants.find(params[:id])
+        @restaurant = Restaurant.find(params[:id])
       end
 
       def restaurant_params
         params.require(:restaurant).permit(:name, :slug)
+      end
+
+      def current_ability
+        OwnerAbility.new(current_user)
       end
     end
   end
