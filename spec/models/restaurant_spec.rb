@@ -4,7 +4,7 @@ RSpec.describe Restaurant, type: :model do
   context 'when db schema' do
     let(:model) { described_class.column_names }
 
-    %w[owner_id name slug].each do |column|
+    %w[owner_id name slug active].each do |column|
       it "have column #{column}" do
         expect(model).to include(column)
       end

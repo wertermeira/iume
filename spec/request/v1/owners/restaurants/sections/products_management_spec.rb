@@ -13,7 +13,8 @@ RSpec.describe 'Product management', type: :request do
         descrition: Faker::Lorem.paragraph_by_chars(number: 100, supplemental: false),
         image: {
           data: image_base_64
-        }
+        },
+        active: true
       }
     }
   }
@@ -50,6 +51,8 @@ RSpec.describe 'Product management', type: :request do
       end
 
       it { expect(response).to have_http_status(:created) }
+
+      it { expect(json_body.dig('data', 'attributes', 'active')).to eq('true') }
     end
 
     context 'when create fail' do
