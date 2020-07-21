@@ -1,3 +1,5 @@
-class V1::SectionSerializer < ActiveModel::Serializer
-  attributes :id, :name, :position, :created_at, :updated_at
+module V1
+  class SectionSerializer < ActiveModel::Serializer
+    attributes :id, :name, :position, :active, :created_at, :updated_at
+  end
 end

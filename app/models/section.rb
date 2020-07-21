@@ -1,14 +1,18 @@
 class Section < ApplicationRecord
   belongs_to :restaurant
 
-  validates :position, uniqueness: { scope: :restaurant_id }
+  validates :name, presence: true
+  validates :name, length: { minimum: 3, maximum: 200 }, allow_blank: true
 
-  before_create :set_position, if: -> { position.blank? }
+  scope :sort_by_position, -> { order(position: :asc) }
 
-  private
+  def self.update_sort(ids)
+    ids.each_with_index do |id, index|
+      section = Section.find_by(id: id)
+      next if section.blank?
 
-  def set_position
-    section_position = restaurant.sections.order(position: :desc).first
-    self.position = section_position.position + 1 if section_position.present?
+      section.position = index
+      section.save(validate: false)
+    end
   end
 end

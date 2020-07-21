@@ -4,7 +4,11 @@ Rails.application.routes.draw do
     namespace :owners do
       resources :sessions, only: %i[create destroy]
       resources :restaurants, only: %i[index create update show] do
-        resources :sections, module: :restaurants
+        resources :sections, module: :restaurants do
+          collection do
+            put 'sort', to: 'sections#sort'
+          end
+        end
       end
     end
     resources :owners, only: %i[create update show]

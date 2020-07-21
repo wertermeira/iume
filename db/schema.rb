@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_07_19_180107) do
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["restaurant_id", "position"], name: "index_sections_on_restaurant_id_and_position", unique: true
+    t.index ["position"], name: "index_sections_on_position"
     t.index ["restaurant_id"], name: "index_sections_on_restaurant_id"
   end
 

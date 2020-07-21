@@ -8,6 +8,6 @@ class CreateSections < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :sections, %i[restaurant_id position], unique: true
+    add_index :sections, :position
   end
 end

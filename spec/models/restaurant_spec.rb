@@ -15,6 +15,7 @@ RSpec.describe Restaurant, type: :model do
     subject { create(:restaurant) }
 
     it { is_expected.to belong_to(:owner) }
+    it { is_expected.to have_many(:sections).dependent(:destroy) }
   end
 
   describe 'when validation' do

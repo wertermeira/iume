@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :section do
-    name { "MyString" }
-    restaurant { nil }
-    position { 1 }
-    active { false }
+    name { Faker::Company.name }
+    restaurant { create(:restaurant) }
+    position { '' }
+    active { true }
   end
 end
