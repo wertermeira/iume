@@ -23,6 +23,8 @@ gem 'redis', '~> 4.0'
 gem 'sidekiq', '6.0.4'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
