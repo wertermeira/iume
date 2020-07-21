@@ -26,7 +26,7 @@ RSpec.describe Section, type: :model do
 
   context 'whens scope' do
     it 'sort_by_position' do
-      expect(described_class.sort_by_position.to_sql).to eq(described_class.order(position: :asc).to_sql) 
+      expect(described_class.sort_by_position.to_sql).to eq(described_class.order(position: :asc).to_sql)
     end
   end
 end
