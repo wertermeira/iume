@@ -17,6 +17,9 @@ gem 'puma', '~> 4.1'
 # gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# storage base and validtions
+gem 'active_storage_base64'
+gem 'active_storage_validations'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
