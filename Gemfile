@@ -17,6 +17,12 @@ gem 'puma', '~> 4.1'
 # gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# storage base and validtions
+gem 'active_storage_base64'
+gem 'active_storage_validations'
+# The official AWS SDK for Ruby.
+gem 'aws-sdk-s3', require: false
+
 # redis cache memory
 gem 'redis', '~> 4.0'
 # The authorization Gem for Ruby on Rails.
@@ -24,7 +30,7 @@ gem 'cancancan'
 # Simple, efficient background processing for Ruby
 gem 'sidekiq', '6.0.4'
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

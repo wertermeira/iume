@@ -15,7 +15,7 @@ RSpec.describe 'Section management', type: :request do
   describe 'GET /v1/owners/restaurants/{restaurant_id}/sections' do
     let(:section_count) { rand(1..10) }
 
-    context 'when count restaurants' do
+    context 'when count sections' do
       before do
         create_list(:section, section_count, restaurant: restaurant)
         create_list(:section, section_count)
@@ -26,12 +26,13 @@ RSpec.describe 'Section management', type: :request do
       it { expect(json_body.dig('data').length).to eq(section_count) }
     end
 
-    context 'when count restaurants unauthorized' do
+    context 'when unauthorized' do
       before do
         create_list(:section, section_count, restaurant: restaurant)
         create_list(:section, section_count)
         get "/v1/owners/restaurants/#{restaurant.id}/sections", headers: header_with_authentication(create(:owner))
       end
+
       it { expect(response).to have_http_status(:unauthorized) }
     end
   end
@@ -138,7 +139,7 @@ RSpec.describe 'Section management', type: :request do
     it { expect(restaurant.reload.sections.sort_by_position.ids).to eq(sections.pluck(:id).reverse) }
   end
 
-  describe 'DELETE /v1/owners/restaurants/{restaurant_id}/{id}' do
+  describe 'DELETE /v1/owners/restaurants/{restaurant_id}/sections/{id}' do
     let(:section) { create(:section, restaurant: restaurant) }
 
     context 'when delete section success' do
