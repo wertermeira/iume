@@ -2,6 +2,7 @@ class Restaurant < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   belongs_to :owner
+  has_many :sections, dependent: :destroy
 
   validates :name, presence: true
   validates :slug, uniqueness: true

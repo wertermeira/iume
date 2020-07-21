@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Restaurant, type: :model do
+RSpec.describe Section, type: :model do
   context 'when db schema' do
     let(:model) { described_class.column_names }
 
-    %w[owner_id name slug].each do |column|
+    %w[restaurant_id name position active].each do |column|
       it "have column #{column}" do
         expect(model).to include(column)
       end
@@ -12,10 +12,9 @@ RSpec.describe Restaurant, type: :model do
   end
 
   context 'when associations' do
-    subject { create(:restaurant) }
+    subject { create(:section) }
 
-    it { is_expected.to belong_to(:owner) }
-    it { is_expected.to have_many(:sections).dependent(:destroy) }
+    it { is_expected.to belong_to(:restaurant) }
   end
 
   describe 'when validation' do
@@ -23,8 +22,11 @@ RSpec.describe Restaurant, type: :model do
 
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_least(3).is_at_most(200) }
-    it { is_expected.to allow_value('xx22-xx2').for(:slug) }
-    it { is_expected.not_to allow_value('Xx1').for(:slug) }
-    it { is_expected.to validate_uniqueness_of(:slug) }
+  end
+
+  context 'whens scope' do
+    it 'sort_by_position' do
+      expect(described_class.sort_by_position.to_sql).to eq(described_class.order(position: :asc).to_sql)
+    end
   end
 end
