@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Product management', type: :request do
-
   describe 'GET /v1/restaurants/sections/{section_id}/products' do
     let(:product_count) { rand(1..10) }
 
