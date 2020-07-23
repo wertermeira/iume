@@ -38,10 +38,6 @@ class V1Controller < ActionController::API
     render json: { errors: { status: 401, message: message } }, status: :unauthorized
   end
 
-  def build_pagination_params(type:)
-    params[:page].try(:[], type)
-  end
-
   def autorization_error
     render json: { errors: { status: 401, message: 'Not autorization' } }, status: :unauthorized
   end
