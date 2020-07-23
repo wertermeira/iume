@@ -11,4 +11,5 @@ class Product < ApplicationRecord
   validates :image,
             content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'],
             size: { less_than: 2.megabytes }
+  scope :published, -> { where(active: true) }
 end

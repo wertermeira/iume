@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       get 'emails', to: 'owners/emails#show', on: :collection
     end
     resources :recover_password, path: 'recover_password/:model', only: %i[create update]
+    resources :products, controller: 'restaurants/sections/products', only: %i[index show], path: 'restaurants/sections/:section_id/products'
+    resources :restaurants, only: :show
   end
   mount Sidekiq::Web => 'sidekiq'
 end
