@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_223734) do
+ActiveRecord::Schema.define(version: 2020_08_02_142641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 2020_07_21_223734) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["authenticateable_type", "authenticateable_id"], name: "authenticateable_type_and_authenticateable_id"
     t.index ["body"], name: "index_authenticate_tokens_on_body", unique: true
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.bigint "owner_id", null: false
+    t.string "screen"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_feedbacks_on_owner_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -107,6 +116,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_223734) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "feedbacks", "owners"
   add_foreign_key "products", "sections"
   add_foreign_key "restaurants", "owners"
   add_foreign_key "sections", "restaurants"

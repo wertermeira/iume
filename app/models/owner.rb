@@ -5,6 +5,7 @@ class Owner < ApplicationRecord
   has_many :restaurants, dependent: :destroy
   has_many :sections, through: :restaurants
   has_many :products, through: :sections
+  has_many :feedbacks, dependent: :destroy
 
   enum account_status: { pending: 0, verified: 1, blocked: 2 }, _prefix: :account
 
