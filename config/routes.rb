@@ -3,6 +3,7 @@ Rails.application.routes.default_url_options[:host] = ENV.fetch('APP_URL') { 'lo
 Rails.application.routes.draw do
   namespace :v1, default: { format: :json } do
     namespace :owners do
+      resources :feedbacks, only: :create
       resources :sessions, only: %i[create destroy]
       resources :restaurants, only: %i[index create update show] do
         resources :sections, module: :restaurants do
