@@ -15,6 +15,8 @@ RSpec.describe Owner, type: :model do
 
   context 'when have associations' do
     it { is_expected.to have_many(:restaurants).dependent(:destroy) }
+    it { is_expected.to have_many(:sections).through(:restaurants) }
+    it { is_expected.to have_many(:products).through(:sections) }
   end
 
   describe 'when validation' do

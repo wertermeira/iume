@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_223734) do
     t.string "name"
     t.bigint "restaurant_id", null: false
     t.integer "position"
-    t.boolean "active", default: false
+    t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["position"], name: "index_sections_on_position"
