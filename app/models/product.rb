@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   include ActiveStorageSupport::SupportForBase64
-  belongs_to :section
+  belongs_to :section, touch: true
 
   validates :name, :price, presence: true
   validates :name, length: { maximum: 200 }, allow_blank: true

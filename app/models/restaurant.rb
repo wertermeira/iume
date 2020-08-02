@@ -3,6 +3,7 @@ class Restaurant < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
   belongs_to :owner
   has_many :sections, dependent: :destroy
+  has_many :products, through: :sections
 
   validates :name, presence: true
   validates :slug, uniqueness: true
