@@ -4,10 +4,18 @@ module V1
       skip_before_action :require_login
 
       def show
-        owner = Owner.find_by(email: params[:email]&.downcase)
+        return email_blank if params[:email].blank?
+
+        owner = Owner.find_by(email: params[:email].downcase)
         raise ActiveRecord::RecordNotFound if owner.blank?
 
         render json: '', status: :ok
+      end
+
+      private
+
+      def email_blank
+        render json: { email: [I18n.t('errors.messages.blank')] }, status: :unprocessable_entity
       end
     end
   end
