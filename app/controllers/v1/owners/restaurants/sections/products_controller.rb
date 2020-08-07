@@ -15,7 +15,7 @@ module V1
 
           def create
             ids = @section.products.sort_by_position.ids
-            @product = Product.new(product_params.except(:section_id))
+            @product = Product.new(product_params.except(:section_id, :image_destroy))
             @product.section = @section
             if @product.save
               position = @section.position.presence || 0
@@ -65,7 +65,7 @@ module V1
           end
 
           def product_params
-            params.require(:product).permit(:name, :description, :position, :active, :price, :section_id, image: [:data])
+            params.require(:product).permit(:name, :description, :position, :active, :price, :section_id, :image_destroy, image: [:data])
           end
 
           def product_params_ids
