@@ -2,6 +2,7 @@ class Restaurant < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   belongs_to :owner
+
   has_many :sections, dependent: :destroy
   has_many :products, through: :sections
 
@@ -11,6 +12,8 @@ class Restaurant < ApplicationRecord
   validates :slug, slugger: true, on: :update, allow_blank: true
   validates :slug, presence: true, on: :update
 
+  before_create :generate_uid
+
   private
 
   def slug_candidates
@@ -18,5 +21,12 @@ class Restaurant < ApplicationRecord
       :name,
       [:name, owner.id]
     ]
+  end
+
+  def generate_uid
+    self.uid = loop do
+      random_token = SecureRandom.alphanumeric(10)
+      break random_token unless Restaurant.exists?(uid: random_token)
+    end
   end
 end
