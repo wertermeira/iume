@@ -63,8 +63,8 @@ RSpec.describe 'Restaurants management', type: :request do
     context 'when owner update' do
       before do
         restaurant_attrs[:restaurant][:slug] = slug
-        put "/v1/owners/restaurants/#{restaurant.id}", params: restaurant_attrs.to_json,
-                                                       headers: header_with_authentication(owner)
+        put "/v1/owners/restaurants/#{restaurant.uid}", params: restaurant_attrs.to_json,
+                                                        headers: header_with_authentication(owner)
       end
 
       it { expect(response).to have_http_status(:accepted) }
@@ -75,8 +75,8 @@ RSpec.describe 'Restaurants management', type: :request do
     context 'when update fail' do
       before do
         restaurant_attrs[:restaurant][:slug] = ''
-        put "/v1/owners/restaurants/#{restaurant.id}", params: restaurant_attrs.to_json,
-                                                       headers: header_with_authentication(owner)
+        put "/v1/owners/restaurants/#{restaurant.uid}", params: restaurant_attrs.to_json,
+                                                        headers: header_with_authentication(owner)
       end
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
@@ -90,12 +90,13 @@ RSpec.describe 'Restaurants management', type: :request do
 
     context 'when find restaurant' do
       before do
-        get "/v1/owners/restaurants/#{restaurant.id}", headers: header_with_authentication(owner)
+        get "/v1/owners/restaurants/#{restaurant.uid}", headers: header_with_authentication(owner)
       end
 
       it { expect(response).to have_http_status(:ok) }
 
       it { expect(json_body.dig('data', 'attributes', 'slug')).to eq(restaurant.slug) }
+      it { expect(json_body.dig('data', 'id')).to eq(restaurant.uid) }
     end
 
     context 'when not found restaurant' do
@@ -108,7 +109,7 @@ RSpec.describe 'Restaurants management', type: :request do
 
     context 'when restaurant other owner (not found)' do
       before do
-        get "/v1/owners/restaurants/#{restaurant.id}", headers: header_with_authentication(create(:owner))
+        get "/v1/owners/restaurants/#{restaurant.uid}", headers: header_with_authentication(create(:owner))
       end
 
       it { expect(response).to have_http_status(:unauthorized) }

@@ -86,6 +86,21 @@ RSpec.describe 'Product management', type: :request do
       it { expect(json_body.dig('data', 'attributes', 'image')).to be_truthy }
     end
 
+    context 'when section update section_id' do
+      let(:section_2) { create(:section, restaurant: restaurant) }
+
+      before do
+        product_attrs[:product][:section_id] = section_2.id
+        endpoint = "/v1/owners/restaurants/sections/#{section.id}/products/#{product.id}"
+        put endpoint, params: product_attrs.to_json,
+                      headers: header_with_authentication(owner)
+      end
+
+      it { expect(response).to have_http_status(:accepted) }
+
+      it { expect(section_2.products.find(product.id)).to be_truthy }
+    end
+
     context 'when section update (remove_image)' do
       before do
         product_attrs[:product][:image_destroy] = true

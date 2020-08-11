@@ -10,7 +10,11 @@ module V1
     private
 
     def set_restaurant
-      @resturant = Restaurant.find_by(slug: params[:id])
+      @resturant = if params[:by_id].present?
+                     Restaurant.find_by(uid: params[:id])
+                   else
+                     Restaurant.find_by(slug: params[:id])
+                   end
       return @restaurant if @resturant.present?
 
       raise ActiveRecord::RecordNotFound

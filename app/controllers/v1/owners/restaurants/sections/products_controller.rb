@@ -27,7 +27,7 @@ module V1
           end
 
           def update
-            ids = @section.products.sort_by_position.ids
+            ids = section_select.products.sort_by_position.ids
             if @product.update(product_params)
               ids -= [@product.id]
               SortableService.new(model: 'Product').update_sort(ids: ids.insert(@product.position, @product.id)) if @product.position.present?
@@ -55,6 +55,12 @@ module V1
           end
 
           private
+
+          def section_select
+            return Section.find(product_params[:section_id]) if product_params[:section_id].present?
+
+            @section
+          end
 
           def set_product
             @product = Product.find(params[:id])
