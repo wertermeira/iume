@@ -19,7 +19,7 @@ RSpec.describe 'Section management', type: :request do
       before do
         create_list(:section, section_count, restaurant: restaurant)
         create_list(:section, section_count)
-        get "/v1/owners/restaurants/#{restaurant.id}/sections", headers: header_with_authentication(owner)
+        get "/v1/owners/restaurants/#{restaurant.uid}/sections", headers: header_with_authentication(owner)
       end
       it { expect(response).to have_http_status(:ok) }
 
@@ -30,7 +30,7 @@ RSpec.describe 'Section management', type: :request do
       before do
         create_list(:section, section_count, restaurant: restaurant)
         create_list(:section, section_count)
-        get "/v1/owners/restaurants/#{restaurant.id}/sections", headers: header_with_authentication(create(:owner))
+        get "/v1/owners/restaurants/#{restaurant.uid}/sections", headers: header_with_authentication(create(:owner))
       end
 
       it { expect(response).to have_http_status(:unauthorized) }
@@ -40,8 +40,8 @@ RSpec.describe 'Section management', type: :request do
   describe 'POST /v1/owners/restaurants/{restaurant_id}/sections' do
     context 'when create success' do
       before do
-        post "/v1/owners/restaurants/#{restaurant.id}/sections", params: section_attrs.to_json,
-                                                                 headers: header_with_authentication(owner)
+        post "/v1/owners/restaurants/#{restaurant.uid}/sections", params: section_attrs.to_json,
+                                                                  headers: header_with_authentication(owner)
       end
 
       it { expect(response).to have_http_status(:created) }
@@ -50,8 +50,8 @@ RSpec.describe 'Section management', type: :request do
     context 'when create fail' do
       before do
         section_attrs[:section][:name] = ''
-        post "/v1/owners/restaurants/#{restaurant.id}/sections", params: section_attrs.to_json,
-                                                                 headers: header_with_authentication(owner)
+        post "/v1/owners/restaurants/#{restaurant.uid}/sections", params: section_attrs.to_json,
+                                                                  headers: header_with_authentication(owner)
       end
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
@@ -67,7 +67,7 @@ RSpec.describe 'Section management', type: :request do
     context 'when section update' do
       before do
         section_attrs[:section][:name] = name
-        endpoint = "/v1/owners/restaurants/#{restaurant.id}/sections/#{section.id}"
+        endpoint = "/v1/owners/restaurants/#{restaurant.uid}/sections/#{section.id}"
         put endpoint, params: section_attrs.to_json,
                       headers: header_with_authentication(owner)
       end
@@ -80,7 +80,7 @@ RSpec.describe 'Section management', type: :request do
     context 'when update fail' do
       before do
         section_attrs[:section][:name] = ''
-        endpoint = "/v1/owners/restaurants/#{restaurant.id}/sections/#{section.id}"
+        endpoint = "/v1/owners/restaurants/#{restaurant.uid}/sections/#{section.id}"
         put endpoint, params: section_attrs.to_json,
                       headers: header_with_authentication(owner)
       end
@@ -96,7 +96,7 @@ RSpec.describe 'Section management', type: :request do
 
     context 'when find section' do
       before do
-        get "/v1/owners/restaurants/#{restaurant.id}/sections/#{section.id}", headers: header_with_authentication(owner)
+        get "/v1/owners/restaurants/#{restaurant.uid}/sections/#{section.id}", headers: header_with_authentication(owner)
       end
 
       it { expect(response).to have_http_status(:ok) }
@@ -106,7 +106,7 @@ RSpec.describe 'Section management', type: :request do
 
     context 'when not found section' do
       before do
-        get "/v1/owners/restaurants/#{restaurant.id}/sections/0", headers: header_with_authentication(owner)
+        get "/v1/owners/restaurants/#{restaurant.uid}/sections/0", headers: header_with_authentication(owner)
       end
 
       it { expect(response).to have_http_status(:not_found) }
@@ -114,7 +114,7 @@ RSpec.describe 'Section management', type: :request do
 
     context 'when section other restaurant (not found)' do
       before do
-        get "/v1/owners/restaurants/#{restaurant.id}/sections/#{create(:section).id}", headers: header_with_authentication(owner)
+        get "/v1/owners/restaurants/#{restaurant.uid}/sections/#{create(:section).id}", headers: header_with_authentication(owner)
       end
 
       it { expect(response).to have_http_status(:not_found) }
@@ -132,8 +132,8 @@ RSpec.describe 'Section management', type: :request do
     }
 
     before do
-      put "/v1/owners/restaurants/#{restaurant.id}/sections/sort", params: section_attrs.to_json,
-                                                                   headers: header_with_authentication(owner)
+      put "/v1/owners/restaurants/#{restaurant.uid}/sections/sort", params: section_attrs.to_json,
+                                                                    headers: header_with_authentication(owner)
     end
 
     it { expect(restaurant.reload.sections.sort_by_position.ids).to eq(sections.pluck(:id).reverse) }
@@ -144,7 +144,7 @@ RSpec.describe 'Section management', type: :request do
 
     context 'when delete section success' do
       before {
-        delete "/v1/owners/restaurants/#{restaurant.id}/sections/#{section.id}", headers: header_with_authentication(owner)
+        delete "/v1/owners/restaurants/#{restaurant.uid}/sections/#{section.id}", headers: header_with_authentication(owner)
       }
 
       it { expect(response).to have_http_status(:no_content) }

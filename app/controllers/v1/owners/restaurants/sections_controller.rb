@@ -60,7 +60,8 @@ module V1
         end
 
         def set_restaurant
-          @restaurant = Restaurant.find(params[:restaurant_id])
+          @restaurant = Restaurant.find_by(uid: params[:restaurant_id])
+          raise ActiveRecord::RecordNotFound if @restaurant.blank?
         end
 
         def section_params
