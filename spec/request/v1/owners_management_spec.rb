@@ -84,4 +84,16 @@ RSpec.describe 'Owners management', type: :request do
       it { expect(response).to have_http_status(:unauthorized) }
     end
   end
+
+  describe 'DELETE /v1/owners/me' do
+    context 'when delete owner success' do
+      before {
+        delete '/v1/owners/me', headers: header_with_authentication(owner)
+      }
+
+      it { expect(response).to have_http_status(:no_content) }
+
+      it { expect(Owner.find_by(id: owner.id)).to be_nil }
+    end
+  end
 end
