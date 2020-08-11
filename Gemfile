@@ -23,6 +23,8 @@ gem 'active_storage_validations'
 # The official AWS SDK for Ruby.
 gem 'aws-sdk-s3', require: false
 
+# new relic
+gem 'newrelic_rpm'
 # redis cache memory
 gem 'redis', '~> 4.0'
 # The authorization Gem for Ruby on Rails.
