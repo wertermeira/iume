@@ -1,7 +1,7 @@
 class RecoverPasswordMailer < ApplicationMailer
-  def send_to_user(user:, token:)
-    @user = user
+  def send_to_owner(owner:, token:)
+    @owner = owner
     @token = token
-    mail(to: user.email, subject: I18n.t('mailer.messages.reset_password'))
+    mail(to: owner.email, subject: I18n.t('mailer.messages.reset_password'))
   end
 end
