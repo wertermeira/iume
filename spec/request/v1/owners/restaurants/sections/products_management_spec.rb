@@ -36,7 +36,7 @@ RSpec.describe 'Product management', type: :request do
       before do
         create_list(:section, product_count, restaurant: restaurant)
         create_list(:section, product_count)
-        get "/v1/owners/restaurants/#{restaurant.id}/sections", headers: header_with_authentication(create(:owner))
+        get "/v1/owners/restaurants/#{restaurant.uid}/sections", headers: header_with_authentication(create(:owner))
       end
       it { expect(response).to have_http_status(:unauthorized) }
     end
