@@ -7,6 +7,7 @@ module V1
       @owner = Owner.new(owner_params)
       if @owner.save
         token = AuthService.create_token(authenticator: @owner, request: request)
+        WelcomeMailer.send_to_owner(@owner).deliver_later!
         render json: { token: token }, status: :created
       else
         render json: @owner.errors, status: :unprocessable_entity

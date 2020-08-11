@@ -21,6 +21,8 @@ RSpec.describe 'Owners management', type: :request do
 
       it { expect(response).to have_http_status(:created) }
 
+      it { expect(ActiveJob::Base.queue_adapter.enqueued_jobs.count).to eq(1) }
+
       it 'response token' do
         expect(json_body['token']).to eq(Owner.find_by(email: email).authenticate_tokens.last.body)
       end

@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe RecoverPasswordMailer, type: :mailer do
+RSpec.describe WelcomeMailer, type: :mailer do
   describe 'when email send owner' do
     let(:owner) { create(:owner) }
-    let(:token) { create(:authenticate_token, authenticator: owner).body }
     let(:mail) {
-      described_class.send_to_owner(owner: owner, token: token).deliver_now
+      described_class.send_to_owner(owner).deliver_now
     }
 
     context 'with headers of email' do
@@ -20,7 +19,7 @@ RSpec.describe RecoverPasswordMailer, type: :mailer do
 
     context 'when sent email' do
       it 'renders the subject' do
-        expect(mail.subject).to eq(I18n.t('mailer.messages.reset_password'))
+        expect(mail.subject).to eq(I18n.t('mailer.messages.welcome'))
       end
 
       it 'renders the receiver email' do
