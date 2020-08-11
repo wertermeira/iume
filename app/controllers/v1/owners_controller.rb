@@ -26,6 +26,11 @@ module V1
       render json: @owner, serializer: V1::OwnerSerializer, status: :ok
     end
 
+    def destroy
+      current_user.destroy
+      head :no_content
+    end
+
     private
 
     def set_owner

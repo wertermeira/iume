@@ -16,7 +16,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :owners, only: %i[create update show] do
+    resources :owners, only: %i[create update show destroy] do
       get 'emails', to: 'owners/emails#show', on: :collection
     end
     resources :recover_password, path: 'recover_password/:model', only: %i[create update]
