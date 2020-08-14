@@ -4,8 +4,9 @@ class AvailabilitySlugValidation
 
   attr_accessor :slug
 
-  validates :slug, slugger: true, allow_blank: true
   validates :slug, presence: true
+  validates :slug, slugger: true, allow_blank: true
+  validates :slug, length: { minimum: 3, maximum: 200 }, allow_blank: true
   validate :availability_restaurant
 
   private
