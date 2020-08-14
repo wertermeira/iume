@@ -33,7 +33,20 @@ module V1
         end
       end
 
+      def availability_slug
+        validation = AvailabilitySlugValidation.new(availability_slug_params)
+        if validation.valid?
+          render json: '', status: :accepted
+        else
+          render json: validation.errors, status: :unprocessable_entity
+        end
+      end
+
       private
+
+      def availability_slug_params
+        params.require(:restaurant).permit(:slug)
+      end
 
       def set_restaurant
         @restaurant = Restaurant.find_by(uid: params[:id])
