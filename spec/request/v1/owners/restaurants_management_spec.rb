@@ -85,6 +85,34 @@ RSpec.describe 'Restaurants management', type: :request do
     end
   end
 
+  describe 'PUT /v1/owners/restaurants/availability_slug' do
+    let(:restaurant_name) { 'restaurantname' }
+    let(:attrs) {
+      {
+        restaurant: {
+          slug: restaurant_name
+        }
+      }
+    }
+    context 'when restaurant slug availabilty' do
+      before do
+        put '/v1/owners/restaurants/availability_slug', params: attrs.to_json, headers: header_with_authentication(owner)
+      end
+
+      it { expect(response).to have_http_status(:accepted) }
+    end
+
+    context 'when restaurant slug unavailable' do
+      before do
+        create(:restaurant, name: restaurant_name)
+        put '/v1/owners/restaurants/availability_slug', params: attrs.to_json, headers: header_with_authentication(owner)
+      end
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(json_body.dig('slug')).to match_array([I18n.t('errors.messages.taken')]) }
+    end
+  end
+
   describe 'GET /v1/owners/restaurants/{id}' do
     let(:restaurant) { create(:restaurant, owner: owner) }
 

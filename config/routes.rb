@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :feedbacks, only: :create
       resources :sessions, only: %i[create destroy]
       resources :restaurants, only: %i[index create update show] do
+        put 'availability_slug', to: 'restaurants#availability_slug', on: :collection
         resources :sections, module: :restaurants do
           put 'sort', to: 'sections#sort', on: :collection
         end
