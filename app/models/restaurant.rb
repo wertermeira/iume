@@ -7,10 +7,11 @@ class Restaurant < ApplicationRecord
   has_many :products, through: :sections
 
   validates :name, presence: true
+  validates :slug, presence: true, on: :update
   validates :slug, uniqueness: true
   validates :name, length: { minimum: 3, maximum: 200 }, allow_blank: true
   validates :slug, slugger: true, on: :update, allow_blank: true
-  validates :slug, presence: true, on: :update
+  validates :slug, length: { minimum: 3, maximum: 200 }, allow_blank: true, on: :update
 
   before_create :generate_uid
 

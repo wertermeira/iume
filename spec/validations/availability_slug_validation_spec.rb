@@ -5,6 +5,7 @@ RSpec.describe AvailabilitySlugValidation, type: :model do
     it { is_expected.to validate_presence_of(:slug) }
     it { is_expected.to allow_value('xx22-xx2').for(:slug) }
     it { is_expected.not_to allow_value('Xx1').for(:slug) }
+    it { is_expected.to validate_length_of(:slug).is_at_least(3).is_at_most(200).on(:update) }
   end
 
   describe '#availability_restaurant' do
