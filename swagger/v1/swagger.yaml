@@ -58,13 +58,7 @@ paths:
                     "$ref": "#/components/schemas/product"
         '404':
           description: product not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    "$ref": "#/components/schemas/product"
+          content: {}
   "/v1/restaurants/{id}":
     get:
       summary: Get restaurant
@@ -76,9 +70,14 @@ paths:
         required: true
         schema:
           type: string
+      - name: by_id
+        in: query
+        required: false
+        schema:
+          type: string
       responses:
         '200':
-          description: restaurant find
+          description: restaurant found by id
           content:
             application/json:
               schema:
@@ -112,13 +111,13 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Chicken Fajitas
+              example: French Fries with Sausages
             description:
               type: string
-              example: We earn the loyalty of the people we serve by first anticipating,
-                then fulfilling their needs with our superior-quality products, a
-                unique shopping experience, customer-focused service and continuous
-                innovation, while generating long-term profitable growth for our shareholders.
+              example: SVIs mission is to deliver quality products at affordable prices
+                to our independent retailers, wholesalers and food service partners
+                around the world by providing international procurement, distribution,
+                marketing and supply chain management.
               nullable: true
             position:
               type: integer
@@ -191,7 +190,11 @@ components:
                         type: string
                         example: sections
 servers:
-- url: http://localhost:3000
+- url: http://localhost
   variables:
     defaultHost:
       default: http://localhost:3000
+- url: https://imenu-dev.herokuapp.com
+  variables:
+    defaultHost:
+      default: https://imenu-dev.herokuapp.com
