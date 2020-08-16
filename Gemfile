@@ -55,6 +55,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rb-readline'
   gem 'rspec-rails'
+  gem 'rswag-specs'
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rails_config', require: false
