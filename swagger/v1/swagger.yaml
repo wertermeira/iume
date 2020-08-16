@@ -58,13 +58,7 @@ paths:
                     "$ref": "#/components/schemas/product"
         '404':
           description: product not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    "$ref": "#/components/schemas/product"
+          content: {}
   "/v1/restaurants/{id}":
     get:
       summary: Get restaurant
@@ -76,9 +70,14 @@ paths:
         required: true
         schema:
           type: string
+      - name: by_id
+        in: query
+        required: false
+        schema:
+          type: string
       responses:
         '200':
-          description: restaurant find
+          description: restaurant found by id
           content:
             application/json:
               schema:
@@ -112,13 +111,14 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Chicken Fajitas
+              example: Pierogi
             description:
               type: string
-              example: We earn the loyalty of the people we serve by first anticipating,
-                then fulfilling their needs with our superior-quality products, a
-                unique shopping experience, customer-focused service and continuous
-                innovation, while generating long-term profitable growth for our shareholders.
+              example: Culver’s Restaurant was founded by the Culver family in 1984,
+                which eventually branched out to more than 300 franchised restaurants
+                all over the US. Culver’s is well-known for its ButterBurger, which
+                made the restaurant extremely famous. They also have other items which
+                include salads, sandwiches, desserts, etc.
               nullable: true
             position:
               type: integer
@@ -195,3 +195,7 @@ servers:
   variables:
     defaultHost:
       default: http://localhost:3000
+- url: https://imenu-dev.herokuapp.com
+  variables:
+    defaultHost:
+      default: https://imenu-dev.herokuapp.com

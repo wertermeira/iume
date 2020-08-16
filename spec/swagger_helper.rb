@@ -108,6 +108,14 @@ RSpec.configure do |config|
               default: ENV.fetch('APP_URL') { 'http://localhost:3000' }
             }
           }
+        },
+        {
+          url: 'https://imenu-dev.herokuapp.com',
+          variables: {
+            defaultHost: {
+              default: 'https://imenu-dev.herokuapp.com'
+            }
+          }
         }
       ]
     }
