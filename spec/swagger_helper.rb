@@ -102,7 +102,7 @@ RSpec.configure do |config|
       },
       servers: [
         {
-          url: ENV.fetch('APP_URL') { 'http://localhost' },
+          url: ENV.fetch('APP_URL') { 'http://localhost:3000' },
           variables: {
             defaultHost: {
               default: ENV.fetch('APP_URL') { 'http://localhost:3000' }
