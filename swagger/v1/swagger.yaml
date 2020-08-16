@@ -1,0 +1,197 @@
+---
+openapi: 3.0.1
+info:
+  title: API Iume Public
+  version: v1
+paths:
+  "/v1/restaurants/sections/{section_id}/products":
+    get:
+      summary: All products of a section
+      tags:
+      - Products
+      parameters:
+      - name: section_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: products array
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/product"
+        '404':
+          description: section not found
+          content: {}
+  "/v1/restaurants/sections/{section_id}/products/{id}":
+    get:
+      summary: Get product by section id and product id
+      tags:
+      - Products
+      parameters:
+      - name: section_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: product found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/product"
+        '404':
+          description: product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/product"
+  "/v1/restaurants/{id}":
+    get:
+      summary: Get restaurant
+      tags:
+      - Restaurants
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: restaurant find
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/restaurant"
+                  included:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/section"
+        '404':
+          description: restaurant not found
+          content: {}
+components:
+  schemas:
+    product:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '1'
+        type:
+          type: string
+          example: products
+        attributes:
+          type: object
+          properties:
+            price:
+              type: string
+              example: '10.0'
+            name:
+              type: string
+              example: Chicken Fajitas
+            description:
+              type: string
+              example: We earn the loyalty of the people we serve by first anticipating,
+                then fulfilling their needs with our superior-quality products, a
+                unique shopping experience, customer-focused service and continuous
+                innovation, while generating long-term profitable growth for our shareholders.
+              nullable: true
+            position:
+              type: integer
+              example: 0
+              nullable: true
+            image:
+              type: object
+              nullable: true
+              properties:
+                original:
+                  type: string
+                  example: https://loremflickr.com/300/300
+                small:
+                  type: string
+                  example: https://loremflickr.com/300/300
+          required:
+          - price
+          - name
+    section:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: sections
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              example: Drinks
+            position:
+              type: integer
+              example: 1
+    restaurant:
+      type: object
+      properties:
+        type:
+          type: string
+          example: restaurants
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+            active:
+              type: boolean
+        required:
+        - name
+        - slug
+        - active
+        relationships:
+          type: object
+          properties:
+            sections:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    properties:
+                      id:
+                        type: integer
+                      type:
+                        type: string
+                        example: sections
+servers:
+- url: http://localhost:3000
+  variables:
+    defaultHost:
+      default: http://localhost:3000
