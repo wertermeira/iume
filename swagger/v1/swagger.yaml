@@ -111,13 +111,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: French Fries with Sausages
+              example: Peking Duck
             description:
               type: string
-              example: SVIs mission is to deliver quality products at affordable prices
-                to our independent retailers, wholesalers and food service partners
-                around the world by providing international procurement, distribution,
-                marketing and supply chain management.
+              example: Our mission has been to help people achieve their health and
+                wellness goals. though weve changed over the years, our values have
+                remained the same.
               nullable: true
             position:
               type: integer
@@ -190,7 +189,7 @@ components:
                         type: string
                         example: sections
 servers:
-- url: http://localhost
+- url: http://localhost:3000
   variables:
     defaultHost:
       default: http://localhost:3000
