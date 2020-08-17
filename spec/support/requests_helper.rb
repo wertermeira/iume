@@ -19,6 +19,10 @@ module Requests
   end
 
   module HeaderHelpers
+    def authentication(user = nil)
+      token = create(:authenticate_token, authenticator: user).body
+      "Token token=#{token}"
+    end
     def header_with_authentication(user = nil)
       token = create(:authenticate_token, authenticator: user).body
       {
