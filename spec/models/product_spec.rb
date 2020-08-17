@@ -19,13 +19,13 @@ RSpec.describe Product, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:price) }
     it { is_expected.to validate_length_of(:name).is_at_most(200) }
-    it { is_expected.to validate_length_of(:description).is_at_least(20).is_at_most(500) }
+    it { is_expected.to validate_length_of(:description).is_at_most(1000) }
     it { is_expected.to validate_numericality_of(:price) }
 
     context 'when image' do
       let(:types_allow) { %w[image/png image/gif image/jpg image/jpeg] }
 
-      it { is_expected.to validate_size_of(:image).less_than(2.megabytes) }
+      it { is_expected.to validate_size_of(:image).less_than(4.megabytes) }
       it { is_expected.to validate_content_type_of(:image).allowing(types_allow) }
       it { is_expected.not_to validate_content_type_of(:image).allowing(%w[image/tif doc/pdf]) }
     end
