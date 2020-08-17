@@ -112,24 +112,17 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Katsu Curry
+              example: Pierogi
             description:
               type: string
-              example: To sell delicious and remarkable food and drinks. That the
-                food and drink we sell meets the highest standards of quality, freshness
-                and seasonality and combines both modern-creative and traditional
-                southern styles of cooking. To consistently provide our customers
-                with impeccable service by demonstrating warmth, graciousness, efficiency,
-                knowledge, professionalism and integrity in our work. To have every
-                customer who comes through our doors leave impressed by Maxie’s and
-                excited to come back again. To create and maintain a restaurant that
-                is comprehensive and exceptional in its attention to every detail
-                of operation. To provide all who work with us a friendly, cooperative
-                and rewarding environment which encourages long- term, satisfying,
-                growth employment. To keep our concept fresh, exciting and on the
-                cutting edge of the hospitality and entertainment industry. To be
-                a giving member of the Ithaca community and to use our restaurant
-                to improve the quality of life in the Finger Lakes region.
+              example: To ensure that each guest receives prompt, professional, friendly
+                and courteous service. To maintain a clean, comfortable and well maintained
+                premises for our guests and staff. To provide at a fair price – nutritional,
+                well-prepared meals – using only quality ingredients. To ensure that
+                all guests and staff are treated with the respect and dignity they
+                deserve. To thank each guest for the opportunity to serve them. By
+                maintaining these objectives we shall be assured of a fair profit
+                that will allow us to contribute to the community we serve.
               nullable: true
             position:
               type: integer

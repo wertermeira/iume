@@ -146,6 +146,22 @@ RSpec.configure do |config|
                 required: %w[email]
               }
             }
+          },
+          restaurant: {
+            type: :object,
+            properties: {
+              type: { type: :string, example: 'restaurants' },
+              id: { type: :string },
+              attributes: {
+                type: :object,
+                properties: {
+                  name: { type: :string },
+                  slug: { type: :string },
+                  active: { type: :boolean }
+                },
+                required: %w[name slug active]
+              }
+            }
           }
         },
         securitySchemes: {
