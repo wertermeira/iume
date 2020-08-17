@@ -19,7 +19,8 @@ RSpec.configure do |config|
       openapi: '3.0.1',
       info: {
         title: 'API Iume Public',
-        version: 'v1'
+        version: 'v1',
+        description: 'Public endpoints'
       },
       paths: {},
       components: {
@@ -97,6 +98,60 @@ RSpec.configure do |config|
                 }
               }
             }
+          }
+        }
+      },
+      servers: [
+        {
+          url: ENV.fetch('APP_URL') { 'http://localhost:3000' },
+          variables: {
+            defaultHost: {
+              default: ENV.fetch('APP_URL') { 'http://localhost:3000' }
+            }
+          }
+        },
+        {
+          url: 'https://imenu-dev.herokuapp.com',
+          variables: {
+            defaultHost: {
+              default: 'https://imenu-dev.herokuapp.com'
+            }
+          }
+        }
+      ]
+    },
+    'v1/swagger_owner.yaml' => {
+      openapi: '3.0.1',
+      info: {
+        title: 'API Iume Owner',
+        version: 'v1',
+        description: 'Owner endpoints'
+      },
+      paths: {},
+      components: {
+        schemas: {
+          owner: {
+            type: :object,
+            properties: {
+              id: { type: :string, example: '1' },
+              type: { type: :string, example: 'owners' },
+              attributes: {
+                type: :object,
+                properties: {
+                  email: { type: :string, example: Faker::Internet.email },
+                  name: { type: :string, nullable: true},
+                  created_at: { type: :string, example: Time.now },
+                  updated_at: { type: :string, example: Time.now },
+                },
+                required: %w[email]
+              }
+            }
+          }
+        },
+        securitySchemes: {
+          bearer: {
+            type: :http,
+            scheme: :bearer
           }
         }
       },

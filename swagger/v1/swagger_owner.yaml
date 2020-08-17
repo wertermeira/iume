@@ -1,0 +1,169 @@
+---
+openapi: 3.0.1
+info:
+  title: API Iume Owner
+  version: v1
+  description: Owner endpoints
+paths:
+  "/v1/owners":
+    post:
+      summary: Creates a owner
+      tags:
+      - Owners
+      parameters: []
+      responses:
+        '201':
+          description: owner created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: xxxxx
+                required:
+                - token
+        '422':
+          description: owner created fail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: array
+                    items:
+                      type: string
+                      example: Email is invalid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                owner:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: erich@cremin.org
+                    password:
+                      type: string
+                      example: '12345678'
+                    password_confirmation:
+                      type: string
+                      example: '12345678'
+              required:
+              - email
+              - password
+              - password_confirmation
+  "/v1/owners/me":
+    get:
+      summary: Show me
+      tags:
+      - Owners
+      security:
+      - bearer: []
+      responses:
+        '200':
+          description: get me
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/owner"
+    put:
+      summary: Update me
+      tags:
+      - Owners
+      security:
+      - bearer: []
+      parameters: []
+      responses:
+        '202':
+          description: get me
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/owner"
+        '422':
+          description: owner update fail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: array
+                    items:
+                      type: string
+                      example: Email is invalid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                owner:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: neil@yundt-walker.info
+                    password:
+                      type: string
+                      example: '12345678'
+                    password_confirmation:
+                      type: string
+                      example: '12345678'
+              required:
+              - email
+              - password
+              - password_confirmation
+components:
+  schemas:
+    owner:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '1'
+        type:
+          type: string
+          example: owners
+        attributes:
+          type: object
+          properties:
+            email:
+              type: string
+              example: woodrow_turner@turner.biz
+            name:
+              type: string
+              nullable: true
+            created_at:
+              type: string
+              example: '2020-08-17 14:27:29 -0300'
+            updated_at:
+              type: string
+              example: '2020-08-17 14:27:29 -0300'
+          required:
+          - email
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers:
+- url: http://localhost:3000
+  variables:
+    defaultHost:
+      default: http://localhost:3000
+- url: https://imenu-dev.herokuapp.com
+  variables:
+    defaultHost:
+      default: https://imenu-dev.herokuapp.com
