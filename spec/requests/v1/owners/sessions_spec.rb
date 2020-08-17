@@ -64,9 +64,9 @@ RSpec.describe 'v1/owners/sessions', swagger_doc: 'v1/swagger_owner.yaml', type:
       tags 'Sessions'
       consumes 'application/json'
       produces 'application/json'
+      security [bearer: []]
 
       response 204, 'login success' do
-        security [bearer: []]
         let(:Authorization) { authentication(user) }
         run_test!
       end

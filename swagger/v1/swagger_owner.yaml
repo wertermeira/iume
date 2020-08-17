@@ -5,6 +5,37 @@ info:
   version: v1
   description: Owner endpoints
 paths:
+  "/v1/owners/emails":
+    get:
+      summary: show email
+      tags:
+      - Emails
+      parameters:
+      - name: email
+        in: query
+        schema:
+          type: integer
+      security:
+      - bearer: []
+      responses:
+        '200':
+          description: email found
+          content: {}
+        '404':
+          description: email not found
+          content: {}
+        '422':
+          description: when email is blank
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: array
+                    items:
+                      type: string
+                      example: can't be blank
   "/v1/owners/sessions":
     post:
       summary: Login
@@ -47,7 +78,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: vesta@kris-dach.name
+                      example: raymon@lebsack.com
                     password:
                       type: string
                       example: '12345678'
@@ -110,7 +141,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: tamar.bahringer@frami-robel.io
+                      example: everette@kirlin-zieme.co
                     password:
                       type: string
                       example: '12345678'
@@ -178,7 +209,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: shayne.bartell@turcotte.io
+                      example: burl.crona@littel.org
                     password:
                       type: string
                       example: '12345678'
@@ -215,16 +246,16 @@ components:
           properties:
             email:
               type: string
-              example: denice.flatley@hills-kunze.org
+              example: lamar@nolan.co
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-17 15:39:15 -0300'
+              example: '2020-08-17 16:18:17 -0300'
             updated_at:
               type: string
-              example: '2020-08-17 15:39:15 -0300'
+              example: '2020-08-17 16:18:17 -0300'
           required:
           - email
   securitySchemes:
