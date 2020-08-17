@@ -2,6 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'v1/owners/feedbacks', swagger_doc: 'v1/swagger_owner.yaml', type: :request do
   let(:user) { create(:owner) }
+  let(:Authorization) { authentication(user) }
   let(:valid_attrs) {
     {
       feedback: {
@@ -31,7 +32,18 @@ RSpec.describe 'v1/owners/feedbacks', swagger_doc: 'v1/swagger_owner.yaml', type
       }
 
       response 201, 'created success' do
-        let(:Authorization) { authentication(user) }
+        schema type: :object,
+               properties: {
+                 id: { type: :string },
+                 type: { type: :string, exemple: 'feedbacks' },
+                 attributes: {
+                   type: :object,
+                   properties: {
+                     screen: { type: :screen, example: 'home' },
+                     body: { type: :string }
+                   }
+                 }
+               }
         let(:feedback) { valid_attrs }
 
         run_test! do
@@ -49,8 +61,6 @@ RSpec.describe 'v1/owners/feedbacks', swagger_doc: 'v1/swagger_owner.yaml', type
                    items: { type: :string, example: I18n.t('errors.messages.blank') }
                  }
                }
-
-        let(:Authorization) { authentication(user) }
         let(:feedback) { valid_attrs }
 
         run_test! do
