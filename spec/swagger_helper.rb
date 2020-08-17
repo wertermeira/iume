@@ -74,9 +74,9 @@ RSpec.configure do |config|
                   name: { type: :string },
                   slug: { type: :string },
                   active: { type: :boolean }
-                }
+                },
+                required: %w[name slug active]
               },
-              required: %w[name slug active],
               relationships: {
                 type: :object,
                 properties: {

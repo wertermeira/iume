@@ -6,13 +6,13 @@ class Product < ApplicationRecord
 
   validates :name, :price, presence: true
   validates :name, length: { maximum: 200 }, allow_blank: true
-  validates :description, length: { minimum: 20, maximum: 500 }, allow_blank: true
+  validates :description, length: { maximum: 1000 }, allow_blank: true
   validates :price, numericality: true, allow_blank: true
 
   has_one_base64_attached :image
   validates :image,
             content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'],
-            size: { less_than: 2.megabytes }
+            size: { less_than: 4.megabytes }
   scope :published, -> { where(active: true) }
 
   before_update :purge_image, if: -> { image_destroy }

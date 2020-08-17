@@ -111,14 +111,11 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Pierogi
+              example: Peking Duck
             description:
               type: string
-              example: Culver’s Restaurant was founded by the Culver family in 1984,
-                which eventually branched out to more than 300 franchised restaurants
-                all over the US. Culver’s is well-known for its ButterBurger, which
-                made the restaurant extremely famous. They also have other items which
-                include salads, sandwiches, desserts, etc.
+              example: We are committed to using the finest ingredients in our recipes.
+                No food leaves our kitchen that we ourselves would not eat.
               nullable: true
             position:
               type: integer
@@ -171,10 +168,10 @@ components:
               type: string
             active:
               type: boolean
-        required:
-        - name
-        - slug
-        - active
+          required:
+          - name
+          - slug
+          - active
         relationships:
           type: object
           properties:
