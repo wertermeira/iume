@@ -1,6 +1,6 @@
 require 'swagger_helper'
 
-RSpec.describe 'v1/owners',  swagger_doc: 'v1/swagger_owner.yaml', type: :request do
+RSpec.describe 'v1/owners', swagger_doc: 'v1/swagger_owner.yaml', type: :request do
   let(:user) { create(:owner) }
   let(:password) { Faker::Internet.password(min_length: 8, max_length: 12) }
   let(:email) { Faker::Internet.email }
@@ -34,34 +34,35 @@ RSpec.describe 'v1/owners',  swagger_doc: 'v1/swagger_owner.yaml', type: :reques
         },
         required: %w[email password password_confirmation]
       }
-  
+
       response 201, 'owner created' do
         schema type: :object,
-          properties: {
-            token: { type: :string, example: 'xxxxx' }
-          },
-          required: %w[token]
+               properties: {
+                 token: { type: :string, example: 'xxxxx' }
+               },
+               required: %w[token]
 
         let(:owner) { owner_valid }
 
-        run_test! do |response|
+        run_test! do
           expect(json_body['token']).to eq(Owner.find_by(email: email).authenticate_tokens.last.body)
+          expect(ActiveJob::Base.queue_adapter.enqueued_jobs.count).to eq(1)
         end
       end
 
       response 422, 'owner created fail' do
         schema type: :object,
-          properties: {
-            email: {
-              type: :array,
-              items: { type: :string, example: I18n.t('errors.messages.invalid_email_address') }
-            }
-          }
+               properties: {
+                 email: {
+                   type: :array,
+                   items: { type: :string, example: I18n.t('errors.messages.invalid_email_address') }
+                 }
+               }
         let(:owner) { owner_valid }
 
         before { owner_valid[:owner][:email] = 'email' }
 
-        run_test! do |response|
+        run_test! do
           expect(json_body['email']).to match_array([I18n.t('errors.messages.invalid_email_address')])
         end
       end
@@ -71,14 +72,14 @@ RSpec.describe 'v1/owners',  swagger_doc: 'v1/swagger_owner.yaml', type: :reques
   path '/v1/owners/me' do
     get 'Show me' do
       tags 'Owners'
-      security [ bearer: [] ]
+      security [bearer: []]
       produces 'application/json'
 
       response 200, 'get me' do
         schema type: :object,
-          properties: {
-            data: { '$ref' => '#/components/schemas/owner' }
-          }
+               properties: {
+                 data: { '$ref' => '#/components/schemas/owner' }
+               }
         let(:Authorization) { authentication(user) }
         run_test!
       end
@@ -88,7 +89,7 @@ RSpec.describe 'v1/owners',  swagger_doc: 'v1/swagger_owner.yaml', type: :reques
       tags 'Owners'
       consumes 'application/json'
       produces 'application/json'
-      security [ bearer: [] ]
+      security [bearer: []]
       parameter name: :owner, in: :body, schema: {
         type: :object,
         properties: {
@@ -106,9 +107,10 @@ RSpec.describe 'v1/owners',  swagger_doc: 'v1/swagger_owner.yaml', type: :reques
 
       response 202, 'get me' do
         schema type: :object,
-          properties: {
-            data: { '$ref' => '#/components/schemas/owner' }
-          }
+               properties: {
+                 data: { '$ref' => '#/components/schemas/owner' }
+               }
+
         let(:Authorization) { authentication(user) }
         let(:owner) { owner_valid }
         run_test!
@@ -116,18 +118,19 @@ RSpec.describe 'v1/owners',  swagger_doc: 'v1/swagger_owner.yaml', type: :reques
 
       response 422, 'owner update fail' do
         schema type: :object,
-          properties: {
-            email: {
-              type: :array,
-              items: { type: :string, example: I18n.t('errors.messages.invalid_email_address') }
-            }
-          }
+               properties: {
+                 email: {
+                   type: :array,
+                   items: { type: :string, example: I18n.t('errors.messages.invalid_email_address') }
+                 }
+               }
+
         let(:Authorization) { authentication(user) }
         let(:owner) { owner_valid }
 
         before { owner_valid[:owner][:email] = 'email' }
 
-        run_test! do |response|
+        run_test! do
           expect(json_body['email']).to match_array([I18n.t('errors.messages.invalid_email_address')])
         end
       end
@@ -135,13 +138,13 @@ RSpec.describe 'v1/owners',  swagger_doc: 'v1/swagger_owner.yaml', type: :reques
 
     delete 'Delete me' do
       tags 'Owners'
-      security [ bearer: [] ]
+      security [bearer: []]
       produces 'application/json'
 
-      response 204, 'get me' do
+      response 204, 'destroy success' do
         let(:Authorization) { authentication(user) }
         run_test! do
-          expect(Owner.find_by(id: user.id)).to be_nil 
+          expect(Owner.find_by(id: user.id)).to be_nil
         end
       end
     end

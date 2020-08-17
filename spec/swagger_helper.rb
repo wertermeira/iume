@@ -139,9 +139,9 @@ RSpec.configure do |config|
                 type: :object,
                 properties: {
                   email: { type: :string, example: Faker::Internet.email },
-                  name: { type: :string, nullable: true},
+                  name: { type: :string, nullable: true },
                   created_at: { type: :string, example: Time.now },
-                  updated_at: { type: :string, example: Time.now },
+                  updated_at: { type: :string, example: Time.now }
                 },
                 required: %w[email]
               }

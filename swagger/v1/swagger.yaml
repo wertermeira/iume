@@ -112,14 +112,17 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Katsu Curry
+              example: Meatballs with Sauce
             description:
               type: string
-              example: Culver’s Restaurant was founded by the Culver family in 1984,
-                which eventually branched out to more than 300 franchised restaurants
-                all over the US. Culver’s is well-known for its ButterBurger, which
-                made the restaurant extremely famous. They also have other items which
-                include salads, sandwiches, desserts, etc.
+              example: To ensure that each guest receives prompt, professional, friendly
+                and courteous service. To maintain a clean, comfortable and well maintained
+                premises for our guests and staff. To provide at a fair price – nutritional,
+                well-prepared meals – using only quality ingredients. To ensure that
+                all guests and staff are treated with the respect and dignity they
+                deserve. To thank each guest for the opportunity to serve them. By
+                maintaining these objectives we shall be assured of a fair profit
+                that will allow us to contribute to the community we serve.
               nullable: true
             position:
               type: integer
