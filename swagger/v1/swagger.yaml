@@ -112,7 +112,7 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Salmon Nigiri
+              example: Hummus
             description:
               type: string
               example: We are committed to using the finest ingredients in our recipes.
