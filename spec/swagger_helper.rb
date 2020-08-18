@@ -147,6 +147,21 @@ RSpec.configure do |config|
               }
             }
           },
+          section: {
+            type: :object,
+            properties: {
+              id: { type: :string },
+              type: { type: :string, example: 'sections' },
+              attributes: {
+                type: :object,
+                properties: {
+                  name: { type: :string, example: 'Drinks' },
+                  position: { type: :integer, example: 1 },
+                  active: { type: :boolean }
+                }
+              }
+            }
+          },
           restaurant: {
             type: :object,
             properties: {

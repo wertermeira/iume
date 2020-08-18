@@ -51,7 +51,6 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
         before {
           create(:restaurant, owner: user)
         }
-        let(:Authorization) { authentication(user) }
         let(:restaurant) { valid_attrs }
 
         run_test!
@@ -85,6 +84,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
       tags TAG_NAME
       produces 'application/json'
       security [bearer: []]
+
       response 200, 'return array' do
         schema type: :object,
                properties: {

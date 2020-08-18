@@ -30,7 +30,7 @@ module V1
           ids.each { |id| ids.delete(id) unless @restaurant.sections.ids.include?(id) }
           SortableService.new(model: 'Section').update_sort(ids: section_params_ids.dig(:ids))
 
-          render json: @restaurant.sections.sort_by_position, each_serializer: V1::SectionSerializer, status: :ok
+          render json: @restaurant.sections.sort_by_position, each_serializer: V1::SectionSerializer, status: :accepted
         end
 
         def show
