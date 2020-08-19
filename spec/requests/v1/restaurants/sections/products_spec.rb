@@ -26,6 +26,7 @@ RSpec.describe 'v1/restaurants/sections/{section_id}/products', type: :request d
         let(:section_id) { section.id }
         run_test!
       end
+
       response '404', 'section not found' do
         let(:section_id) { '0' }
         run_test!
