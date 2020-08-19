@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Illo et et dolorem in corporis blanditiis aut voluptatem
-                        rerum?
+                      example: Earum est minus nihil dolorem officia velit quis ut
+                        voluptatibus?
               required:
               - body
   "/v1/owners/restaurants/{restaurant_id}/sections":
@@ -107,7 +107,7 @@ paths:
         in: path
         required: true
         schema:
-          type: integer
+          type: string
       responses:
         '200':
           description: sections array
@@ -131,7 +131,7 @@ paths:
         in: path
         required: true
         schema:
-          type: integer
+          type: string
       responses:
         '201':
           description: create success
@@ -165,7 +165,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Langosh-Weissnat
+                      example: Grant, Braun and Macejkovic
                     position:
                       type: integer
                       example: 1
@@ -186,7 +186,7 @@ paths:
         in: path
         required: true
         schema:
-          type: integer
+          type: string
       - name: id
         in: path
         required: true
@@ -222,7 +222,7 @@ paths:
         in: path
         required: true
         schema:
-          type: integer
+          type: string
       - name: id
         in: path
         required: true
@@ -261,7 +261,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Leuschke-Volkman
+                      example: Kassulke, Padberg and Quitzon
                     position:
                       type: integer
                       example: 1
@@ -281,7 +281,7 @@ paths:
         in: path
         required: true
         schema:
-          type: integer
+          type: string
       - name: id
         in: path
         required: true
@@ -304,9 +304,9 @@ paths:
         in: path
         required: true
         schema:
-          type: integer
+          type: string
       responses:
-        '201':
+        '202':
           description: update positions
           content:
             application/json:
@@ -377,7 +377,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Lynch-Heller
+                      example: Klein-O'Connell
                     active:
                       type: boolean
               required:
@@ -447,7 +447,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Murray Inc
+                      example: Bayer-Becker
                     active:
                       type: boolean
               required:
@@ -517,7 +517,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: sequi_possimus
+                      example: veniam-blanditiis
               required:
               - name
               - active
@@ -563,7 +563,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: annie.collier@gorczany-glover.biz
+                      example: alethia@rogahn-collier.io
                     password:
                       type: string
                       example: '12345678'
@@ -626,7 +626,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: waylon_schmeler@hessel.com
+                      example: inez@gusikowski.info
                     password:
                       type: string
                       example: '12345678'
@@ -694,7 +694,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: glenn@ward.net
+                      example: eric_marvin@bode.net
                     password:
                       type: string
                       example: '12345678'
@@ -731,16 +731,16 @@ components:
           properties:
             email:
               type: string
-              example: glinda@robel-kohler.name
+              example: kiley_ankunding@ankunding-durgan.com
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-18 17:23:09 -0300'
+              example: '2020-08-19 09:21:30 -0300'
             updated_at:
               type: string
-              example: '2020-08-18 17:23:09 -0300'
+              example: '2020-08-19 09:21:30 -0300'
           required:
           - email
     section:

@@ -25,7 +25,7 @@ RSpec.describe 'v1/owners/restaurants/{restaurant_id}/sections', type: :request,
       tags TAG_NAME
       produces 'application/json'
       security [bearer: []]
-      parameter name: :restaurant_id, in: :path, type: :integer
+      parameter name: :restaurant_id, in: :path, type: :string
 
       response 200, 'sections array' do
         schema type: :object,
@@ -53,7 +53,7 @@ RSpec.describe 'v1/owners/restaurants/{restaurant_id}/sections', type: :request,
       consumes 'application/json'
       produces 'application/json'
       security [bearer: []]
-      parameter name: :restaurant_id, in: :path, type: :integer
+      parameter name: :restaurant_id, in: :path, type: :string
       parameter name: :section, in: :body, schema: {
         type: :object,
         properties: {
@@ -104,7 +104,7 @@ RSpec.describe 'v1/owners/restaurants/{restaurant_id}/sections', type: :request,
       tags TAG_NAME
       produces 'application/json'
       security [bearer: []]
-      parameter name: :restaurant_id, in: :path, type: :integer
+      parameter name: :restaurant_id, in: :path, type: :string
       parameter name: :id, in: :path, type: :integer
 
       response 200, 'section found' do
@@ -134,7 +134,7 @@ RSpec.describe 'v1/owners/restaurants/{restaurant_id}/sections', type: :request,
       consumes 'application/json'
       produces 'application/json'
       security [bearer: []]
-      parameter name: :restaurant_id, in: :path, type: :integer
+      parameter name: :restaurant_id, in: :path, type: :string
       parameter name: :id, in: :path, type: :integer
       parameter name: :section, in: :body, schema: {
         type: :object,
@@ -185,7 +185,7 @@ RSpec.describe 'v1/owners/restaurants/{restaurant_id}/sections', type: :request,
       tags TAG_NAME
       security [bearer: []]
       produces 'application/json'
-      parameter name: :restaurant_id, in: :path, type: :integer
+      parameter name: :restaurant_id, in: :path, type: :string
       parameter name: :id, in: :path, type: :integer
 
       response 204, 'destroy success' do
@@ -212,7 +212,7 @@ RSpec.describe 'v1/owners/restaurants/{restaurant_id}/sections', type: :request,
       produces 'application/json'
       description 'Owner can reorder position of sections'
       security [bearer: []]
-      parameter name: :restaurant_id, in: :path, type: :integer
+      parameter name: :restaurant_id, in: :path, type: :string
       parameter name: :section, in: :body, schema: {
         type: :object,
         properties: {
