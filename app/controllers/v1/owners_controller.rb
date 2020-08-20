@@ -15,7 +15,11 @@ module V1
     end
 
     def update
-      if @owner.update(owner_params)
+      password_params = owner_params.except(:name, :password_confirmation).merge(current_user: current_user)
+      @owner_password_validation = OwnerPasswordValidation.new(password_params)
+      return render_invalid_password unless @owner_password_validation.valid?
+
+      if @owner.update(owner_params.except(:password_current))
         render json: @owner, serializer: V1::OwnerSerializer, status: :accepted
       else
         render json: @owner.errors, status: :unprocessable_entity
@@ -38,7 +42,11 @@ module V1
     end
 
     def owner_params
-      params.require(:owner).permit(:name, :email, :password, :password_confirmation)
+      params.require(:owner).permit(:name, :email, :password, :password_confirmation, :password_current)
+    end
+
+    def render_invalid_password
+      render json: @owner_password_validation.errors, status: :unprocessable_entity
     end
   end
 end

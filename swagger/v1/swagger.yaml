@@ -112,7 +112,7 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Tacos
+              example: Pho
             description:
               type: string
               example: To deliver an exceptional shopping experience by offering the
