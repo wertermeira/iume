@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Earum est minus nihil dolorem officia velit quis ut
-                        voluptatibus?
+                      example: Aperiam odio aut dolorem quas eos cupiditate minus
+                        sed et?
               required:
               - body
   "/v1/owners/restaurants/{restaurant_id}/sections":
@@ -165,7 +165,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Grant, Braun and Macejkovic
+                      example: Runolfsdottir, Schiller and White
                     position:
                       type: integer
                       example: 1
@@ -261,7 +261,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Kassulke, Padberg and Quitzon
+                      example: Carter-Thompson
                     position:
                       type: integer
                       example: 1
@@ -377,7 +377,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Klein-O'Connell
+                      example: O'Conner LLC
                     active:
                       type: boolean
               required:
@@ -447,7 +447,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Bayer-Becker
+                      example: Durgan and Sons
                     active:
                       type: boolean
               required:
@@ -517,7 +517,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: veniam-blanditiis
+                      example: culpa-vero
               required:
               - name
               - active
@@ -563,7 +563,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: alethia@rogahn-collier.io
+                      example: guadalupe@vonrueden.biz
                     password:
                       type: string
                       example: '12345678'
@@ -626,7 +626,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: inez@gusikowski.info
+                      example: sandy@volkman-yost.co
                     password:
                       type: string
                       example: '12345678'
@@ -660,10 +660,12 @@ paths:
       - Owners
       security:
       - bearer: []
+      description: to update email or password the current password is required ...
+        use the password_current field
       parameters: []
       responses:
         '202':
-          description: get me
+          description: update email
           content:
             application/json:
               schema:
@@ -682,7 +684,7 @@ paths:
                     type: array
                     items:
                       type: string
-                      example: Email is invalid
+                      example: can't be blank
       requestBody:
         content:
           application/json:
@@ -694,17 +696,19 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: eric_marvin@bode.net
+                      example: earl_russel@abernathy.net
                     password:
                       type: string
                       example: '12345678'
                     password_confirmation:
                       type: string
                       example: '12345678'
-              required:
-              - email
-              - password
-              - password_confirmation
+                    password_current:
+                      type: string
+                      example: '12345678'
+                      description: Only needed to update sensitive data
+                  required:
+                  - email
     delete:
       summary: Delete me
       tags:
@@ -731,16 +735,16 @@ components:
           properties:
             email:
               type: string
-              example: kiley_ankunding@ankunding-durgan.com
+              example: lillia@steuber.net
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-19 09:21:30 -0300'
+              example: '2020-08-20 09:22:57 -0300'
             updated_at:
               type: string
-              example: '2020-08-19 09:21:30 -0300'
+              example: '2020-08-20 09:22:57 -0300'
           required:
           - email
     section:

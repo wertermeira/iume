@@ -86,10 +86,21 @@ RSpec.describe 'v1/owners', swagger_doc: 'v1/swagger_owner.yaml', type: :request
     end
 
     put 'Update me' do
+      let(:new_password) { Faker::Internet.password(min_length: 8, max_length: 12) }
+      let(:user) { create(:owner, password: password, password_confirmation: password, email: email) }
+      let(:owner_valid) {
+        {
+          owner: {
+            name: Faker::Name.name,
+            email: email
+          }
+        }
+      }
       tags 'Owners'
       consumes 'application/json'
       produces 'application/json'
       security [bearer: []]
+      description 'to update email or password the current password is required ... use the password_current field'
       parameter name: :owner, in: :body, schema: {
         type: :object,
         properties: {
@@ -98,14 +109,15 @@ RSpec.describe 'v1/owners', swagger_doc: 'v1/swagger_owner.yaml', type: :request
             properties: {
               email: { type: :string, example: Faker::Internet.email },
               password: { type: :string, example: '12345678' },
-              password_confirmation: { type: :string, example: '12345678' }
-            }
+              password_confirmation: { type: :string, example: '12345678' },
+              password_current: { type: :string, example: '12345678', description: 'Only needed to update sensitive data' }
+            },
+            required: %w[email]
           }
-        },
-        required: %w[email password password_confirmation]
+        }
       }
 
-      response 202, 'get me' do
+      response 202, 'update' do
         schema type: :object,
                properties: {
                  data: { '$ref' => '#/components/schemas/owner' }
@@ -116,22 +128,109 @@ RSpec.describe 'v1/owners', swagger_doc: 'v1/swagger_owner.yaml', type: :request
         run_test!
       end
 
+      response 202, 'update password' do
+        let(:owner_valid) {
+          {
+            owner: {
+              name: Faker::Name.name,
+              email: email,
+              password: new_password,
+              password_confirmation: new_password,
+              password_current: password
+            }
+          }
+        }
+        schema type: :object,
+               properties: {
+                 data: { '$ref' => '#/components/schemas/owner' }
+               }
+
+        let(:Authorization) { authentication(user) }
+        let(:owner) { owner_valid }
+
+        run_test! do
+          expect(user.reload.authenticate(new_password)).to be_truthy
+          expect(user.reload.authenticate(password)).to be_falsey
+        end
+      end
+
+      response 202, 'update email' do
+        let(:new_email) { Faker::Internet.email }
+        let(:owner_valid) {
+          {
+            owner: {
+              name: Faker::Name.name,
+              email: new_email,
+              password_current: password
+            }
+          }
+        }
+        schema type: :object,
+               properties: {
+                 data: { '$ref' => '#/components/schemas/owner' }
+               }
+
+        let(:Authorization) { authentication(user) }
+        let(:owner) { owner_valid }
+
+        run_test! do
+          expect(json_body.dig('data', 'attributes', 'email')).to eq(new_email)
+        end
+      end
+
+      response 422, 'update password current invalid' do
+        let(:owner_valid) {
+          {
+            owner: {
+              name: Faker::Name.name,
+              email: email,
+              password: new_password,
+              password_confirmation: new_password,
+              password_current: 'x2xxxxxx'
+            }
+          }
+        }
+
+        let(:Authorization) { authentication(user) }
+        let(:owner) { owner_valid }
+        run_test! do
+          expect(json_body['password_current']).to match_array([I18n.t('errors.messages.login.invalid_password')])
+        end
+      end
+
+      response 422, 'update try update email' do
+        let(:owner_valid) {
+          {
+            owner: {
+              name: Faker::Name.name,
+              email: 'new@email.com'
+            }
+          }
+        }
+
+        let(:Authorization) { authentication(user) }
+        let(:owner) { owner_valid }
+        run_test! do
+          expect(json_body['password_current']).to match_array([I18n.t('errors.messages.blank')])
+        end
+      end
+
       response 422, 'owner update fail' do
         schema type: :object,
                properties: {
                  email: {
                    type: :array,
-                   items: { type: :string, example: I18n.t('errors.messages.invalid_email_address') }
+                   items: { type: :string, example: I18n.t('errors.messages.blank') }
                  }
                }
 
         let(:Authorization) { authentication(user) }
         let(:owner) { owner_valid }
 
-        before { owner_valid[:owner][:email] = 'email' }
+        before { owner_valid[:owner][:email] = '' }
 
         run_test! do
-          expect(json_body['email']).to match_array([I18n.t('errors.messages.invalid_email_address')])
+          expect(json_body['email']).to match_array([I18n.t('errors.messages.blank')])
         end
       end
     end
