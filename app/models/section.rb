@@ -7,4 +7,8 @@ class Section < ApplicationRecord
   validates :name, length: { minimum: 3, maximum: 200 }, allow_blank: true
 
   scope :published, -> { joins(:restaurant).where(active: true, restaurants: { active: true }) }
+
+  before_create do
+    self.position = restaurant.sections.count if position.blank?
+  end
 end

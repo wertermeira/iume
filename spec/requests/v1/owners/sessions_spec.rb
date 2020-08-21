@@ -1,6 +1,8 @@
 require 'swagger_helper'
 
 RSpec.describe 'v1/owners/sessions', swagger_doc: 'v1/swagger_owner.yaml', type: :request do
+  TAG_NAME = 'Sessions'.freeze
+
   path '/v1/owners/sessions' do
     let(:password) { Faker::Internet.password(min_length: 8, max_length: 12) }
     let(:owner) { create(:owner, password: password) }
@@ -13,7 +15,7 @@ RSpec.describe 'v1/owners/sessions', swagger_doc: 'v1/swagger_owner.yaml', type:
       }
     }
     post 'Login' do
-      tags 'Sessions'
+      tags TAG_NAME
       consumes 'application/json'
       produces 'application/json'
       parameter name: :login, in: :body, schema: {
@@ -61,7 +63,7 @@ RSpec.describe 'v1/owners/sessions', swagger_doc: 'v1/swagger_owner.yaml', type:
   path '/v1/owners/sessions/me' do
     let(:user) { create(:owner) }
     delete 'Destroy session' do
-      tags 'Sessions'
+      tags TAG_NAME
       consumes 'application/json'
       produces 'application/json'
       security [bearer: []]
