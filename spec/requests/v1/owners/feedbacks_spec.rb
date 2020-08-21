@@ -1,6 +1,8 @@
 require 'swagger_helper'
 
 RSpec.describe 'v1/owners/feedbacks', swagger_doc: 'v1/swagger_owner.yaml', type: :request do
+  TAG_NAME = 'Feedbacks'.freeze
+
   let(:user) { create(:owner) }
   let(:Authorization) { authentication(user) }
   let(:valid_attrs) {
@@ -13,7 +15,7 @@ RSpec.describe 'v1/owners/feedbacks', swagger_doc: 'v1/swagger_owner.yaml', type
   }
   path '/v1/owners/feedbacks' do
     post 'create feedback' do
-      tags 'Feedbacks'
+      tags TAG_NAME
       consumes 'application/json'
       produces 'application/json'
       security [bearer: []]

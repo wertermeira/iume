@@ -1,10 +1,11 @@
 require 'swagger_helper'
 
 RSpec.describe 'v1/owners/emails', swagger_doc: 'v1/swagger_owner.yaml', type: :request do
+  TAG_NAME = 'Emails'.freeze
   let(:user) { create(:owner) }
   path '/v1/owners/emails' do
     get 'show email' do
-      tags 'Emails'
+      tags TAG_NAME
       produces 'application/json'
       parameter name: :email, in: :query, type: :integer
       security [bearer: []]

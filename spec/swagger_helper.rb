@@ -147,6 +147,32 @@ RSpec.configure do |config|
               }
             }
           },
+          product: {
+            type: :object,
+            properties: {
+              id: { type: :string, example: '1' },
+              type: { type: :string, example: 'products' },
+              attributes: {
+                type: :object,
+                properties: {
+                  price: { type: :string, example: '10.0' },
+                  name: { type: :string, example: Faker::Food.dish },
+                  description: { type: :string, example: Faker::Restaurant.description, nullable: true },
+                  position: { type: :integer, example: 0, nullable: true },
+                  active: { type: :boolean },
+                  image: {
+                    type: :object,
+                    nullable: true,
+                    properties: {
+                      original: { type: :string, example: Faker::LoremFlickr.image },
+                      small: { type: :string, example: Faker::LoremFlickr.image }
+                    }
+                  }
+                },
+                required: %w[price name]
+              }
+            }
+          },
           section: {
             type: :object,
             properties: {

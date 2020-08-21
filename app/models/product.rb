@@ -16,6 +16,9 @@ class Product < ApplicationRecord
   scope :published, -> { where(active: true) }
 
   before_update :purge_image, if: -> { image_destroy }
+  before_create do
+    self.position = section.products.count if position.blank?
+  end
 
   private
 

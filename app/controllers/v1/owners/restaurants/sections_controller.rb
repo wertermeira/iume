@@ -17,7 +17,7 @@ module V1
           @section = Section.new(section_params)
           @section.restaurant = @restaurant
           if @section.save
-            position = @section.position.presence || 0
+            position = @section.position.presence || @section.id
             SortableService.new(model: 'Section').update_sort(ids: ids.insert(position, @section.id))
             render json: @section, serializer: V1::SectionSerializer, status: :created
           else

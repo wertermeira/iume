@@ -18,7 +18,7 @@ module V1
             @product = Product.new(product_params.except(:section_id, :image_destroy))
             @product.section = @section
             if @product.save
-              position = @section.position.presence || 0
+              position = @product.position.presence || @product.id
               SortableService.new(model: 'Product').update_sort(ids: ids.insert(position, @product.id))
               render json: @product, serializer: V1::ProductSerializer, status: :created
             else
@@ -42,7 +42,7 @@ module V1
             ids.each { |id| ids.delete(id) unless @section.products.ids.include?(id) }
             SortableService.new(model: 'Product').update_sort(ids: product_params_ids.dig(:ids))
 
-            render json: @section.products.sort_by_position, each_serializer: V1::ProductSerializer, status: :ok
+            render json: @section.products.sort_by_position, each_serializer: V1::ProductSerializer, status: :accepted
           end
 
           def show
