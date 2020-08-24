@@ -31,6 +31,12 @@ RSpec.describe 'v1/owners/restaurants/sections/{section_id}/products', type: :re
       produces 'application/json'
       security [bearer: []]
       parameter name: :section_id, in: :path, type: :string
+      parameter name: :q, in: :query, required: false, schema: {
+        type: :object,
+        properties: {
+          'q[s]': { type: :string, example: 'name+desc' }
+        }
+      }
 
       response 200, 'product array' do
         let(:section_id) { section.id }

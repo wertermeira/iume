@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: At eaque quia sit facere tempora reprehenderit incidunt
-                        voluptate libero?
+                      example: Facere saepe qui numquam et omnis aut qui blanditiis
+                        rerum?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -108,6 +108,15 @@ paths:
         required: true
         schema:
           type: string
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: object
+          properties:
+            q[s]:
+              type: string
+              example: name+desc
       responses:
         '200':
           description: product array
@@ -165,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Hackett, Effertz and Terry
+                      example: Jones LLC
                     description:
                       type: string
-                      example: Enim quos perferendis. Praesentium ea quisquam. Quidem
-                        qui sit. Et quam vitae. Maxime autem dolorem.
+                      example: Minus deleniti quo. Eaque qui sint. Eos temporibus
+                        iusto. Mollitia vero totam. Odio fugit voluptas..
                     image:
                       type: object
                       properties:
@@ -274,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Braun-Tromp
+                      example: Turcotte LLC
                     description:
                       type: string
-                      example: Veniam qui sed. Qui accusamus libero. Dolore quam eum.
-                        Tenetur omnis vel. Distinctio quam est. Corr.
+                      example: Est officia numquam. Cumque repellat consectetur. Alias
+                        blanditiis aut. Dolorem dolor dolor. Fugit .
                     image:
                       type: object
                       properties:
@@ -434,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Walker-Paucek
+                      example: Shields LLC
                     position:
                       type: integer
                       example: 1
@@ -530,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Bergstrom LLC
+                      example: Medhurst, Bogisich and Nikolaus
                     position:
                       type: integer
                       example: 1
@@ -646,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Hilll, Hoppe and McKenzie
+                      example: Russel, Grady and Heaney
                     active:
                       type: boolean
               required:
@@ -716,7 +725,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Stamm, Will and Stoltenberg
+                      example: Toy Inc
                     active:
                       type: boolean
               required:
@@ -786,7 +795,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: ea-ipsum
+                      example: voluptatem_illum
               required:
               - name
               - active
@@ -832,7 +841,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: dillon@gleason.name
+                      example: kyoko.baumbach@feest-barton.com
                     password:
                       type: string
                       example: '12345678'
@@ -895,7 +904,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: hung@turner.info
+                      example: lucio@weber.com
                     password:
                       type: string
                       example: '12345678'
@@ -965,7 +974,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: kellye@mueller-morar.name
+                      example: fatimah@sipes-johnson.net
                     password:
                       type: string
                       example: '12345678'
@@ -1004,16 +1013,16 @@ components:
           properties:
             email:
               type: string
-              example: cyndy.hodkiewicz@kovacek.co
+              example: jarrod.pfannerstill@mills-friesen.biz
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-21 11:43:07 -0300'
+              example: '2020-08-21 12:52:02 -0300'
             updated_at:
               type: string
-              example: '2020-08-21 11:43:07 -0300'
+              example: '2020-08-21 12:52:02 -0300'
           required:
           - email
     product:
@@ -1033,7 +1042,7 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Cheeseburger
+              example: Scotch Eggs
             description:
               type: string
               example: To sell delicious and remarkable food and drinks. That the
