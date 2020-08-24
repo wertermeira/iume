@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Maxime fugiat sunt expedita accusantium quam omnis
-                        et est reprehenderit?
+                      example: Amet adipisci dolores molestias autem est asperiores
+                        facere distinctio cupiditate?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Watsica and Sons
+                      example: Rutherford, Osinski and Moen
                     description:
                       type: string
-                      example: Vel nihil qui. Omnis dolorum odit. Omnis ab voluptas.
-                        Enim sint et. Illo magni perferendis. Ipsam m.
+                      example: Facilis tenetur quidem. Quidem dolore hic. Et deleniti
+                        aut. Quibusdam qui in. Error numquam vero. M.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Pagac-Nader
+                      example: Dickens Group
                     description:
                       type: string
-                      example: Molestiae quibusdam recusandae. Eos consequatur ea.
-                        Dolore exercitationem aspernatur. In repellendu.
+                      example: Architecto ea aut. Harum nihil qui. Enim quia impedit.
+                        Mollitia fuga accusantium. Quia voluptatem n.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Grimes Inc
+                      example: Nitzsche-Collins
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Daniel, Johnson and Welch
+                      example: Hermiston-Johnston
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Langworth, Blanda and Hammes
+                      example: Streich, Lesch and Roob
                     active:
                       type: boolean
               required:
@@ -725,7 +725,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Parker Group
+                      example: Lakin-Langworth
                     active:
                       type: boolean
               required:
@@ -795,7 +795,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: molestiae_impedit
+                      example: aut_consequatur
               required:
               - name
               - active
@@ -841,7 +841,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: manual@turner-brakus.co
+                      example: jannette@monahan.org
                     password:
                       type: string
                       example: '12345678'
@@ -904,7 +904,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: stacie.beer@oberbrunner.co
+                      example: dina@beahan.name
                     password:
                       type: string
                       example: '12345678'
@@ -974,7 +974,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: odell_quigley@gleason-heathcote.info
+                      example: johnathan_johnson@stroman.biz
                     password:
                       type: string
                       example: '12345678'
@@ -1047,7 +1047,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: rosaura@goyette.org
+                      example: christia_watsica@legros.biz
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1120,16 +1120,16 @@ components:
           properties:
             email:
               type: string
-              example: suzette.swaniawski@leffler.name
+              example: thomasina@hoeger.org
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-24 15:46:47 -0300'
+              example: '2020-08-24 15:51:41 -0300'
             updated_at:
               type: string
-              example: '2020-08-24 15:46:47 -0300'
+              example: '2020-08-24 15:51:41 -0300'
           required:
           - email
     product:
@@ -1149,17 +1149,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Pork Belly Buns
+              example: Poutine
             description:
               type: string
-              example: To ensure that each guest receives prompt, professional, friendly
-                and courteous service. To maintain a clean, comfortable and well maintained
-                premises for our guests and staff. To provide at a fair price – nutritional,
-                well-prepared meals – using only quality ingredients. To ensure that
-                all guests and staff are treated with the respect and dignity they
-                deserve. To thank each guest for the opportunity to serve them. By
-                maintaining these objectives we shall be assured of a fair profit
-                that will allow us to contribute to the community we serve.
+              example: Our mission has been to help people achieve their health and
+                wellness goals. though weve changed over the years, our values have
+                remained the same.
               nullable: true
             position:
               type: integer
@@ -1233,3 +1228,7 @@ servers:
   variables:
     defaultHost:
       default: https://imenu-dev.herokuapp.com
+- url: https://iume-api-stage.herokuapp.com
+  variables:
+    defaultHost:
+      default: https://iume-api-stage.herokuapp.com

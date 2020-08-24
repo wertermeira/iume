@@ -112,21 +112,17 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Fish and Chips
+              example: Meatballs with Sauce
             description:
               type: string
-              example: To achieve and maintain such distinction in food and wine,
-                service, atmosphere and setting that the restaurant gains a first
-                class reputation for gastronomy, gracious and informed hospitality,
-                comfort and beauty which draws new and repeat customers year after
-                year. To achieve the above whilst upholding staff policies and practices
-                which promote a fair and positive working environment. To be aware
-                of and act on our responsibilities as a good corporate citizen to  provide
-                a safe, clean and attractive place for guests to enjoy and for employees
-                to work in - ensure ecologically sound management practices at the
-                restaurant and in our surrounding gardens and woods - undertake meaningful
-                involvement of Restaurant Les Fougères in selected charitable activities
-                in our community and region.
+              example: To ensure that each guest receives prompt, professional, friendly
+                and courteous service. To maintain a clean, comfortable and well maintained
+                premises for our guests and staff. To provide at a fair price – nutritional,
+                well-prepared meals – using only quality ingredients. To ensure that
+                all guests and staff are treated with the respect and dignity they
+                deserve. To thank each guest for the opportunity to serve them. By
+                maintaining these objectives we shall be assured of a fair profit
+                that will allow us to contribute to the community we serve.
               nullable: true
             position:
               type: integer
