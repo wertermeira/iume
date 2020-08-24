@@ -14,7 +14,7 @@ paths:
       - name: email
         in: query
         schema:
-          type: integer
+          type: string
       security:
       - bearer: []
       responses:
@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Amet adipisci dolores molestias autem est asperiores
-                        facere distinctio cupiditate?
+                      example: Sunt dolore accusantium sint omnis fugiat eius beatae
+                        vel in?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Rutherford, Osinski and Moen
+                      example: Leannon Inc
                     description:
                       type: string
-                      example: Facilis tenetur quidem. Quidem dolore hic. Et deleniti
-                        aut. Quibusdam qui in. Error numquam vero. M.
+                      example: Beatae omnis est. Sunt optio eos. Omnis dolorem fugiat.
+                        Sed impedit et. Id dolor maiores. Dolores d.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Dickens Group
+                      example: Wuckert Group
                     description:
                       type: string
-                      example: Architecto ea aut. Harum nihil qui. Enim quia impedit.
-                        Mollitia fuga accusantium. Quia voluptatem n.
+                      example: Adipisci est neque. Id eius non. Sit modi quam. Labore
+                        optio et. Exercitationem et ratione. Invento.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Nitzsche-Collins
+                      example: Jacobs LLC
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Hermiston-Johnston
+                      example: Torphy-Purdy
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Streich, Lesch and Roob
+                      example: Hermann Inc
                     active:
                       type: boolean
               required:
@@ -725,7 +725,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Lakin-Langworth
+                      example: Schuster Inc
                     active:
                       type: boolean
               required:
@@ -795,7 +795,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: aut_consequatur
+                      example: fugiat_laborum
               required:
               - name
               - active
@@ -841,7 +841,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: jannette@monahan.org
+                      example: dario@hackett-wiegand.biz
                     password:
                       type: string
                       example: '12345678'
@@ -904,7 +904,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: dina@beahan.name
+                      example: lucien@beahan.org
                     password:
                       type: string
                       example: '12345678'
@@ -974,7 +974,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: johnathan_johnson@stroman.biz
+                      example: melvina_champlin@goodwin-gislason.net
                     password:
                       type: string
                       example: '12345678'
@@ -1047,7 +1047,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: christia_watsica@legros.biz
+                      example: jon.homenick@koss.org
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1120,16 +1120,16 @@ components:
           properties:
             email:
               type: string
-              example: thomasina@hoeger.org
+              example: theodore@okeefe.net
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-24 15:51:41 -0300'
+              example: '2020-08-24 17:48:17 -0300'
             updated_at:
               type: string
-              example: '2020-08-24 15:51:41 -0300'
+              example: '2020-08-24 17:48:17 -0300'
           required:
           - email
     product:
@@ -1149,12 +1149,13 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Poutine
+              example: Tuna Sashimi
             description:
               type: string
-              example: Our mission has been to help people achieve their health and
-                wellness goals. though weve changed over the years, our values have
-                remained the same.
+              example: SVIs mission is to deliver quality products at affordable prices
+                to our independent retailers, wholesalers and food service partners
+                around the world by providing international procurement, distribution,
+                marketing and supply chain management.
               nullable: true
             position:
               type: integer
