@@ -12,7 +12,6 @@ RSpec.describe 'v1/restaurants/sections/{section_id}/products', type: :request d
   path '/v1/restaurants/sections/{section_id}/products' do
     before do
       create_list(:product, 10, section_id: section.id)
-      create_list(:product, 10, section_id: section.id, active: false)
     end
 
     get 'All products of a section' do
@@ -40,11 +39,12 @@ RSpec.describe 'v1/restaurants/sections/{section_id}/products', type: :request d
       end
 
       response '200', 'products array preview' do
+        let(:restaurant) { create(:restaurant, owner: user, active: false) }
         let(:Authorization) { authentication(user) }
         let(:section_id) { section.id }
         let(:preview) { true }
         run_test! do
-          expect(json_body.dig('data').length).to eq(20)
+          expect(json_body.dig('data').length).to eq(10)
         end
       end
 
@@ -79,7 +79,7 @@ RSpec.describe 'v1/restaurants/sections/{section_id}/products', type: :request d
       end
 
       response 200, 'product found prewiew' do
-        let(:product) { create(:product, section: section, active: false) }
+        let(:restaurant) { create(:restaurant, owner: user, active: false) }
         let(:preview) { true }
         let(:section_id) { section.id }
         let(:id) { product.id }
@@ -89,11 +89,10 @@ RSpec.describe 'v1/restaurants/sections/{section_id}/products', type: :request d
       end
 
       response 404, 'product found prewiew other user' do
-        let(:product) { create(:product, active: false) }
-        let(:preview) { true }
+        let(:restaurant) { create(:restaurant, owner: user, active: false) }
+        let(:product) { create(:product) }
         let(:section_id) { section.id }
         let(:id) { product.id }
-        let(:Authorization) { authentication(user) }
 
         run_test!
       end
@@ -101,13 +100,6 @@ RSpec.describe 'v1/restaurants/sections/{section_id}/products', type: :request d
       response 404, 'product not found' do
         let(:section_id) { section.id }
         let(:id) { '0' }
-        run_test!
-      end
-
-      response 404, 'product found active false' do
-        let(:product) { create(:product, section: section, active: false) }
-        let(:section_id) { section.id }
-        let(:id) { product.id }
         run_test!
       end
     end

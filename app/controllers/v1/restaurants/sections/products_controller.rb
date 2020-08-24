@@ -7,8 +7,7 @@ module V1
         before_action :set_product, only: :show
 
         def index
-          @products = @section.products.sort_by_position if preview
-          @products ||= @section.products.published.sort_by_position
+          @products = @section.products.published.sort_by_position
           render json: @products, each_serializer: V1::Public::ProductSerializer, status: :ok
         end
 
@@ -19,16 +18,12 @@ module V1
         private
 
         def set_product
-          @product = if preview.present?
-                       @section.products.find(params[:id])
-                     else
-                       Product.published.find(params[:id])
-                     end
+          @product = Product.published.find(params[:id])
         end
 
         def set_section
           @section = if preview.present?
-                       current_user.sections.find(params[:section_id])
+                       current_user.sections.where(active: true).find(params[:section_id])
                      else
                        Section.published.find(params[:section_id])
                      end
