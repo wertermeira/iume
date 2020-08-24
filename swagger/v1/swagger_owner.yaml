@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Facere saepe qui numquam et omnis aut qui blanditiis
-                        rerum?
+                      example: Maxime fugiat sunt expedita accusantium quam omnis
+                        et est reprehenderit?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Jones LLC
+                      example: Watsica and Sons
                     description:
                       type: string
-                      example: Minus deleniti quo. Eaque qui sint. Eos temporibus
-                        iusto. Mollitia vero totam. Odio fugit voluptas..
+                      example: Vel nihil qui. Omnis dolorum odit. Omnis ab voluptas.
+                        Enim sint et. Illo magni perferendis. Ipsam m.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Turcotte LLC
+                      example: Pagac-Nader
                     description:
                       type: string
-                      example: Est officia numquam. Cumque repellat consectetur. Alias
-                        blanditiis aut. Dolorem dolor dolor. Fugit .
+                      example: Molestiae quibusdam recusandae. Eos consequatur ea.
+                        Dolore exercitationem aspernatur. In repellendu.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Shields LLC
+                      example: Grimes Inc
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Medhurst, Bogisich and Nikolaus
+                      example: Daniel, Johnson and Welch
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Russel, Grady and Heaney
+                      example: Langworth, Blanda and Hammes
                     active:
                       type: boolean
               required:
@@ -725,7 +725,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Toy Inc
+                      example: Parker Group
                     active:
                       type: boolean
               required:
@@ -795,7 +795,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: voluptatem_illum
+                      example: molestiae_impedit
               required:
               - name
               - active
@@ -841,7 +841,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: kyoko.baumbach@feest-barton.com
+                      example: manual@turner-brakus.co
                     password:
                       type: string
                       example: '12345678'
@@ -904,7 +904,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: lucio@weber.com
+                      example: stacie.beer@oberbrunner.co
                     password:
                       type: string
                       example: '12345678'
@@ -974,7 +974,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: fatimah@sipes-johnson.net
+                      example: odell_quigley@gleason-heathcote.info
                     password:
                       type: string
                       example: '12345678'
@@ -997,6 +997,113 @@ paths:
         '204':
           description: destroy success
           content: {}
+  "/v1/recover_password/{model}":
+    post:
+      summary: ''
+      tags:
+      - RecoverPassword
+      parameters:
+      - name: model
+        in: path
+        example: owner
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: send request update password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Check your mailbox
+        '422':
+          description: when model not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        example: Email not found
+        '404':
+          description: not found model
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recover:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: rosaura@goyette.org
+                  required:
+                  - email
+  "/v1/recover_password/{model}/{id}":
+    put:
+      summary: when update password
+      tags:
+      - RecoverPassword
+      security:
+      - bearer: []
+      parameters:
+      - name: model
+        in: path
+        example: owner
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        example: me
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: update success
+          content: {}
+        '422':
+          description: update fail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  password_confirmation:
+                    type: array
+                    items:
+                      type: string
+                      example: doesn't match Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recover:
+                  type: object
+                  properties:
+                    password:
+                      type: string
+                      example: '12345678'
+                    password_con:
+                      type: string
+                      example: '12345678'
+                  required:
+                  - password
+                  - password_confirmation
 components:
   schemas:
     owner:
@@ -1013,16 +1120,16 @@ components:
           properties:
             email:
               type: string
-              example: jarrod.pfannerstill@mills-friesen.biz
+              example: suzette.swaniawski@leffler.name
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-21 12:52:02 -0300'
+              example: '2020-08-24 15:46:47 -0300'
             updated_at:
               type: string
-              example: '2020-08-21 12:52:02 -0300'
+              example: '2020-08-24 15:46:47 -0300'
           required:
           - email
     product:
@@ -1042,24 +1149,17 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Scotch Eggs
+              example: Pork Belly Buns
             description:
               type: string
-              example: To sell delicious and remarkable food and drinks. That the
-                food and drink we sell meets the highest standards of quality, freshness
-                and seasonality and combines both modern-creative and traditional
-                southern styles of cooking. To consistently provide our customers
-                with impeccable service by demonstrating warmth, graciousness, efficiency,
-                knowledge, professionalism and integrity in our work. To have every
-                customer who comes through our doors leave impressed by Maxie’s and
-                excited to come back again. To create and maintain a restaurant that
-                is comprehensive and exceptional in its attention to every detail
-                of operation. To provide all who work with us a friendly, cooperative
-                and rewarding environment which encourages long- term, satisfying,
-                growth employment. To keep our concept fresh, exciting and on the
-                cutting edge of the hospitality and entertainment industry. To be
-                a giving member of the Ithaca community and to use our restaurant
-                to improve the quality of life in the Finger Lakes region.
+              example: To ensure that each guest receives prompt, professional, friendly
+                and courteous service. To maintain a clean, comfortable and well maintained
+                premises for our guests and staff. To provide at a fair price – nutritional,
+                well-prepared meals – using only quality ingredients. To ensure that
+                all guests and staff are treated with the respect and dignity they
+                deserve. To thank each guest for the opportunity to serve them. By
+                maintaining these objectives we shall be assured of a fair profit
+                that will allow us to contribute to the community we serve.
               nullable: true
             position:
               type: integer
