@@ -88,7 +88,7 @@ RSpec.configure do |config|
                         type: :array,
                         items: {
                           properties: {
-                            id: { type: :integer },
+                            id: { type: :string },
                             type: { type: :string, example: 'sections' }
                           }
                         }

@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Sunt dolore accusantium sint omnis fugiat eius beatae
-                        vel in?
+                      example: Et neque qui id voluptate consequatur omnis blanditiis
+                        adipisci illo?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Leannon Inc
+                      example: Mayer, Fisher and Dickinson
                     description:
                       type: string
-                      example: Beatae omnis est. Sunt optio eos. Omnis dolorem fugiat.
-                        Sed impedit et. Id dolor maiores. Dolores d.
+                      example: Est quidem fugiat. Et placeat tempore. Doloremque a
+                        quia. Et voluptatem non. Et voluptatibus eius. .
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Wuckert Group
+                      example: Hudson-Rowe
                     description:
                       type: string
-                      example: Adipisci est neque. Id eius non. Sit modi quam. Labore
-                        optio et. Exercitationem et ratione. Invento.
+                      example: Sunt eveniet pariatur. Et ipsa nihil. Sed et et. Temporibus
+                        ut doloribus. Quia ipsam impedit. Autem.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Jacobs LLC
+                      example: Bartoletti LLC
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Torphy-Purdy
+                      example: Quigley, Schowalter and Blanda
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Hermann Inc
+                      example: Bayer, Bahringer and Brown
                     active:
                       type: boolean
               required:
@@ -725,7 +725,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Schuster Inc
+                      example: Keeling Inc
                     active:
                       type: boolean
               required:
@@ -795,7 +795,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: fugiat_laborum
+                      example: omnis_consequatur
               required:
               - name
               - active
@@ -841,7 +841,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: dario@hackett-wiegand.biz
+                      example: cori_harvey@glover.net
                     password:
                       type: string
                       example: '12345678'
@@ -904,7 +904,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: lucien@beahan.org
+                      example: donte@hoppe.net
                     password:
                       type: string
                       example: '12345678'
@@ -974,7 +974,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: melvina_champlin@goodwin-gislason.net
+                      example: trenton@collier-jones.name
                     password:
                       type: string
                       example: '12345678'
@@ -1047,7 +1047,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: jon.homenick@koss.org
+                      example: delorse.wyman@hane-leffler.com
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1120,16 +1120,16 @@ components:
           properties:
             email:
               type: string
-              example: theodore@okeefe.net
+              example: trent.greenfelder@shanahan.biz
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-24 17:48:17 -0300'
+              example: '2020-08-24 18:28:16 -0300'
             updated_at:
               type: string
-              example: '2020-08-24 17:48:17 -0300'
+              example: '2020-08-24 18:28:16 -0300'
           required:
           - email
     product:
@@ -1149,13 +1149,24 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Tuna Sashimi
+              example: Caprese Salad
             description:
               type: string
-              example: SVIs mission is to deliver quality products at affordable prices
-                to our independent retailers, wholesalers and food service partners
-                around the world by providing international procurement, distribution,
-                marketing and supply chain management.
+              example: To sell delicious and remarkable food and drinks. That the
+                food and drink we sell meets the highest standards of quality, freshness
+                and seasonality and combines both modern-creative and traditional
+                southern styles of cooking. To consistently provide our customers
+                with impeccable service by demonstrating warmth, graciousness, efficiency,
+                knowledge, professionalism and integrity in our work. To have every
+                customer who comes through our doors leave impressed by Maxie’s and
+                excited to come back again. To create and maintain a restaurant that
+                is comprehensive and exceptional in its attention to every detail
+                of operation. To provide all who work with us a friendly, cooperative
+                and rewarding environment which encourages long- term, satisfying,
+                growth employment. To keep our concept fresh, exciting and on the
+                cutting edge of the hospitality and entertainment industry. To be
+                a giving member of the Ithaca community and to use our restaurant
+                to improve the quality of life in the Finger Lakes region.
               nullable: true
             position:
               type: integer
