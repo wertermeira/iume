@@ -99,6 +99,12 @@ RSpec.configure do |config|
               }
             }
           }
+        },
+        securitySchemes: {
+          bearer: {
+            type: :http,
+            scheme: :bearer
+          }
         }
       },
       servers: [

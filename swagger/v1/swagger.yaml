@@ -10,15 +10,24 @@ paths:
       summary: All products of a section
       tags:
       - Products
+      description: If you need to get the preview, use preview params to true and
+        put the token
+      security:
+      - bearer: []
       parameters:
       - name: section_id
         in: path
         required: true
         schema:
           type: integer
+      - name: preview
+        in: query
+        required: false
+        schema:
+          type: string
       responses:
         '200':
-          description: products array
+          description: products array preview
           content:
             application/json:
               schema:
@@ -36,6 +45,8 @@ paths:
       summary: Get product by section id and product id
       tags:
       - Products
+      security:
+      - bearer: []
       parameters:
       - name: section_id
         in: path
@@ -47,9 +58,14 @@ paths:
         required: true
         schema:
           type: integer
+      - name: preview
+        in: query
+        required: false
+        schema:
+          type: string
       responses:
         '200':
-          description: product found
+          description: product found prewiew
           content:
             application/json:
               schema:
@@ -58,7 +74,7 @@ paths:
                   data:
                     "$ref": "#/components/schemas/product"
         '404':
-          description: product not found
+          description: product found active false
           content: {}
   "/v1/restaurants/{id}":
     get:
@@ -112,17 +128,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Meatballs with Sauce
+              example: Caesar Salad
             description:
               type: string
-              example: To ensure that each guest receives prompt, professional, friendly
-                and courteous service. To maintain a clean, comfortable and well maintained
-                premises for our guests and staff. To provide at a fair price – nutritional,
-                well-prepared meals – using only quality ingredients. To ensure that
-                all guests and staff are treated with the respect and dignity they
-                deserve. To thank each guest for the opportunity to serve them. By
-                maintaining these objectives we shall be assured of a fair profit
-                that will allow us to contribute to the community we serve.
+              example: Our mission has been to help people achieve their health and
+                wellness goals. though weve changed over the years, our values have
+                remained the same.
               nullable: true
             position:
               type: integer
@@ -194,6 +205,10 @@ components:
                       type:
                         type: string
                         example: sections
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
 servers:
 - url: http://localhost:3000
   variables:

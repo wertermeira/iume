@@ -7,7 +7,7 @@ RSpec.describe 'v1/owners/emails', swagger_doc: 'v1/swagger_owner.yaml', type: :
     get 'show email' do
       tags TAG_NAME
       produces 'application/json'
-      parameter name: :email, in: :query, type: :integer
+      parameter name: :email, in: :query, type: :string
       security [bearer: []]
 
       response 200, 'email found' do
