@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Culpa commodi tempore ex molestiae reiciendis sapiente
-                        suscipit ut in?
+                      example: Amet adipisci dolores molestias autem est asperiores
+                        facere distinctio cupiditate?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: DuBuque Group
+                      example: Rutherford, Osinski and Moen
                     description:
                       type: string
-                      example: Ad laboriosam harum. Quia enim ea. Sint culpa qui.
-                        Perspiciatis ut in. Ipsa dolor voluptatem. Corpo.
+                      example: Facilis tenetur quidem. Quidem dolore hic. Et deleniti
+                        aut. Quibusdam qui in. Error numquam vero. M.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Jerde, White and Rau
+                      example: Dickens Group
                     description:
                       type: string
-                      example: Natus hic sit. Esse et nihil. Aliquid aut a. Aut adipisci
-                        ipsum. Et omnis voluptatibus. Magni eos q.
+                      example: Architecto ea aut. Harum nihil qui. Enim quia impedit.
+                        Mollitia fuga accusantium. Quia voluptatem n.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Blanda and Sons
+                      example: Nitzsche-Collins
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Cummings Inc
+                      example: Hermiston-Johnston
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Murray-Weber
+                      example: Streich, Lesch and Roob
                     active:
                       type: boolean
               required:
@@ -725,7 +725,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: West, Farrell and Koss
+                      example: Lakin-Langworth
                     active:
                       type: boolean
               required:
@@ -795,7 +795,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: facilis_suscipit
+                      example: aut_consequatur
               required:
               - name
               - active
@@ -841,7 +841,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: vashti@hilll-kertzmann.net
+                      example: jannette@monahan.org
                     password:
                       type: string
                       example: '12345678'
@@ -904,7 +904,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: breana@feest.com
+                      example: dina@beahan.name
                     password:
                       type: string
                       example: '12345678'
@@ -974,7 +974,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: erminia_marks@gibson.co
+                      example: johnathan_johnson@stroman.biz
                     password:
                       type: string
                       example: '12345678'
@@ -997,6 +997,113 @@ paths:
         '204':
           description: destroy success
           content: {}
+  "/v1/recover_password/{model}":
+    post:
+      summary: ''
+      tags:
+      - RecoverPassword
+      parameters:
+      - name: model
+        in: path
+        example: owner
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: send request update password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Check your mailbox
+        '422':
+          description: when model not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        example: Email not found
+        '404':
+          description: not found model
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recover:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: christia_watsica@legros.biz
+                  required:
+                  - email
+  "/v1/recover_password/{model}/{id}":
+    put:
+      summary: when update password
+      tags:
+      - RecoverPassword
+      security:
+      - bearer: []
+      parameters:
+      - name: model
+        in: path
+        example: owner
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        example: me
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: update success
+          content: {}
+        '422':
+          description: update fail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  password_confirmation:
+                    type: array
+                    items:
+                      type: string
+                      example: doesn't match Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recover:
+                  type: object
+                  properties:
+                    password:
+                      type: string
+                      example: '12345678'
+                    password_con:
+                      type: string
+                      example: '12345678'
+                  required:
+                  - password
+                  - password_confirmation
 components:
   schemas:
     owner:
@@ -1013,16 +1120,16 @@ components:
           properties:
             email:
               type: string
-              example: oralee@stroman.biz
+              example: thomasina@hoeger.org
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-24 12:23:56 -0300'
+              example: '2020-08-24 15:51:41 -0300'
             updated_at:
               type: string
-              example: '2020-08-24 12:23:56 -0300'
+              example: '2020-08-24 15:51:41 -0300'
           required:
           - email
     product:
@@ -1042,7 +1149,7 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Pho
+              example: Poutine
             description:
               type: string
               example: Our mission has been to help people achieve their health and
