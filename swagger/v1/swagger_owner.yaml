@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Facere saepe qui numquam et omnis aut qui blanditiis
-                        rerum?
+                      example: Culpa commodi tempore ex molestiae reiciendis sapiente
+                        suscipit ut in?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Jones LLC
+                      example: DuBuque Group
                     description:
                       type: string
-                      example: Minus deleniti quo. Eaque qui sint. Eos temporibus
-                        iusto. Mollitia vero totam. Odio fugit voluptas..
+                      example: Ad laboriosam harum. Quia enim ea. Sint culpa qui.
+                        Perspiciatis ut in. Ipsa dolor voluptatem. Corpo.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Turcotte LLC
+                      example: Jerde, White and Rau
                     description:
                       type: string
-                      example: Est officia numquam. Cumque repellat consectetur. Alias
-                        blanditiis aut. Dolorem dolor dolor. Fugit .
+                      example: Natus hic sit. Esse et nihil. Aliquid aut a. Aut adipisci
+                        ipsum. Et omnis voluptatibus. Magni eos q.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Shields LLC
+                      example: Blanda and Sons
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Medhurst, Bogisich and Nikolaus
+                      example: Cummings Inc
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Russel, Grady and Heaney
+                      example: Murray-Weber
                     active:
                       type: boolean
               required:
@@ -725,7 +725,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Toy Inc
+                      example: West, Farrell and Koss
                     active:
                       type: boolean
               required:
@@ -795,7 +795,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: voluptatem_illum
+                      example: facilis_suscipit
               required:
               - name
               - active
@@ -841,7 +841,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: kyoko.baumbach@feest-barton.com
+                      example: vashti@hilll-kertzmann.net
                     password:
                       type: string
                       example: '12345678'
@@ -904,7 +904,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: lucio@weber.com
+                      example: breana@feest.com
                     password:
                       type: string
                       example: '12345678'
@@ -974,7 +974,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: fatimah@sipes-johnson.net
+                      example: erminia_marks@gibson.co
                     password:
                       type: string
                       example: '12345678'
@@ -1013,16 +1013,16 @@ components:
           properties:
             email:
               type: string
-              example: jarrod.pfannerstill@mills-friesen.biz
+              example: oralee@stroman.biz
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-21 12:52:02 -0300'
+              example: '2020-08-24 12:23:56 -0300'
             updated_at:
               type: string
-              example: '2020-08-21 12:52:02 -0300'
+              example: '2020-08-24 12:23:56 -0300'
           required:
           - email
     product:
@@ -1042,24 +1042,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Scotch Eggs
+              example: Pho
             description:
               type: string
-              example: To sell delicious and remarkable food and drinks. That the
-                food and drink we sell meets the highest standards of quality, freshness
-                and seasonality and combines both modern-creative and traditional
-                southern styles of cooking. To consistently provide our customers
-                with impeccable service by demonstrating warmth, graciousness, efficiency,
-                knowledge, professionalism and integrity in our work. To have every
-                customer who comes through our doors leave impressed by Maxie’s and
-                excited to come back again. To create and maintain a restaurant that
-                is comprehensive and exceptional in its attention to every detail
-                of operation. To provide all who work with us a friendly, cooperative
-                and rewarding environment which encourages long- term, satisfying,
-                growth employment. To keep our concept fresh, exciting and on the
-                cutting edge of the hospitality and entertainment industry. To be
-                a giving member of the Ithaca community and to use our restaurant
-                to improve the quality of life in the Finger Lakes region.
+              example: Our mission has been to help people achieve their health and
+                wellness goals. though weve changed over the years, our values have
+                remained the same.
               nullable: true
             position:
               type: integer
@@ -1133,3 +1121,7 @@ servers:
   variables:
     defaultHost:
       default: https://imenu-dev.herokuapp.com
+- url: https://iume-api-stage.herokuapp.com
+  variables:
+    defaultHost:
+      default: https://iume-api-stage.herokuapp.com

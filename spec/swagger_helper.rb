@@ -228,6 +228,14 @@ RSpec.configure do |config|
               default: 'https://imenu-dev.herokuapp.com'
             }
           }
+        },
+        {
+          url: 'https://iume-api-stage.herokuapp.com',
+          variables: {
+            defaultHost: {
+              default: 'https://iume-api-stage.herokuapp.com'
+            }
+          }
         }
       ]
     }

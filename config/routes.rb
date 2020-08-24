@@ -1,8 +1,10 @@
 require 'sidekiq/web'
 Rails.application.routes.default_url_options[:host] = ENV.fetch('APP_URL') { 'localhost:3000' }
 Rails.application.routes.draw do
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
+  if ENV.fetch('API_DOCS_ENABLED', '').present?
+    mount Rswag::Ui::Engine => '/api-docs'
+    mount Rswag::Api::Engine => '/api-docs'
+  end
   namespace :v1, default: { format: :json } do
     namespace :owners do
       resources :feedbacks, only: :create
