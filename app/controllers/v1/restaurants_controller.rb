@@ -1,10 +1,10 @@
 module V1
   class RestaurantsController < V1Controller
-    skip_before_action :require_login
+    skip_before_action :require_login, unless: :preview
     before_action :set_restaurant
 
     def show
-      render json: @resturant, serializer: V1::Public::RestaurantSerializer, status: :ok, include: :sections
+      render json: @resturant, serializer: V1::Public::RestaurantSerializer, status: :ok, include: :sections, scope: { current_user: current_user }
     end
 
     private
@@ -18,6 +18,10 @@ module V1
       return @restaurant if @resturant.present?
 
       raise ActiveRecord::RecordNotFound
+    end
+
+    def preview
+      params[:preview].present?
     end
   end
 end
