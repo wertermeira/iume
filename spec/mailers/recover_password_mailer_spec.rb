@@ -27,5 +27,11 @@ RSpec.describe RecoverPasswordMailer, type: :mailer do
         expect(mail.to).to eq([owner.email])
       end
     end
+
+    context 'when body encoded' do
+      it 'assigns url with token' do
+        expect(mail.body.encoded).to match("#{ENV['FROENTEND_URL']}/recover/#{@token}")
+      end
+    end
   end
 end
