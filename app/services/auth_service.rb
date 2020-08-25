@@ -11,6 +11,7 @@ class AuthService
         ip_address: request&.remote_ip,
         last_used_at: Time.now.utc
       )
+      authenticator.increment!(:login_count)
       create_auth.body if create_auth.save
     end
 

@@ -146,10 +146,11 @@ RSpec.configure do |config|
                 properties: {
                   email: { type: :string, example: Faker::Internet.email },
                   name: { type: :string, nullable: true },
+                  login_count: { type: :integer, example: 1 },
                   created_at: { type: :string, example: Time.now },
                   updated_at: { type: :string, example: Time.now }
                 },
-                required: %w[email]
+                required: %w[email login_count]
               }
             }
           },

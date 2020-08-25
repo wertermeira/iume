@@ -4,7 +4,7 @@ RSpec.describe Owner, type: :model do
   context 'when db schema' do
     let(:model) { described_class.column_names }
 
-    %w[name provider email account_status password_digest].each do |column|
+    %w[name provider email account_status password_digest lock_version login_count].each do |column|
       it "have column #{column}" do
         expect(model).to include(column)
       end
