@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Et neque qui id voluptate consequatur omnis blanditiis
-                        adipisci illo?
+                      example: Velit deleniti quia minima pariatur accusantium magnam
+                        porro soluta necessitatibus?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Mayer, Fisher and Dickinson
+                      example: Champlin and Sons
                     description:
                       type: string
-                      example: Est quidem fugiat. Et placeat tempore. Doloremque a
-                        quia. Et voluptatem non. Et voluptatibus eius. .
+                      example: Velit distinctio animi. Sit debitis nihil. Ipsum tenetur
+                        non. Consequuntur ut et. Est illum ut. Dol.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Hudson-Rowe
+                      example: Bogan Group
                     description:
                       type: string
-                      example: Sunt eveniet pariatur. Et ipsa nihil. Sed et et. Temporibus
-                        ut doloribus. Quia ipsam impedit. Autem.
+                      example: Deserunt excepturi perspiciatis. In quo ipsam. Animi
+                        labore non. Veniam et explicabo. Ex dolores su.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Bartoletti LLC
+                      example: Gutkowski-Beier
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Quigley, Schowalter and Blanda
+                      example: Blanda and Sons
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Bayer, Bahringer and Brown
+                      example: Schaefer Inc
                     active:
                       type: boolean
               required:
@@ -725,7 +725,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Keeling Inc
+                      example: Runolfsson, Simonis and Schuppe
                     active:
                       type: boolean
               required:
@@ -795,7 +795,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: omnis_consequatur
+                      example: cumque-exercitationem
               required:
               - name
               - active
@@ -841,7 +841,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: cori_harvey@glover.net
+                      example: sanford@nader.name
                     password:
                       type: string
                       example: '12345678'
@@ -904,7 +904,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: donte@hoppe.net
+                      example: hai.greenholt@corwin.com
                     password:
                       type: string
                       example: '12345678'
@@ -974,7 +974,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: trenton@collier-jones.name
+                      example: rolando@green.com
                     password:
                       type: string
                       example: '12345678'
@@ -1047,7 +1047,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: delorse.wyman@hane-leffler.com
+                      example: jeane@pollich.org
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1120,18 +1120,22 @@ components:
           properties:
             email:
               type: string
-              example: trent.greenfelder@shanahan.biz
+              example: frankie@bins.name
             name:
               type: string
               nullable: true
+            login_count:
+              type: integer
+              example: 1
             created_at:
               type: string
-              example: '2020-08-24 18:28:16 -0300'
+              example: '2020-08-25 17:10:54 -0300'
             updated_at:
               type: string
-              example: '2020-08-24 18:28:16 -0300'
+              example: '2020-08-25 17:10:54 -0300'
           required:
           - email
+          - login_count
     product:
       type: object
       properties:
@@ -1149,24 +1153,22 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Caprese Salad
+              example: Linguine with Clams
             description:
               type: string
-              example: To sell delicious and remarkable food and drinks. That the
-                food and drink we sell meets the highest standards of quality, freshness
-                and seasonality and combines both modern-creative and traditional
-                southern styles of cooking. To consistently provide our customers
-                with impeccable service by demonstrating warmth, graciousness, efficiency,
-                knowledge, professionalism and integrity in our work. To have every
-                customer who comes through our doors leave impressed by Maxie’s and
-                excited to come back again. To create and maintain a restaurant that
-                is comprehensive and exceptional in its attention to every detail
-                of operation. To provide all who work with us a friendly, cooperative
-                and rewarding environment which encourages long- term, satisfying,
-                growth employment. To keep our concept fresh, exciting and on the
-                cutting edge of the hospitality and entertainment industry. To be
-                a giving member of the Ithaca community and to use our restaurant
-                to improve the quality of life in the Finger Lakes region.
+              example: Yoshinoya is in business to create the structure and systems
+                needed to allow our customers access to the majority of their away-from-home
+                daily meal requirements on a one-stop-shop basis. All our products
+                shall be of the highest quality and value, be healthy, nutritious
+                and provided with outstanding personal services at the lowest possible
+                prices consistent with a fair return on investment for our shareholders,
+                job enhancementsecurity for our employees and a level of community
+                involvement by everyone connected with our business. All of our products
+                and services shall be delivered consistently and measured one satisfied
+                customer at a time, whether by company-owned or franchised operations,
+                in superior, clean, convenient, fun and friendly neighborhood environments.
+                We pledge to make Yoshinoya the best place to eat and the best place
+                to work.
               nullable: true
             position:
               type: integer
