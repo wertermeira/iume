@@ -39,7 +39,10 @@ RSpec.describe 'v1/owners/sessions', swagger_doc: 'v1/swagger_owner.yaml', type:
                required: %w[token]
 
         let(:login) { login_attrs }
-        run_test!
+        run_test! do
+          expect(owner.reload.login_count).to eq(1)
+          expect(json_body['token']).to eq(AuthenticateToken.find_by(authenticateable: owner).body)
+        end
       end
 
       response 422, 'login fail' do
