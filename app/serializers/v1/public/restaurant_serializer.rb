@@ -6,9 +6,9 @@ module V1
 
       def sections
         if scope[:current_user].present? && scope[:current_user].restaurants.find_by(id: object.id)
-          object.sections.where(active: true)
+          object.sections.where(active: true).sort_by_position
         elsif object.active
-          object.sections.published
+          object.sections.published.sort_by_position
         end
       end
 
