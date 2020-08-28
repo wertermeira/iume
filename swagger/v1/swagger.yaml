@@ -137,14 +137,13 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Pasta with Tomato and Basil
+              example: Ricotta Stuffed Ravioli
             description:
               type: string
-              example: Culver’s Restaurant was founded by the Culver family in 1984,
-                which eventually branched out to more than 300 franchised restaurants
-                all over the US. Culver’s is well-known for its ButterBurger, which
-                made the restaurant extremely famous. They also have other items which
-                include salads, sandwiches, desserts, etc.
+              example: To deliver an exceptional shopping experience by offering the
+                best service, value, quality, and freshest products while being good
+                stewards of our environment and giving back to the communities we
+                serve.
               nullable: true
             position:
               type: integer
