@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Id illo quaerat rerum eaque consequatur non error neque
-                        exercitationem?
+                      example: Consequuntur et ea quis necessitatibus molestiae omnis
+                        dicta tenetur sunt?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Carreira, Castelo e Teles
+                      example: Barreto-Almada
                     description:
                       type: string
-                      example: Quo id dolor. Iure est ad. Recusandae reiciendis commodi.
-                        Numquam corrupti facere. Ut repellendus l.
+                      example: Dolorum quia omnis. Natus praesentium sint. Quam aliquid
+                        occaecati. Laborum velit sequi. Vel perfer.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Jesus, da Aldeia e Sais
+                      example: Jaques, Novaes e Macedo
                     description:
                       type: string
-                      example: A exercitationem pariatur. Autem ad officiis. Laborum
-                        fuga similique. Voluptatibus molestias quidem.
+                      example: Dicta autem molestiae. Et laudantium aut. Quae vel
+                        blanditiis. Quo animi velit. Voluptas esse amet..
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Limeira, Cerqueira e Marques
+                      example: Goulart, Martins e Lobos
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Souza LTDA
+                      example: Godins, da Barra e Junqueira
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Araújo S.A.
+                      example: Antena-Marques
                     active:
                       type: boolean
               required:
@@ -725,7 +725,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: de Sá EIRELI
+                      example: Moreno S.A.
                     active:
                       type: boolean
               required:
@@ -795,7 +795,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: corporis-consequatur
+                      example: et-libero
               required:
               - name
               - active
@@ -841,7 +841,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: donovan@friesen.name
+                      example: taylor@huels.name
                     password:
                       type: string
                       example: '12345678'
@@ -904,7 +904,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: mittie_mayer@osinski.org
+                      example: ervin@berge-kemmer.com
                     password:
                       type: string
                       example: '12345678'
@@ -974,7 +974,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: rico@hintz.info
+                      example: shaneka.reilly@schroeder.io
                     password:
                       type: string
                       example: '12345678'
@@ -1047,7 +1047,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: chiquita@walter-breitenberg.info
+                      example: royal@hahn-ebert.io
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1120,18 +1120,22 @@ components:
           properties:
             email:
               type: string
-              example: gil.cremin@frami.com
+              example: eldon_runte@lueilwitz-okeefe.net
             name:
               type: string
               nullable: true
+            login_count:
+              type: integer
+              example: 1
             created_at:
               type: string
-              example: '2020-08-28 08:55:42 -0300'
+              example: '2020-08-28 09:02:32 -0300'
             updated_at:
               type: string
-              example: '2020-08-28 08:55:42 -0300'
+              example: '2020-08-28 09:02:32 -0300'
           required:
           - email
+          - login_count
     product:
       type: object
       properties:
@@ -1149,13 +1153,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Arepas
+              example: Philadelphia Maki
             description:
               type: string
-              example: To deliver an exceptional shopping experience by offering the
-                best service, value, quality, and freshest products while being good
-                stewards of our environment and giving back to the communities we
-                serve.
+              example: Our mission has been to help people achieve their health and
+                wellness goals. though weve changed over the years, our values have
+                remained the same.
               nullable: true
             position:
               type: integer
