@@ -1,0 +1,245 @@
+---
+pt-BR:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Falha de validação: %{errors}'
+        restrict_dependent_destroy:
+          has_one: O registro não pode ser apagado pois há o relacionamento %{record} existe
+          has_many: O registro não pode ser apagado pois há relacionamentos %{record} existentes
+  mailer:
+    messages:
+      reset_password: Mude sua senha
+      check_your_mailbox: Confira sua caixa de email
+      welcome: Bem-vindo
+  date:
+    abbr_day_names:
+    - Dom
+    - Seg
+    - Ter
+    - Qua
+    - Qui
+    - Sex
+    - Sáb
+    abbr_month_names:
+    - 
+    - Jan
+    - Fev
+    - Mar
+    - Abr
+    - Mai
+    - Jun
+    - Jul
+    - Ago
+    - Set
+    - Out
+    - Nov
+    - Dez
+    day_names:
+    - Domingo
+    - Segunda-feira
+    - Terça-feira
+    - Quarta-feira
+    - Quinta-feira
+    - Sexta-feira
+    - Sábado
+    formats:
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names:
+    - 
+    - Janeiro
+    - Fevereiro
+    - Março
+    - Abril
+    - Maio
+    - Junho
+    - Julho
+    - Agosto
+    - Setembro
+    - Outubro
+    - Novembro
+    - Dezembro
+    order:
+    - :ano
+    - :mês
+    - :dia
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: cerca de 1 hora
+        other: cerca de %{count} horas
+      about_x_months:
+        one: cerca de 1 mês
+        other: cerca de %{count} meses
+      about_x_years:
+        one: cerca de 1 ano
+        other: cerca de %{count} anos
+      almost_x_years:
+        one: Quase 1 ano
+        other: quase %{count} anos
+      half_a_minute: meio minuto
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      less_than_x_minutes:
+        one: menos de 1 minuto
+        other: menos de %{count} minutos
+      over_x_years:
+        one: Mais de 1 ano
+        other: Mais de %{count} anos
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_days:
+        one: 1 dia
+        other: "%{count} dias"
+      x_months:
+        one: 1 mês
+        other: "%{count} meses"
+      x_years:
+        one: 1 ano
+        other: "%{count} anos"
+    prompts:
+      second: Segundo
+      minute: Minuto
+      hour: Hora
+      day: Dia
+      month: Mês
+      year: Ano
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      content_type_invalid: "tem um tipo de conteúdo inválido"
+      file_size_out_of_range: "%{file_size} não está dentro dos valores permitidos"
+      limit_out_of_range: "número total está fora do intervalo"
+      image_metadata_missing: "não é uma imagem válida"
+      dimension_min_inclusion: "deve ser maior ou igual a %{width} x %{height} pixel."
+      dimension_max_inclusion: "deve ser menor ou igual a %{width} x %{height} pixel."
+      dimension_width_inclusion: "largura não está entre %{min} e %{max} pixel."
+      dimension_height_inclusion: "altura não está entre %{min} e %{max} pixel."
+      dimension_width_greater_than_or_equal_to: "largura deve ser maior ou igual a %{length} pixel."
+      dimension_height_greater_than_or_equal_to: "altura deve ser maior ou igual a %{length} pixel."
+      dimension_width_less_than_or_equal_to: "largura deve ser menor ou igual a %{length} pixel."
+      dimension_height_less_than_or_equal_to: "altura deve ser menor ou igual a %{length} pixel."
+      dimension_width_equal_to: "largura deve ser igual a %{length} pixel."
+      dimension_height_equal_to: "altura precisa ser igual a %{length} pixel."
+      aspect_ratio_not_square: "deve ser um quadrado"
+      aspect_ratio_not_portrait: "deve ser uma imagem em modo retrato"
+      aspect_ratio_not_landscape: "deve ser uma imagem em modo paisagem"
+      aspect_ratio_is_not: "deve ter uma proporção de %{aspect_ratio}"
+      aspect_ratio_unknown: "tem uma proporção desconhecida"
+      slugger_invalid: Url inválida
+      email_not_found: Email não encontrado
+      accepted: deve ser aceito
+      blank: não pode ser vázio
+      confirmation: não corresponde %{attribute}
+      empty: não pode ficar vázio
+      equal_to: deve ser igual a %{count}
+      even: deve ser igual
+      exclusion: está reservado
+      greater_than: deve ser maior que %{count}
+      greater_than_or_equal_to: deve ser maior ou igual a %{count}
+      inclusion: não está incluso na lista
+      invalid: é inválido
+      less_than: deve ser menor que %{count}
+      less_than_or_equal_to: deve ser menor ou igual a %{count}
+      model_invalid: 'Falha de validação: %{errors}'
+      not_a_number: não é um número
+      not_an_integer: deve ser inteiro
+      odd: deve ser ímpar
+      other_than: deve ser diferente de %{count}
+      present: deve ser vazio
+      required: deve existir
+      taken: já está em uso
+      too_long:
+        one: é muito longo (máximo de 1 caracter)
+        other: é muito longo (máximo de %{count} caracteres)
+      too_short:
+        one: é muito curto (mínimo de 1 caracter)
+        other: é muito curto (mínimo de %{count} caracteres)
+      wrong_length:
+        one: é um tamnho errado (deveria ser 1 caracter)
+        other: é um tamanho errado (deveria ter %{count} caracteres)
+      invalid_email_address: Email inválido
+      unauthorized: não autorizado
+      login:
+        invalid_password: Senha incorreta
+    template:
+      body: 'Há problemas com os campos abaixo:'
+      header:
+        one: 1 erro não permitiu que esse %{model} fosse salvo
+        other: "%{count} erros não permitiram esse %{model} de ser salvo"
+  helpers:
+    select:
+      prompt: Selecionar
+    submit:
+      create: Criar %{model}
+      submit: Salvar %{model}
+      update: Atualizar %{model}
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Bilhão
+          million: Milhão
+          quadrillion: Quadrillion
+          thousand: Mil
+          trillion: Trilhão
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ", e "
+      two_words_connector: " e "
+      words_connector: ", "
+  time:
+    am: ''
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: ''

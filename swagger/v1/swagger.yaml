@@ -137,13 +137,13 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Pork Sausage Roll
+              example: Pappardelle alla Bolognese
             description:
               type: string
-              example: We earn the loyalty of the people we serve by first anticipating,
-                then fulfilling their needs with our superior-quality products, a
-                unique shopping experience, customer-focused service and continuous
-                innovation, while generating long-term profitable growth for our shareholders.
+              example: SVIs mission is to deliver quality products at affordable prices
+                to our independent retailers, wholesalers and food service partners
+                around the world by providing international procurement, distribution,
+                marketing and supply chain management.
               nullable: true
             position:
               type: integer
