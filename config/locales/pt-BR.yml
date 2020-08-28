@@ -1,5 +1,5 @@
 ---
-en:
+pt-BR:
   activerecord:
     errors:
       messages:
@@ -176,7 +176,7 @@ en:
         other: "%{count} erros não permitiram esse %{model} de ser salvo"
   helpers:
     select:
-      prompt: Por favor selecione
+      prompt: Selecionar
     submit:
       create: Criar %{model}
       submit: Salvar %{model}
@@ -184,36 +184,28 @@ en:
   number:
     currency:
       format:
-        delimiter: "."
-        format: "%u %n"
+        delimiter: ","
+        format: "%u%n"
         precision: 2
-        separator: ","
+        separator: "."
         significant: false
         strip_insignificant_zeros: false
-        unit: R$
+        unit: "$"
     format:
-      delimiter: "."
+      delimiter: ","
       precision: 3
-      separator: ","
+      separator: "."
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
         format: "%n %u"
         units:
-          billion:
-            one: bilhão
-            other: bilhões
-          million:
-            one: milhão
-            other: milhões
-          quadrillion:
-            one: quatrilhão
-            other: quatrilhões
-          thousand: mil
-          trillion:
-            one: trilhão
-            other: trilhões
+          billion: Bilhão
+          million: Milhão
+          quadrillion: Quadrillion
+          thousand: Mil
+          trillion: Trilhão
           unit: ''
       format:
         delimiter: ''
@@ -234,20 +226,20 @@ en:
           tb: TB
     percentage:
       format:
-        delimiter: "."
+        delimiter: ''
         format: "%n%"
     precision:
       format:
-        delimiter: "."
+        delimiter: ''
   support:
     array:
-      last_word_connector: " e "
+      last_word_connector: ", e "
       two_words_connector: " e "
       words_connector: ", "
   time:
     am: ''
     formats:
-      default: "%a, %d de %B de %Y, %H:%M:%S %z"
-      long: "%d de %B de %Y, %H:%M"
-      short: "%d de %B, %H:%M"
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
     pm: ''

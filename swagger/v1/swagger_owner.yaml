@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Sequi consequatur laboriosam veritatis architecto quas
-                        eveniet tempora fugit maiores?
+                      example: Id illo quaerat rerum eaque consequatur non error neque
+                        exercitationem?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Krajcik, Homenick and Lesch
+                      example: Carreira, Castelo e Teles
                     description:
                       type: string
-                      example: Rerum rerum ipsam. Voluptatem exercitationem rem. Doloremque
-                        aliquam culpa. Corporis perferendis ut.
+                      example: Quo id dolor. Iure est ad. Recusandae reiciendis commodi.
+                        Numquam corrupti facere. Ut repellendus l.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Tillman Inc
+                      example: Jesus, da Aldeia e Sais
                     description:
                       type: string
-                      example: Voluptas nostrum velit. Molestiae et hic. Quasi rem
-                        modi. Totam sapiente mollitia. Magnam fugiat ra.
+                      example: A exercitationem pariatur. Autem ad officiis. Laborum
+                        fuga similique. Voluptatibus molestias quidem.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Hudson, Lemke and Hickle
+                      example: Limeira, Cerqueira e Marques
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Bednar Group
+                      example: Souza LTDA
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Welch and Sons
+                      example: Araújo S.A.
                     active:
                       type: boolean
               required:
@@ -725,7 +725,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Boyer-Powlowski
+                      example: de Sá EIRELI
                     active:
                       type: boolean
               required:
@@ -795,7 +795,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: pariatur-totam
+                      example: corporis-consequatur
               required:
               - name
               - active
@@ -841,7 +841,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: kelvin@vonrueden.co
+                      example: donovan@friesen.name
                     password:
                       type: string
                       example: '12345678'
@@ -904,7 +904,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: madge@runte.com
+                      example: mittie_mayer@osinski.org
                     password:
                       type: string
                       example: '12345678'
@@ -974,7 +974,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: christel@barrows.info
+                      example: rico@hintz.info
                     password:
                       type: string
                       example: '12345678'
@@ -1047,7 +1047,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: argentina_moore@dietrich-ruecker.info
+                      example: chiquita@walter-breitenberg.info
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1120,16 +1120,16 @@ components:
           properties:
             email:
               type: string
-              example: thanh_hettinger@koss-casper.org
+              example: gil.cremin@frami.com
             name:
               type: string
               nullable: true
             created_at:
               type: string
-              example: '2020-08-28 08:49:37 -0300'
+              example: '2020-08-28 08:55:42 -0300'
             updated_at:
               type: string
-              example: '2020-08-28 08:49:37 -0300'
+              example: '2020-08-28 08:55:42 -0300'
           required:
           - email
     product:
@@ -1149,7 +1149,7 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Lasagne
+              example: Arepas
             description:
               type: string
               example: To deliver an exceptional shopping experience by offering the
