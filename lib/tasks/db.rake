@@ -18,25 +18,27 @@ namespace :db do
     upload_backup(full_path)
   end
 
+  desc 'Destroy old dumps'
+  task destroy_old_dumps: :environment do
+    prefix = AwsStorage.new.prefix
+    bucket = AwsStorage.new.bucket
+    data = bucket.objects(prefix: "#{prefix}/", delimiter: '').collect
+    is_old = Time.now.utc - 10.days
+    data.each do |object|
+      next if object.last_modified >= is_old
+
+      object.delete
+    end
+  end
+
   private
 
   def upload_backup(file)
-    s3 = Aws::S3::Resource.new(
-      access_key_id: ENV['STORAGE_KEY_ID'],
-      secret_access_key: ENV['STORAGE_KEY_SECRET'],
-      region: ENV['STORAGE_REGION'],
-      endpoint: ENV['STORAGE_ENDPOINT']
-    )
-    prefix = 'backups_iume'
+    prefix = AwsStorage.new.prefix
     name = File.basename(file)
-    bucket = s3.bucket(ENV['STORAGE_DIRETORY'])
+    bucket = AwsStorage.new.bucket
     obj = bucket.object("#{prefix}/#{name}")
-    obj.upload_file(file)
-    FileUtils.rm_f(file)
-    data = bucket.objects(prefix: "#{prefix}/", delimiter: '').collect(&:key)
-    data.each do |object|
-        puts "#{object.key}\t#{object.last_modified}"
-    end
+    FileUtils.rm_f(file) if obj.upload_file(file)
   end
 
   def ensure_format(format)
