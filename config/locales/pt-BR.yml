@@ -11,7 +11,7 @@ pt-BR:
     messages:
       reset_password: Mude sua senha
       check_your_mailbox: Confira sua caixa de email
-      welcome: Bem-vindo
+      welcome: Bem-vindo ao iume
   date:
     abbr_day_names:
     - Dom
