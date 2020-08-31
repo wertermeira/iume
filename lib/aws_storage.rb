@@ -1,15 +1,14 @@
+# Access to storage in aws
 class AwsStorage
-  def initialize
-    @prefix = 'backups_iume'
+  attr_reader :prefix
+
+  def initialize(prefix: 'backups_iume')
+    @prefix = prefix
   end
 
   def bucket
     s3 = Aws::S3::Resource.new(credentials)
-    bucket = s3.bucket(ENV['STORAGE_DIRETORY'])
-  end
-
-  def prefix
-    @prefix
+    s3.bucket(ENV['STORAGE_DIRETORY'])
   end
 
   private
