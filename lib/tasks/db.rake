@@ -1,5 +1,3 @@
-require 'aws-sdk-s3'
-
 namespace :db do
   desc 'Dumps the database to backups'
   task dump: :environment do
@@ -23,7 +21,7 @@ namespace :db do
     prefix = AwsStorage.new.prefix
     bucket = AwsStorage.new.bucket
     data = bucket.objects(prefix: "#{prefix}/", delimiter: '').collect
-    is_old = Time.now.utc - 10.days
+    is_old = Time.now.utc - 15.days
     data.each do |object|
       next if object.last_modified >= is_old
 

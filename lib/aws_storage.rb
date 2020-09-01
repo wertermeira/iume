@@ -1,3 +1,4 @@
+require 'aws-sdk-s3'
 # Access to storage in aws
 class AwsStorage
   attr_reader :prefix
