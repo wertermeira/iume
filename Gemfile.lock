@@ -107,6 +107,7 @@ GEM
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
     database_cleaner (1.8.5)
+    database_url (0.1.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.4.4)
@@ -369,6 +370,7 @@ DEPENDENCIES
   byebug
   cancancan
   database_cleaner
+  database_url
   dotenv-rails
   factory_bot_rails
   faker
