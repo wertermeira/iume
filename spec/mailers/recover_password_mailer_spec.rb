@@ -20,7 +20,7 @@ RSpec.describe RecoverPasswordMailer, type: :mailer do
 
     context 'when sent email' do
       it 'renders the subject' do
-        expect(mail.subject).to eq(I18n.t('mailer.messages.reset_password'))
+        expect(mail.subject).to eq(I18n.t('mailer.messages.reset_password.subject'))
       end
 
       it 'renders the receiver email' do
@@ -31,6 +31,10 @@ RSpec.describe RecoverPasswordMailer, type: :mailer do
     context 'when body encoded' do
       it 'assigns url with token' do
         expect(mail.body.encoded).to match("#{ENV['FROENTEND_URL']}/recover/#{@token}")
+      end
+
+      it 'assigns summary' do
+        expect(mail.body.encoded).to match(I18n.t('mailer.messages.reset_password.summary'))
       end
     end
   end
