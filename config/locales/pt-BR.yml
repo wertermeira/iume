@@ -9,9 +9,13 @@ pt-BR:
           has_many: O registro não pode ser apagado pois há relacionamentos %{record} existentes
   mailer:
     messages:
-      reset_password: Mude sua senha
+      reset_password:
+        subject: Recuperar senha
+        summary: Parece que você perdeu a sua senha. Vamos te ajudar.
       check_your_mailbox: Confira sua caixa de email
-      welcome: Bem-vindo
+      welcome:
+        subject: Bem-vindo!
+        summary: Agora você faz parte da comunidade de donos de restaurante que querem melhorar a experiência dos seus clientes.
   date:
     abbr_day_names:
     - Dom

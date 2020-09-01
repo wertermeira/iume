@@ -19,11 +19,15 @@ RSpec.describe WelcomeMailer, type: :mailer do
 
     context 'when sent email' do
       it 'renders the subject' do
-        expect(mail.subject).to eq(I18n.t('mailer.messages.welcome'))
+        expect(mail.subject).to eq(I18n.t('mailer.messages.welcome.subject'))
       end
 
       it 'renders the receiver email' do
         expect(mail.to).to eq([owner.email])
+      end
+
+      it 'assigns summary' do
+        expect(mail.body.encoded).to match(I18n.t('mailer.messages.welcome.summary'))
       end
     end
   end
