@@ -81,17 +81,6 @@ namespace :db do
   end
 
   def with_config
-    return credentails_production if Rails.env.production?
-
-    yield Rails.application.class.parent_name.underscore,
-          ActiveRecord::Base.connection_config[:host],
-          ActiveRecord::Base.connection_config[:port],
-          ActiveRecord::Base.connection_config[:database],
-          ActiveRecord::Base.connection_config[:username],
-          ActiveRecord::Base.connection_config[:password]
-  end
-
-  def credentails_production
     yield Rails.application.class.parent_name.underscore,
           database_credentials.dig(:host),
           database_credentials.dig(:port),
