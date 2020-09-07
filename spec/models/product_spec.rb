@@ -17,6 +17,7 @@ RSpec.describe Product, type: :model do
 
   describe 'when validation' do
     let(:section) { create(:section) }
+    let(:max_products) { ENV.fetch('MAX_PRODUCT_SECTION', 50) }
     let(:product_new) {
       described_class.new(
         name: Faker::Name.name, price: 10, section: section
@@ -38,13 +39,19 @@ RSpec.describe Product, type: :model do
 
     context 'when max products per section' do
       it 'invalid' do
-        create_list(:product, ENV.fetch('MAX_PRODUCT_SECTION', 50), section: section)
+        create_list(:product, max_products, section: section)
         expect(product_new).not_to be_valid
       end
 
       it 'valid' do
-        create_list(:product, ENV.fetch('MAX_PRODUCT_SECTION', 50) - 1, section: section)
+        create_list(:product, max_products - 1, section: section)
         expect(product_new).to be_valid
+      end
+
+      it 'message error' do
+        create_list(:product, max_products, section: section)
+        product_new.valid?
+        expect(product_new.errors[:section_id]).to match_array([I18n.t('errors.messagens.less_than_or_equal_to', count: max_products)])
       end
     end
   end

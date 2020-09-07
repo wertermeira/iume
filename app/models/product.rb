@@ -31,6 +31,6 @@ class Product < ApplicationRecord
     max_products = ENV.fetch('MAX_PRODUCT_SECTION', 50)
     return if section.products.count < max_products.to_i
 
-    errors.add(:section_id, I18n.t('less_than_or_equal_to', count: max_products))
+    errors.add(:section_id, I18n.t('errors.messagens.less_than_or_equal_to', count: max_products))
   end
 end

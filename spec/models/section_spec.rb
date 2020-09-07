@@ -20,6 +20,7 @@ RSpec.describe Section, type: :model do
 
   describe 'when validation' do
     subject { create(:section) }
+    let(:max_sections) { ENV.fetch('MAX_SECTION_RESTAURANT', 50) }
     let(:restaurant) { create(:restaurant) }
     let(:section_new) { described_class.new(name: Faker::Name.name, restaurant: restaurant) }
 
@@ -28,13 +29,19 @@ RSpec.describe Section, type: :model do
 
     context 'when max section per restaurant' do
       it 'invalid' do
-        create_list(:section, ENV.fetch('MAX_SECTION_RESTAURANT', 50), restaurant: restaurant)
+        create_list(:section, max_sections, restaurant: restaurant)
         expect(section_new).not_to be_valid
       end
 
       it 'valid' do
-        create_list(:section, ENV.fetch('MAX_SECTION_RESTAURANT', 50) - 1, restaurant: restaurant)
+        create_list(:section, max_sections - 1, restaurant: restaurant)
         expect(section_new).to be_valid
+      end
+
+      it 'message error' do
+        create_list(:section, max_sections, restaurant: restaurant)
+        section_new.valid?
+        expect(section_new.errors[:restaurant]).to match_array([I18n.t('errors.messagens.less_than_or_equal_to', count: max_sections)])
       end
     end
   end
