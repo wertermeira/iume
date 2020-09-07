@@ -19,10 +19,24 @@ RSpec.describe Section, type: :model do
   end
 
   describe 'when validation' do
-    subject { create(:restaurant) }
+    subject { create(:section) }
+    let(:restaurant) { create(:restaurant) }
+    let(:section_new) { described_class.new(name: Faker::Name.name, restaurant: restaurant) }
 
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_least(3).is_at_most(200) }
+
+    context 'when max section per restaurant' do
+      it 'invalid' do
+        create_list(:section, ENV.fetch('MAX_SECTION_RESTAURANT', 50), restaurant: restaurant)
+        expect(section_new).not_to be_valid
+      end
+
+      it 'valid' do
+        create_list(:section, ENV.fetch('MAX_SECTION_RESTAURANT', 50) - 1, restaurant: restaurant)
+        expect(section_new).to be_valid
+      end
+    end
   end
 
   context 'whens scope' do

@@ -8,6 +8,7 @@ class Product < ApplicationRecord
   validates :name, length: { maximum: 200 }, allow_blank: true
   validates :description, length: { maximum: 1000 }, allow_blank: true
   validates :price, numericality: true, allow_blank: true
+  validate :max_product_section, on: :create, if: -> { section.present? }
 
   has_one_base64_attached :image
   validates :image,
@@ -24,5 +25,12 @@ class Product < ApplicationRecord
 
   def purge_image
     self.image = nil if image.attached?
+  end
+
+  def max_product_section
+    max_products = ENV.fetch('MAX_PRODUCT_SECTION', 50)
+    return if section.products.count < max_products.to_i
+
+    errors.add(:section_id, I18n.t('less_than_or_equal_to', count: max_products))
   end
 end
