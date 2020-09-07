@@ -16,6 +16,12 @@ RSpec.describe Product, type: :model do
   end
 
   describe 'when validation' do
+    let(:section) { create(:section) }
+    let(:product_new) {
+      described_class.new(
+        name: Faker::Name.name, price: 10, section: section
+      )
+    }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:price) }
     it { is_expected.to validate_length_of(:name).is_at_most(200) }
@@ -28,6 +34,18 @@ RSpec.describe Product, type: :model do
       it { is_expected.to validate_size_of(:image).less_than(4.megabytes) }
       it { is_expected.to validate_content_type_of(:image).allowing(types_allow) }
       it { is_expected.not_to validate_content_type_of(:image).allowing(%w[image/tif doc/pdf]) }
+    end
+
+    context 'when max products per section' do
+      it 'invalid' do
+        create_list(:product, ENV.fetch('MAX_PRODUCT_SECTION', 50), section: section)
+        expect(product_new).not_to be_valid
+      end
+
+      it 'valid' do
+        create_list(:product, ENV.fetch('MAX_PRODUCT_SECTION', 50) - 1, section: section)
+        expect(product_new).to be_valid
+      end
     end
   end
 end
