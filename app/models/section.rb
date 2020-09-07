@@ -19,6 +19,6 @@ class Section < ApplicationRecord
     max_sections = ENV.fetch('MAX_SECTION_RESTAURANT', 50)
     return if restaurant.sections.count < max_sections.to_i
 
-    errors.add(:restaurant, I18n.t('errors.messagens.less_than_or_equal_to', count: max_sections))
+    errors.add(:restaurant, I18n.t('errors.messages.limit_max_items', max: max_sections, item: 'seções'))
   end
 end

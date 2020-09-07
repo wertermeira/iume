@@ -118,6 +118,7 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      limit_max_items: Limite máximo de %{max} %{item}
       content_type_invalid: "tem um tipo de conteúdo inválido"
       file_size_out_of_range: "%{file_size} não está dentro dos valores permitidos"
       limit_out_of_range: "número total está fora do intervalo"
