@@ -38,6 +38,8 @@ RSpec.describe Product, type: :model do
     end
 
     context 'when max products per section' do
+      let(:message) { I18n.t('errors.messages.limit_max_items', max: max_products, item: 'produtos') }
+
       it 'invalid' do
         create_list(:product, max_products, section: section)
         expect(product_new).not_to be_valid
@@ -51,7 +53,7 @@ RSpec.describe Product, type: :model do
       it 'message error' do
         create_list(:product, max_products, section: section)
         product_new.valid?
-        expect(product_new.errors[:section_id]).to match_array([I18n.t('errors.messagens.less_than_or_equal_to', count: max_products)])
+        expect(product_new.errors[:section_id]).to match_array([message])
       end
     end
   end

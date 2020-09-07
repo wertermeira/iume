@@ -28,6 +28,8 @@ RSpec.describe Section, type: :model do
     it { is_expected.to validate_length_of(:name).is_at_least(3).is_at_most(200) }
 
     context 'when max section per restaurant' do
+      let(:message) { I18n.t('errors.messages.limit_max_items', max: max_sections, item: 'seções') }
+
       it 'invalid' do
         create_list(:section, max_sections, restaurant: restaurant)
         expect(section_new).not_to be_valid
@@ -41,7 +43,7 @@ RSpec.describe Section, type: :model do
       it 'message error' do
         create_list(:section, max_sections, restaurant: restaurant)
         section_new.valid?
-        expect(section_new.errors[:restaurant]).to match_array([I18n.t('errors.messagens.less_than_or_equal_to', count: max_sections)])
+        expect(section_new.errors[:restaurant]).to match_array([message])
       end
     end
   end
