@@ -13,11 +13,13 @@ RSpec.describe Product, type: :model do
 
   context 'when have association' do
     it { is_expected.to belong_to(:section) }
+    it { is_expected.to have_one(:restaurant).through(:section) }
+    it { is_expected.to have_one(:owner).through(:restaurant) }
   end
 
   describe 'when validation' do
     let(:section) { create(:section) }
-    let(:max_products) { ENV.fetch('MAX_PRODUCT_SECTION', 50) }
+    let(:max_products) { ENV.fetch('MAX_PRODUCTS', 15) }
     let(:product_new) {
       described_class.new(
         name: Faker::Name.name, price: 10, section: section
@@ -53,7 +55,7 @@ RSpec.describe Product, type: :model do
       it 'message error' do
         create_list(:product, max_products, section: section)
         product_new.valid?
-        expect(product_new.errors[:section_id]).to match_array([message])
+        expect(product_new.errors[:max_products]).to match_array([message])
       end
     end
   end

@@ -1,6 +1,10 @@
 class Product < ApplicationRecord
   include ActiveStorageSupport::SupportForBase64
   belongs_to :section, touch: true
+  has_one :restaurant, through: :section
+  has_one :owner, through: :restaurant
+
+  MAX_PRODUCTS = ENV.fetch('MAX_PRODUCTS', 15).to_i
 
   attr_accessor :image_destroy
 
@@ -28,9 +32,8 @@ class Product < ApplicationRecord
   end
 
   def max_product_section
-    max_products = ENV.fetch('MAX_PRODUCT_SECTION', 50)
-    return if section.products.count < max_products.to_i
+    return if restaurant.products.count < MAX_PRODUCTS
 
-    errors.add(:section_id, I18n.t('errors.messages.limit_max_items', max: max_products, item: 'produtos'))
+    errors.add(:max_products, I18n.t('errors.messages.limit_max_items', max: MAX_PRODUCTS, item: 'produtos'))
   end
 end
