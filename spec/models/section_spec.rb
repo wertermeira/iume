@@ -43,7 +43,7 @@ RSpec.describe Section, type: :model do
       it 'message error' do
         create_list(:section, max_sections, restaurant: restaurant)
         section_new.valid?
-        expect(section_new.errors[:restaurant]).to match_array([message])
+        expect(section_new.errors[:max_sections]).to match_array([message])
       end
     end
   end
