@@ -205,6 +205,7 @@ RSpec.configure do |config|
                 properties: {
                   name: { type: :string },
                   slug: { type: :string },
+                  products_remaining: { type: :integer, example: 1 },
                   active: { type: :boolean }
                 },
                 required: %w[name slug active]

@@ -168,10 +168,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
       response 200, 'found' do
         schema type: :object,
                properties: {
-                 name: {
-                   type: :array,
-                   items: { type: :string, example: I18n.t('errors.messages.blank') }
-                 }
+                 data: { '$ref' => '#/components/schemas/restaurant' }
                }
         run_test!
       end
