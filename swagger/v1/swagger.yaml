@@ -137,13 +137,21 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Pappardelle alla Bolognese
+              example: Salmon Nigiri
             description:
               type: string
-              example: SVIs mission is to deliver quality products at affordable prices
-                to our independent retailers, wholesalers and food service partners
-                around the world by providing international procurement, distribution,
-                marketing and supply chain management.
+              example: To achieve and maintain such distinction in food and wine,
+                service, atmosphere and setting that the restaurant gains a first
+                class reputation for gastronomy, gracious and informed hospitality,
+                comfort and beauty which draws new and repeat customers year after
+                year. To achieve the above whilst upholding staff policies and practices
+                which promote a fair and positive working environment. To be aware
+                of and act on our responsibilities as a good corporate citizen to  provide
+                a safe, clean and attractive place for guests to enjoy and for employees
+                to work in - ensure ecologically sound management practices at the
+                restaurant and in our surrounding gardens and woods - undertake meaningful
+                involvement of Restaurant Les Fougères in selected charitable activities
+                in our community and region.
               nullable: true
             position:
               type: integer
