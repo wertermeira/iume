@@ -20,7 +20,7 @@ RSpec.describe Section, type: :model do
 
   describe 'when validation' do
     subject { create(:section) }
-    let(:max_sections) { ENV.fetch('MAX_SECTION_RESTAURANT', 50) }
+    let(:max_sections) { ENV.fetch('MAX_SECTION_RESTAURANT', 10) }
     let(:restaurant) { create(:restaurant) }
     let(:section_new) { described_class.new(name: Faker::Name.name, restaurant: restaurant) }
 
