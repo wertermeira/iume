@@ -8,7 +8,6 @@ class AuthService
         authenticateable_type: authenticator.class.name,
         authenticateable_id: authenticator.id,
         user_agent: request&.user_agent,
-        ip_address: request&.remote_ip,
         last_used_at: Time.now.utc
       )
       authenticator.increment!(:login_count)

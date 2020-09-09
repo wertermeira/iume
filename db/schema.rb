@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_195736) do
+ActiveRecord::Schema.define(version: 2020_09_09_172637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2020_08_25_195736) do
     t.string "body"
     t.datetime "last_used_at"
     t.integer "expires_in"
-    t.string "ip_address"
     t.string "user_agent"
     t.string "authenticateable_type", null: false
     t.bigint "authenticateable_id", null: false

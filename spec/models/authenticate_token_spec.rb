@@ -4,7 +4,7 @@ RSpec.describe AuthenticateToken, type: :model do
   context 'when db schema' do
     let(:model) { described_class.column_names }
 
-    %w[id body last_used_at expires_in ip_address user_agent authenticateable_type authenticateable_id].each do |column|
+    %w[id body last_used_at expires_in user_agent authenticateable_type authenticateable_id].each do |column|
       it "have column #{column}" do
         expect(model).to include(column)
       end
