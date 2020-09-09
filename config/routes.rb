@@ -28,5 +28,9 @@ Rails.application.routes.draw do
     resources :products, controller: 'restaurants/sections/products', only: %i[index show], path: 'restaurants/sections/:section_id/products'
     resources :restaurants, only: :show
   end
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV.fetch('SIDEKIQ_USERNAME', 'admin'))) &
+      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV.fetch('SIDEKIQ_PASSWORD', '123456')))
+  end if Rails.env.production?
   mount Sidekiq::Web => 'sidekiq'
 end
