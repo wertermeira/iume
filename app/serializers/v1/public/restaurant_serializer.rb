@@ -3,6 +3,7 @@ module V1
     class RestaurantSerializer < ActiveModel::Serializer
       attributes :id, :name, :slug, :active
       has_many :sections, serializer: V1::Public::SectionSerializer
+      has_many :phones, serializer: V1::PhoneSerializer
 
       def sections
         if scope[:current_user].present? && scope[:current_user].restaurants.find_by(id: object.id)

@@ -4,7 +4,8 @@ module V1
     before_action :set_restaurant
 
     def show
-      render json: @resturant, serializer: V1::Public::RestaurantSerializer, status: :ok, include: :sections, scope: { current_user: current_user }
+      render json: @resturant, serializer: V1::Public::RestaurantSerializer, status: :ok,
+             include: 'sections,phones', scope: { current_user: current_user }
     end
 
     private

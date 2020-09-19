@@ -6,6 +6,16 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
   let(:slug) { Faker::Internet.slug }
   let(:restaurant_item) { create(:restaurant, owner: user) }
   let(:Authorization) { authentication(user) }
+  let(:phones_attributes) {
+    [
+      {
+        number: '11-9999-9999'
+      },
+      {
+        number: '11-9999-9999'
+      }
+    ]
+  }
   let(:valid_attrs) {
     {
       restaurant: {
@@ -120,7 +130,14 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
             type: :object,
             properties: {
               name: { type: :string, example: Faker::Company.name },
-              active: { type: :boolean }
+              active: { type: :boolean },
+              phones_attributes: {
+                type: :array,
+                items: {
+                  type: :object
+                },
+                example: [{ number: '11-9999-9999' }, { id: 1, number: '11-9999-9999' }, { id: 2, _destroy: true }]
+              }
             }
           }
         },
@@ -130,15 +147,41 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
       response 202, 'update success' do
         before {
           valid_attrs[:restaurant][:slug] = slug
+          valid_attrs[:restaurant][:phones_attributes] = phones_attributes
         }
         schema type: :object,
                properties: {
-                 data: { '$ref' => '#/components/schemas/restaurant' }
+                 data: { '$ref' => '#/components/schemas/restaurant' },
+                 included: {
+                   type: :array,
+                   items: { '$ref' => '#/components/schemas/phone' }
+                 }
                }
 
         run_test! do
           expect(json_body.dig('data', 'attributes', 'slug')).to eq(slug)
         end
+      end
+
+      response 202, 'update success' do
+        let(:restaurant) {
+          {
+            restaurant: {
+              phones_attributes: phones_attributes
+            }
+          }
+        }
+
+        schema type: :object,
+               properties: {
+                 data: { '$ref' => '#/components/schemas/restaurant' },
+                 included: {
+                   type: :array,
+                   items: { '$ref' => '#/components/schemas/phone' }
+                 }
+               }
+
+        run_test!
       end
 
       response 422, 'create failt' do

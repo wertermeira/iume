@@ -26,7 +26,24 @@ RSpec.describe 'v1/restaurants', type: :request do
                  },
                  included: {
                    type: :array,
-                   items: { '$ref' => '#/components/schemas/section' }
+                   items: { type: :object },
+                   example: [
+                     {
+                       id: '1',
+                       type: 'phones',
+                       attributes: {
+                         number: '11-9999-9999'
+                       }
+                     },
+                     {
+                       id: '1',
+                       type: 'sections',
+                       attributes: {
+                         name: 'Drinks',
+                         position: 1
+                       }
+                     }
+                   ]
                  }
                }
 
