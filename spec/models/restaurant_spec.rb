@@ -19,7 +19,9 @@ RSpec.describe Restaurant, type: :model do
     it { is_expected.to have_many(:products).through(:sections) }
     it { is_expected.to have_many(:phones).dependent(:destroy) }
 
-    it { is_expected.to accept_nested_attributes_for(:phones).allow_destroy(true).update_only(true) }
+    it do
+      expect(subject).to accept_nested_attributes_for(:phones).limit(4).allow_destroy(true).update_only(true)
+    end
   end
 
   describe 'when validation' do
