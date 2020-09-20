@@ -114,7 +114,17 @@ paths:
                   included:
                     type: array
                     items:
-                      "$ref": "#/components/schemas/section"
+                      type: object
+                    example:
+                    - id: '1'
+                      type: phones
+                      attributes:
+                        number: 11-9999-9999
+                    - id: '1'
+                      type: sections
+                      attributes:
+                        name: Drinks
+                        position: 1
         '404':
           description: restaurant not found
           content: {}
@@ -137,21 +147,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Salmon Nigiri
+              example: Arepas
             description:
               type: string
-              example: To achieve and maintain such distinction in food and wine,
-                service, atmosphere and setting that the restaurant gains a first
-                class reputation for gastronomy, gracious and informed hospitality,
-                comfort and beauty which draws new and repeat customers year after
-                year. To achieve the above whilst upholding staff policies and practices
-                which promote a fair and positive working environment. To be aware
-                of and act on our responsibilities as a good corporate citizen to  provide
-                a safe, clean and attractive place for guests to enjoy and for employees
-                to work in - ensure ecologically sound management practices at the
-                restaurant and in our surrounding gardens and woods - undertake meaningful
-                involvement of Restaurant Les Fougères in selected charitable activities
-                in our community and region.
+              example: To provide an exceptional dining experience that satisfies
+                our guests’ grown-up tastes by being a Cut-Above in everything we
+                do.
               nullable: true
             position:
               type: integer
@@ -187,6 +188,20 @@ components:
             position:
               type: integer
               example: 1
+    phone:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '1'
+        type:
+          type: string
+          example: phones
+        attributes:
+          type: object
+          properties:
+            number:
+              type: string
     restaurant:
       type: object
       properties:
@@ -217,12 +232,12 @@ components:
                 data:
                   type: array
                   items:
-                    properties:
-                      id:
-                        type: string
-                      type:
-                        type: string
-                        example: sections
+                    type: object
+                  example:
+                  - id: '1'
+                    type: sections
+                  - id: '1'
+                    type: phones
   securitySchemes:
     bearer:
       type: http

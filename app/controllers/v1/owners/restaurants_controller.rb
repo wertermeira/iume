@@ -6,11 +6,11 @@ module V1
 
       def index
         @restaurants = Restaurant.accessible_by(current_ability)
-        render json: @restaurants, each_serializer: V1::RestaurantSerializer, status: :ok
+        render json: @restaurants, each_serializer: V1::RestaurantSerializer, status: :ok, include: 'phones'
       end
 
       def show
-        render json: @restaurant, serializer: V1::RestaurantSerializer, status: :ok
+        render json: @restaurant, serializer: V1::RestaurantSerializer, status: :ok, include: 'phones'
       end
 
       def create
@@ -27,7 +27,7 @@ module V1
 
       def update
         if @restaurant.update(restaurant_params)
-          render json: @restaurant, serializer: V1::RestaurantSerializer, status: :accepted
+          render json: @restaurant, serializer: V1::RestaurantSerializer, status: :accepted, include: 'phones'
         else
           render json: @restaurant.errors, status: :unprocessable_entity
         end
@@ -54,7 +54,7 @@ module V1
       end
 
       def restaurant_params
-        params.require(:restaurant).permit(:name, :slug, :active)
+        params.require(:restaurant).permit(:name, :slug, :active, phones_attributes: %i[id number _destroy])
       end
 
       def current_ability

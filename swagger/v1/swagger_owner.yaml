@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Error aliquam distinctio facilis voluptas optio dolorem
-                        et et illum?
+                      example: Aliquid tempora sunt voluptas eius nihil fugit iure
+                        voluptatum quidem?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Carvalho, Batista e Souza
+                      example: da Penha, de Quadros e Aragão
                     description:
                       type: string
-                      example: Iste nostrum accusamus. Qui inventore harum. Nemo et
-                        mollitia. Unde qui ut. Ea numquam eum. Eaque o.
+                      example: Porro ad maxime. Occaecati alias sed. Sunt et quia.
+                        Eos ea quisquam. Odit ullam autem. Fugiat volup.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Luz-Pedroso
+                      example: da Maia e Associados
                     description:
                       type: string
-                      example: Alias eum neque. Id consequatur labore. Animi vero
-                        aut. Voluptatibus quo veritatis. Ea ut incidunt..
+                      example: Quo autem odio. Debitis adipisci sapiente. Totam ducimus
+                        consequatur. Iste laudantium laborum. Repe.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Sanches e Associados
+                      example: Reis, Louzada e Almeida
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Aragão LTDA
+                      example: da Terra EIRELI
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Casqueira-da Maia
+                      example: da Fontoura, Batista e da Rocha
                     active:
                       type: boolean
               required:
@@ -702,6 +702,10 @@ paths:
                 properties:
                   data:
                     "$ref": "#/components/schemas/restaurant"
+                  included:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/phone"
         '422':
           description: create failt
           content:
@@ -725,9 +729,19 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Conceição, Longuinho e da Conceição
+                      example: da Cruz-Macieira
                     active:
                       type: boolean
+                    phones_attributes:
+                      type: array
+                      items:
+                        type: object
+                      example:
+                      - number: 11-9999-9999
+                      - id: 1
+                        number: 11-9999-9999
+                      - id: 2
+                        _destroy: true
               required:
               - name
               - active
@@ -792,7 +806,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: voluptas-excepturi
+                      example: repellat-voluptatum
               required:
               - name
               - active
@@ -838,7 +852,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: emory@reynolds.io
+                      example: andreas@dickinson.com
                     password:
                       type: string
                       example: '12345678'
@@ -901,7 +915,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: curt.corwin@walter-brakus.info
+                      example: lon.collier@cassin.co
                     password:
                       type: string
                       example: '12345678'
@@ -971,7 +985,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: daryl@predovic.io
+                      example: elidia@jerde.net
                     password:
                       type: string
                       example: '12345678'
@@ -1044,7 +1058,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: magen_thiel@veum.io
+                      example: alaine_reichel@beier.net
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1103,6 +1117,20 @@ paths:
                   - password_confirmation
 components:
   schemas:
+    phone:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '1'
+        type:
+          type: string
+          example: phones
+        attributes:
+          type: object
+          properties:
+            number:
+              type: string
     owner:
       type: object
       properties:
@@ -1117,7 +1145,7 @@ components:
           properties:
             email:
               type: string
-              example: fonda_ruecker@schaefer-connelly.io
+              example: ena_kling@simonis.biz
             name:
               type: string
               nullable: true
@@ -1126,10 +1154,10 @@ components:
               example: 1
             created_at:
               type: string
-              example: '2020-09-08 15:40:16 -0300'
+              example: '2020-09-19 12:36:19 -0300'
             updated_at:
               type: string
-              example: '2020-09-08 15:40:16 -0300'
+              example: '2020-09-19 12:36:19 -0300'
           required:
           - email
           - login_count
@@ -1150,14 +1178,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Meatballs with Sauce
+              example: Caprese Salad
             description:
               type: string
-              example: Our mission is to be a leader in the distribution and merchandising
-                of food, pharmacy, health and personal care items, seasonal merchandise,
-                and related products and services. We place considerable importance
-                on forging strong supplier partnerships. Our suppliers, large or small,
-                local or global, are essential components in accomplishing our mission.
+              example: Our Mission at Denny’s is to establish beneficial business
+                relationships with diverse suppliers who share our commitment to customer
+                service, quality and competitive pricing.
               nullable: true
             position:
               type: integer
@@ -1221,6 +1247,21 @@ components:
           - name
           - slug
           - active
+        relationships:
+          type: object
+          properties:
+            sections:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    properties:
+                      id:
+                        type: string
+                      type:
+                        type: string
+                        example: phones
   securitySchemes:
     bearer:
       type: http

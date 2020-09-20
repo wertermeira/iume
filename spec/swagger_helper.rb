@@ -64,6 +64,19 @@ RSpec.configure do |config|
               }
             }
           },
+          phone: {
+            type: :object,
+            properties: {
+              id: { type: :string, example: '1' },
+              type: { type: :string, example: 'phones' },
+              attributes: {
+                type: :object,
+                properties: {
+                  number: { type: :string }
+                }
+              }
+            }
+          },
           restaurant: {
             type: :object,
             properties: {
@@ -87,11 +100,9 @@ RSpec.configure do |config|
                       data: {
                         type: :array,
                         items: {
-                          properties: {
-                            id: { type: :string },
-                            type: { type: :string, example: 'sections' }
-                          }
-                        }
+                          type: :object
+                        },
+                        example: [{ id: '1', type: 'sections' }, { id: '1', type: 'phones' }]
                       }
                     }
                   }
@@ -136,6 +147,19 @@ RSpec.configure do |config|
       paths: {},
       components: {
         schemas: {
+          phone: {
+            type: :object,
+            properties: {
+              id: { type: :string, example: '1' },
+              type: { type: :string, example: 'phones' },
+              attributes: {
+                type: :object,
+                properties: {
+                  number: { type: :string }
+                }
+              }
+            }
+          },
           owner: {
             type: :object,
             properties: {
@@ -209,6 +233,25 @@ RSpec.configure do |config|
                   active: { type: :boolean }
                 },
                 required: %w[name slug active]
+              },
+              relationships: {
+                type: :object,
+                properties: {
+                  sections: {
+                    type: :object,
+                    properties: {
+                      data: {
+                        type: :array,
+                        items: {
+                          properties: {
+                            id: { type: :string },
+                            type: { type: :string, example: 'phones' }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
