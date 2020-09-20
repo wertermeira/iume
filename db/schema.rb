@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_18_134638) do
+ActiveRecord::Schema.define(version: 2020_09_20_121500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(version: 2020_09_18_134638) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["authenticateable_type", "authenticateable_id"], name: "authenticateable_type_and_authenticateable_id"
     t.index ["body"], name: "index_authenticate_tokens_on_body", unique: true
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.boolean "capital", default: false
+    t.bigint "state_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -103,6 +112,12 @@ ActiveRecord::Schema.define(version: 2020_09_18_134638) do
     t.index ["section_id"], name: "index_products_on_section_id"
   end
 
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.bigint "owner_id", null: false
     t.string "name"
@@ -127,9 +142,20 @@ ActiveRecord::Schema.define(version: 2020_09_18_134638) do
     t.index ["restaurant_id"], name: "index_sections_on_restaurant_id"
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.string "acronym"
+    t.bigint "region_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_states_on_region_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cities", "states"
   add_foreign_key "feedbacks", "owners"
   add_foreign_key "products", "sections"
   add_foreign_key "restaurants", "owners"
   add_foreign_key "sections", "restaurants"
+  add_foreign_key "states", "regions"
 end
