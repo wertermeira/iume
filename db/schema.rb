@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_20_121500) do
+ActiveRecord::Schema.define(version: 2020_09_20_122254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 2020_09_20_121500) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "neighborhood"
+    t.bigint "city_id", null: false
+    t.string "complement"
+    t.string "number"
+    t.string "reference"
+    t.string "cep"
+    t.string "addressable_type", null: false
+    t.bigint "addressable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
+    t.index ["city_id"], name: "index_addresses_on_city_id"
   end
 
   create_table "authenticate_tokens", force: :cascade do |t|
@@ -152,6 +168,7 @@ ActiveRecord::Schema.define(version: 2020_09_20_121500) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "cities"
   add_foreign_key "cities", "states"
   add_foreign_key "feedbacks", "owners"
   add_foreign_key "products", "sections"
