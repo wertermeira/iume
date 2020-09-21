@@ -114,6 +114,11 @@ en:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      correios:
+        not_exists: Not an existing zip code
+        connection_failed: Connection to the Post Office API failed
+        invalid: Not a valid zip code
+        timeouted: Response time with the Post Office API
       content_type_invalid: "has an invalid content type"
       file_size_out_of_range: "size %{file_size} is not between required range"
       limit_out_of_range: "total number is out of range"

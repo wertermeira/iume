@@ -101,6 +101,12 @@ paths:
         required: false
         schema:
           type: string
+      - name: included
+        in: query
+        required: false
+        example: phones,address,address.city,address.city.state
+        schema:
+          type: string
       responses:
         '200':
           description: restaurant with preview
@@ -125,6 +131,35 @@ paths:
                       attributes:
                         name: Drinks
                         position: 1
+                    - id: '1'
+                      type: addresses
+                      attributes:
+                        street: Marginal Tiago
+                        neighborhood: Ponte Davi Lucca Cabreira
+                        complement: Summer Square
+                        number: s/n
+                        reference: North
+                        cep: 44900-000
+                      relationships:
+                        cities:
+                          data:
+                            id: '1'
+                            type: cities
+                    - id: '1'
+                      type: cities
+                      attributes:
+                        name: Santo Inácio
+                        capital: false
+                      relationships:
+                        states:
+                          data:
+                            id: '1'
+                            type: states
+                    - id: '1'
+                      type: states
+                      attributes:
+                        name: Mato Grosso do Sul
+                        acronym: BA
         '404':
           description: restaurant not found
           content: {}
@@ -147,12 +182,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Arepas
+              example: Chilli con Carne
             description:
               type: string
-              example: To provide an exceptional dining experience that satisfies
-                our guests’ grown-up tastes by being a Cut-Above in everything we
-                do.
+              example: Our mission has been to help people achieve their health and
+                wellness goals. though weve changed over the years, our values have
+                remained the same.
               nullable: true
             position:
               type: integer

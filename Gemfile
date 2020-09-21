@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+# Find Brazilian addresses by zipcode, directly from Correios database. No HTML parsers.\
+gem 'correios-cep'
 # ActiveModel::Serializer implementation and Rails hooks
 gem 'active_model_serializers', '~> 0.10.0'
 # FriendlyId is the 'Swiss Army bulldozer' of slugging and permalink plugins for

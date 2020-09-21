@@ -118,6 +118,11 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      correios:
+        not_exists: Não é um cep existente
+        connection_failed: Falha na conexão com a API dos correios
+        invalid: Não é um cep válido
+        timeouted: Tempo de resposta com a API dos correios falhou
       limit_max_items: Limite máximo de %{max} %{item}
       content_type_invalid: "tem um tipo de conteúdo inválido"
       file_size_out_of_range: "%{file_size} não está dentro dos valores permitidos"
