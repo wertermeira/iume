@@ -13,7 +13,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
       },
       {
         number: '11-9999-9999'
-      },
+      }
     ]
   }
   let(:address_attributes) {
@@ -304,7 +304,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
                          name: Faker::Address.state,
                          acronym: 'BA'
                        }
-                     },
+                     }
                    ]
                  }
                }
