@@ -14,6 +14,8 @@ RSpec.describe 'v1/restaurants', type: :request do
       parameter name: :id, in: :path, type: :string
       parameter name: :by_id, in: :query, type: :string, required: false
       parameter name: :preview, in: :query, type: :string, required: false
+      parameter name: :included, in: :query, type: :string, required: false,
+                example: 'phones,address,address.city,address.city.state'
 
       response 200, 'restaurant found' do
         before do
@@ -41,6 +43,44 @@ RSpec.describe 'v1/restaurants', type: :request do
                        attributes: {
                          name: 'Drinks',
                          position: 1
+                       }
+                     },
+                     {
+                       id: '1',
+                       type: 'addresses',
+                       attributes: {
+                         street: Faker::Address.street_name,
+                         neighborhood: Faker::Address.street_name,
+                         complement: Faker::Address.community,
+                         number: Faker::Address.building_number,
+                         reference: Faker::Address.city_prefix,
+                         cep: '44900-000'
+                       },
+                       relationships: {
+                         cities: {
+                           data: { id: '1', type: 'cities' }
+                         }
+                       }
+                     },
+                     {
+                       id: '1',
+                       type: 'cities',
+                       attributes: {
+                         name: Faker::Address.city,
+                         capital: false
+                       },
+                       relationships: {
+                         states: {
+                           data: { id: '1', type: 'states' }
+                         }
+                       }
+                     },
+                     {
+                       id: '1',
+                       type: 'states',
+                       attributes: {
+                         name: Faker::Address.state,
+                         acronym: 'BA'
                        }
                      }
                    ]

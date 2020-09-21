@@ -24,5 +24,11 @@ module V1
     def preview
       params[:preview].present?
     end
+
+    def included_serializer
+      return params[:included] if request.get?
+
+      'phones,address,address.city,address.city.state'
+    end
   end
 end
