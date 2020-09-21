@@ -6,11 +6,11 @@ module V1
 
       def index
         @restaurants = Restaurant.accessible_by(current_ability)
-        render json: @restaurants, each_serializer: V1::RestaurantSerializer, status: :ok, include: 'phones'
+        render json: @restaurants, each_serializer: V1::RestaurantSerializer, status: :ok, include: included_serializer
       end
 
       def show
-        render json: @restaurant, serializer: V1::RestaurantSerializer, status: :ok, include: 'phones'
+        render json: @restaurant, serializer: V1::RestaurantSerializer, status: :ok, include: included_serializer
       end
 
       def create
@@ -27,7 +27,7 @@ module V1
 
       def update
         if @restaurant.update(restaurant_params)
-          render json: @restaurant, serializer: V1::RestaurantSerializer, status: :accepted, include: 'phones'
+          render json: @restaurant, serializer: V1::RestaurantSerializer, status: :accepted, include: included_serializer
         else
           render json: @restaurant.errors, status: :unprocessable_entity
         end
@@ -54,11 +54,20 @@ module V1
       end
 
       def restaurant_params
-        params.require(:restaurant).permit(:name, :slug, :active, phones_attributes: %i[id number _destroy])
+        address_attributes = %i[id street neighborhood complement reference number cep]
+        params.require(:restaurant).permit(:name, :slug, :active,
+                                           phones_attributes: %i[id number _destroy],
+                                           address_attributes: address_attributes)
       end
 
       def current_ability
         OwnerAbility.new(current_user)
+      end
+
+      def included_serializer
+        return params[:included] if request.get?
+
+        'phones,address,address.city,address.city.state'
       end
     end
   end

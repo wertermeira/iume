@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_09_20_122254) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "neighborhood"
-    t.bigint "city_id", null: false
+    t.bigint "city_id"
     t.string "complement"
     t.string "number"
     t.string "reference"

@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Aliquid tempora sunt voluptas eius nihil fugit iure
-                        voluptatum quidem?
+                      example: Et quia non inventore accusamus magni quae a voluptas
+                        sed?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Penha, de Quadros e Aragão
+                      example: Laranjeira-Barreto
                     description:
                       type: string
-                      example: Porro ad maxime. Occaecati alias sed. Sunt et quia.
-                        Eos ea quisquam. Odit ullam autem. Fugiat volup.
+                      example: Voluptatibus enim et. Officia dolor veniam. Ut quod
+                        voluptatibus. Nobis eveniet ut. Doloribus sed e.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Maia e Associados
+                      example: Fontes-Pedroso
                     description:
                       type: string
-                      example: Quo autem odio. Debitis adipisci sapiente. Totam ducimus
-                        consequatur. Iste laudantium laborum. Repe.
+                      example: Ex fugiat fuga. Voluptate suscipit atque. Aut nobis
+                        eos. Amet ipsa quia. Aut reiciendis aspernatur..
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Reis, Louzada e Almeida
+                      example: Fernandes Comércio
                     position:
                       type: integer
                       example: 1
@@ -539,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Terra EIRELI
+                      example: Saraiva-da Penha
                     position:
                       type: integer
                       example: 1
@@ -655,7 +655,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Fontoura, Batista e da Rocha
+                      example: Espinheira e Associados
                     active:
                       type: boolean
               required:
@@ -667,6 +667,11 @@ paths:
       - Restaurants
       security:
       - bearer: []
+      parameters:
+      - name: included
+        in: query
+        require: false
+        example: phones,address,address.city,address.city.state
       responses:
         '200':
           description: return array
@@ -706,6 +711,41 @@ paths:
                     type: array
                     items:
                       "$ref": "#/components/schemas/phone"
+                      type: object
+                    example:
+                    - id: '1'
+                      type: phones
+                      attributes:
+                        number: 11-9999-9999
+                    - id: '1'
+                      type: addresses
+                      attributes:
+                        street: Alameda Meire da Maia
+                        neighborhood: Viela Enzo Thiago
+                        complement: Summer Heights
+                        number: '79789'
+                        reference: Lake
+                        cep: 44900-000
+                      relationships:
+                        cities:
+                          data:
+                            id: '1'
+                            type: cities
+                    - id: '1'
+                      type: cities
+                      attributes:
+                        name: Conselheiro Lafaiete
+                        capital: false
+                      relationships:
+                        states:
+                          data:
+                            id: '1'
+                            type: states
+                    - id: '1'
+                      type: states
+                      attributes:
+                        name: Paraná
+                        acronym: BA
         '422':
           description: create failt
           content:
@@ -729,7 +769,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Cruz-Macieira
+                      example: da Costa-Guedes
                     active:
                       type: boolean
                     phones_attributes:
@@ -742,6 +782,30 @@ paths:
                         number: 11-9999-9999
                       - id: 2
                         _destroy: true
+                    address_attributes:
+                      type: object
+                      properties:
+                        street:
+                          type: string
+                          example: Rodovia Isaac
+                        neighborhood:
+                          type: string
+                          example: Center
+                        complement:
+                          type: string
+                          example: University Creek
+                        number:
+                          type: string
+                          example: '667'
+                        reference:
+                          type: string
+                        cep:
+                          type: string
+                          example: 44900-000
+                      required:
+                      - street
+                      - cep
+                      - neighborhood
               required:
               - name
               - active
@@ -755,6 +819,12 @@ paths:
       - name: id
         in: path
         required: true
+        schema:
+          type: string
+      - name: included
+        in: query
+        required: false
+        example: phones,address,address.city,address.city.state
         schema:
           type: string
       responses:
@@ -806,7 +876,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: repellat-voluptatum
+                      example: inventore-cumque
               required:
               - name
               - active
@@ -852,7 +922,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: andreas@dickinson.com
+                      example: daryl_mosciski@frami.com
                     password:
                       type: string
                       example: '12345678'
@@ -915,7 +985,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: lon.collier@cassin.co
+                      example: erline_murazik@emard-lynch.io
                     password:
                       type: string
                       example: '12345678'
@@ -985,7 +1055,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: elidia@jerde.net
+                      example: nery.greenfelder@runolfsson.org
                     password:
                       type: string
                       example: '12345678'
@@ -1058,7 +1128,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: alaine_reichel@beier.net
+                      example: harris.weissnat@tromp.io
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1145,7 +1215,7 @@ components:
           properties:
             email:
               type: string
-              example: ena_kling@simonis.biz
+              example: mariela@aufderhar-boehm.io
             name:
               type: string
               nullable: true
@@ -1154,10 +1224,10 @@ components:
               example: 1
             created_at:
               type: string
-              example: '2020-09-19 12:36:19 -0300'
+              example: '2020-09-21 10:07:58 -0300'
             updated_at:
               type: string
-              example: '2020-09-19 12:36:19 -0300'
+              example: '2020-09-21 10:07:58 -0300'
           required:
           - email
           - login_count
@@ -1178,12 +1248,17 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Caprese Salad
+              example: Bunny Chow
             description:
               type: string
-              example: Our Mission at Denny’s is to establish beneficial business
-                relationships with diverse suppliers who share our commitment to customer
-                service, quality and competitive pricing.
+              example: Delhaize Group will achieve leading positions in food retailing
+                in key mature and emerging markets. We accomplish our goal by developing
+                strong regional companies benefiting from and contributing to the
+                Groups strength, expertise and successful practices. Delhaize Group
+                goes to market with a variety of food store formats. The Group is
+                committed to offer a locally differentiated shopping experience to
+                its customers in each of its markets, to deliver superior value and
+                to maintain high social, environmental and ethical standards.
               nullable: true
             position:
               type: integer

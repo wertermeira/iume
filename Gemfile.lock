@@ -328,6 +328,7 @@ GEM
       tty-which (~> 0.4.0)
       virtus (~> 1.0)
     rubyzip (2.3.0)
+    rufo (0.12.0)
     safe_yaml (1.0.5)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
@@ -420,6 +421,7 @@ DEPENDENCIES
   rubocop-rails_config
   rubocop-rspec
   rubycritic
+  rufo
   selenium-webdriver
   shoulda-matchers
   sidekiq (= 6.0.4)

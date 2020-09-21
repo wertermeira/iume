@@ -6,8 +6,10 @@ class Restaurant < ApplicationRecord
   has_many :sections, dependent: :destroy
   has_many :products, through: :sections
   has_many :phones, as: :phoneable, dependent: :destroy
+  has_one :address, as: :addressable, dependent: :destroy
 
   accepts_nested_attributes_for :phones, allow_destroy: true, limit: 4, reject_if: :all_blank, update_only: true
+  accepts_nested_attributes_for :address, allow_destroy: false, reject_if: :all_blank, update_only: true
 
   validates :name, presence: true
   validates :slug, presence: true, on: :update

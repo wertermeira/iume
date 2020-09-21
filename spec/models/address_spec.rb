@@ -17,7 +17,7 @@ RSpec.describe Address, type: :model do
 
   context 'when have association' do
     it { is_expected.to belong_to(:addressable) }
-    it { is_expected.to belong_to(:city) }
+    it { is_expected.to belong_to(:city).optional }
   end
 
   describe 'when validation' do

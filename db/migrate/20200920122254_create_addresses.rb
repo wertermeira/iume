@@ -3,7 +3,7 @@ class CreateAddresses < ActiveRecord::Migration[6.0]
     create_table :addresses do |t|
       t.string :street
       t.string :neighborhood
-      t.references :city, null: false, foreign_key: true
+      t.references :city, null: true, foreign_key: true
       t.string :complement
       t.string :number
       t.string :reference

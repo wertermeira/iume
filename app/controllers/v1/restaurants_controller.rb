@@ -5,7 +5,7 @@ module V1
 
     def show
       render json: @resturant, serializer: V1::Public::RestaurantSerializer, status: :ok,
-             include: 'sections,phones', scope: { current_user: current_user }
+             include: 'sections,phones,address.city,address.city.state', scope: { current_user: current_user }
     end
 
     private

@@ -1,9 +1,8 @@
 class Address < ApplicationRecord
-  belongs_to :city
+  belongs_to :city, optional: true
   belongs_to :addressable, polymorphic: true
 
-  validates :street, :cep, presence: true
-  validates :neighborhood, presence: true
+  validates :street, :cep, :neighborhood, presence: true
   validates :street, :neighborhood, length: { maximum: 200 }
   validates :cep, cep: true, if: -> { cep.present? }
 
@@ -17,5 +16,6 @@ class Address < ApplicationRecord
     return if data.blank?
 
     self.city = State.find_by(acronym: data.dig(:state)).cities.find_by(name: data.dig(:city))
+    errors.add(:cep, 'Error tente novamente') if city.blank?
   end
 end

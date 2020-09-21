@@ -2,7 +2,6 @@ FactoryBot.define do
   factory :address do
     street { Faker::Address.street_name }
     neighborhood { Faker::Address.street_name }
-    city { City.last || create(:city) }
     complement { Faker::Address.community }
     number { Faker::Address.building_number }
     reference { Faker::Address.city_prefix }
