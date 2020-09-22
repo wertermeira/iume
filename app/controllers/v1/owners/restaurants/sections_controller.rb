@@ -65,7 +65,7 @@ module V1
         end
 
         def section_params
-          params.require(:section).permit(:name, :position, :active)
+          params.require(:section).permit(:name, :position, :active, :description)
         end
 
         def section_params_ids

@@ -26,6 +26,7 @@ RSpec.describe Section, type: :model do
 
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_least(3).is_at_most(200) }
+    it { is_expected.to validate_length_of(:description).is_at_most(300) }
 
     context 'when max section per restaurant' do
       let(:message) { I18n.t('errors.messages.limit_max_items', max: max_sections, item: 'seções') }

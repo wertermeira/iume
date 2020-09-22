@@ -13,6 +13,7 @@ RSpec.describe 'v1/owners/restaurants/{restaurant_id}/sections', type: :request,
       section: {
         name: name,
         active: true,
+        description: 'Txt here',
         position: 1
       }
     }
@@ -62,6 +63,7 @@ RSpec.describe 'v1/owners/restaurants/{restaurant_id}/sections', type: :request,
             properties: {
               name: { type: :string, example: Faker::Company.name },
               position: { type: :integer, example: 1 },
+              description: { type: :string, example: 'txt here' },
               active: { type: :boolean }
             }
           }
@@ -144,6 +146,7 @@ RSpec.describe 'v1/owners/restaurants/{restaurant_id}/sections', type: :request,
             properties: {
               name: { type: :string, example: Faker::Company.name },
               position: { type: :integer, example: 1 },
+              description: { type: :string, example: 'txt here' },
               active: { type: :boolean }
             }
           }

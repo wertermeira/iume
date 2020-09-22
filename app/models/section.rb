@@ -5,6 +5,7 @@ class Section < ApplicationRecord
 
   validates :name, presence: true
   validates :name, length: { minimum: 3, maximum: 200 }, allow_blank: true
+  validates :description, length: { maximum: 300 }, allow_blank: true
   validate :max_sections_restaurant, on: :create
 
   scope :published, -> { joins(:restaurant).where(active: true, restaurants: { active: true }) }
