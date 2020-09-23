@@ -1,7 +1,7 @@
 module V1
   module Public
     class SectionSerializer < ActiveModel::Serializer
-      attributes :id, :name, :position
+      attributes :id, :name, :description, :position
     end
   end
 end

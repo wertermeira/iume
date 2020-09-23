@@ -5,7 +5,7 @@ module V1
 
     def show
       render json: @resturant, serializer: V1::Public::RestaurantSerializer, status: :ok,
-             include: 'sections,phones,address.city,address.city.state', scope: { current_user: current_user }
+             include: included_serializer, scope: { current_user: current_user }
     end
 
     private
@@ -28,7 +28,7 @@ module V1
     def included_serializer
       return params[:included] if request.get?
 
-      'phones,address,address.city,address.city.state'
+      'sections,phones,address,address.city,address.city.state'
     end
   end
 end

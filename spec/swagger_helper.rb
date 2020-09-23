@@ -59,6 +59,7 @@ RSpec.configure do |config|
                 type: :object,
                 properties: {
                   name: { type: :string, example: 'Drinks' },
+                  description: { type: :string, example: 'Txt here' },
                   position: { type: :integer, example: 1 }
                 }
               }
@@ -213,6 +214,7 @@ RSpec.configure do |config|
                 type: :object,
                 properties: {
                   name: { type: :string, example: 'Drinks' },
+                  description: { type: :string, example: 'Txt here' },
                   position: { type: :integer, example: 1 },
                   active: { type: :boolean }
                 }
