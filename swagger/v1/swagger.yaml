@@ -104,7 +104,7 @@ paths:
       - name: included
         in: query
         required: false
-        example: phones,address,address.city,address.city.state
+        example: tool_whatsapp,phones,address,address.city,address.city.state
         schema:
           type: string
       responses:
@@ -123,6 +123,15 @@ paths:
                       type: object
                     example:
                     - id: '1'
+                      type: tools_whatsapps
+                      attributes:
+                        active: true
+                      relationships:
+                        phones:
+                          data:
+                            id: '1'
+                            type: phones
+                    - id: '1'
                       type: phones
                       attributes:
                         number: 11-9999-9999
@@ -134,11 +143,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Marginal Tiago
-                        neighborhood: Ponte Davi Lucca Cabreira
-                        complement: Summer Square
-                        number: s/n
-                        reference: North
+                        street: Alameda Vitor
+                        neighborhood: Avenida Helena
+                        complement: Park Place
+                        number: '50706'
+                        reference: South
                         cep: 44900-000
                       relationships:
                         cities:
@@ -148,7 +157,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Santo Inácio
+                        name: Carazinho
                         capital: false
                       relationships:
                         states:
@@ -158,7 +167,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Mato Grosso do Sul
+                        name: São Paulo
                         acronym: BA
         '404':
           description: restaurant not found
@@ -182,12 +191,13 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Chilli con Carne
+              example: Chicken Fajitas
             description:
               type: string
-              example: Our mission has been to help people achieve their health and
-                wellness goals. though weve changed over the years, our values have
-                remained the same.
+              example: We earn the loyalty of the people we serve by first anticipating,
+                then fulfilling their needs with our superior-quality products, a
+                unique shopping experience, customer-focused service and continuous
+                innovation, while generating long-term profitable growth for our shareholders.
               nullable: true
             position:
               type: integer
@@ -273,6 +283,8 @@ components:
                     type: sections
                   - id: '1'
                     type: phones
+                  - id: '1'
+                    type: tool_whatsapps
   securitySchemes:
     bearer:
       type: http

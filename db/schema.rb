@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_20_122254) do
+ActiveRecord::Schema.define(version: 2020_09_23_123308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 2020_09_20_122254) do
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "description"
     t.index ["position"], name: "index_sections_on_position"
     t.index ["restaurant_id"], name: "index_sections_on_restaurant_id"
   end
@@ -167,6 +168,16 @@ ActiveRecord::Schema.define(version: 2020_09_20_122254) do
     t.index ["region_id"], name: "index_states_on_region_id"
   end
 
+  create_table "tool_whatsapps", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.boolean "active", default: false
+    t.bigint "phone_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["phone_id"], name: "index_tool_whatsapps_on_phone_id"
+    t.index ["restaurant_id"], name: "index_tool_whatsapps_on_restaurant_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "cities"
   add_foreign_key "cities", "states"
@@ -175,4 +186,6 @@ ActiveRecord::Schema.define(version: 2020_09_20_122254) do
   add_foreign_key "restaurants", "owners"
   add_foreign_key "sections", "restaurants"
   add_foreign_key "states", "regions"
+  add_foreign_key "tool_whatsapps", "phones"
+  add_foreign_key "tool_whatsapps", "restaurants"
 end

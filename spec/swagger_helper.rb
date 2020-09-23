@@ -102,7 +102,7 @@ RSpec.configure do |config|
                         items: {
                           type: :object
                         },
-                        example: [{ id: '1', type: 'sections' }, { id: '1', type: 'phones' }]
+                        example: [{ id: '1', type: 'sections' }, { id: '1', type: 'phones' }, { id: '1', type: 'tool_whatsapps' }]
                       }
                     }
                   }
@@ -147,6 +147,70 @@ RSpec.configure do |config|
       paths: {},
       components: {
         schemas: {
+          tools_whatsapp: {
+            type: :object,
+            properties: {
+              data: {
+                type: :object,
+                properties: {
+                  type: { type: :string, example: 'tool_whatsapps' },
+                  attributes: {
+                    type: :object,
+                    properties: {
+                      active: { type: :boolean },
+                      created_at: { type: :datetime, example: Time.now },
+                      updated_at: { type: :datetime, example: Time.now }
+                    }
+                  },
+                  relationships: {
+                    type: :object,
+                    properties: {
+                      phones: {
+                        type: :object,
+                        properties: {
+                          data: {
+                            type: :array,
+                            items: {
+                              type: :object
+                            },
+                            example: [{ id: '1', type: 'phones' }]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              included: {
+                type: :array,
+                items: { type: :object },
+                example: [
+                  {
+                    id: '1',
+                    type: 'phones',
+                    attributes: {
+                      number: '11-9999-9999'
+                    },
+                    relationships: {
+                      data: {
+                        restaurants: {
+                          data: { id: '1', type: 'restaurants' }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    id: '1',
+                    type: 'restaurants',
+                    attributes: {
+                      name: Faker::Company.name,
+                      slug: Faker::Internet.slug
+                    }
+                  }
+                ]
+              }
+            }
+          },
           phone: {
             type: :object,
             properties: {

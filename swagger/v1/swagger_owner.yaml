@@ -91,7 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: In in ut at et vitae quia neque corrupti molestiae?
+                      example: Fuga est aut ipsam rem exercitationem ratione fugiat
+                        temporibus vel?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -173,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Ambrósio-Marins
+                      example: Godinho LTDA
                     description:
                       type: string
-                      example: In adipisci praesentium. Dignissimos cupiditate ad.
-                        Autem maxime molestiae. Incidunt ducimus mollit.
+                      example: Ipsum quos sunt. Odit maxime facere. Officia facilis
+                        nisi. Doloribus voluptatem quidem. Quia eum su.
                     image:
                       type: object
                       properties:
@@ -282,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Resende-da Penha
+                      example: Nunes-Guterres
                     description:
                       type: string
-                      example: A non unde. Dolor exercitationem et. Itaque et repellat.
-                        Itaque blanditiis consectetur. Quo error q.
+                      example: Repellat libero consequatur. Incidunt voluptatibus
+                        et. Rem qui repellat. Consequuntur eaque numquam.
                     image:
                       type: object
                       properties:
@@ -442,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Bulhões-Matoso
+                      example: Cerqueira, Regueira e Aroeira
                     position:
                       type: integer
                       example: 1
@@ -538,7 +539,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Castanho, Oliveira e Fontes
+                      example: Araújo-Paes
                     position:
                       type: integer
                       example: 1
@@ -613,6 +614,89 @@ paths:
                       - 5
               required:
               - ids
+  "/v1/owners/restaurants/{restaurant_id}/tools/whatsapp":
+    get:
+      summary: show whatsapp
+      tags:
+      - ToolsWhatsapp
+      security:
+      - bearer: []
+      parameters:
+      - name: restaurant_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: included
+        in: query
+        required: false
+        example: phone,phone.restaurant
+        schema:
+          type: string
+      responses:
+        '200':
+          description: show ToolWhatsapp
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/tools_whatsapp"
+        '204':
+          description: no content
+          content: {}
+    put:
+      summary: Update whatsapp
+      tags:
+      - ToolsWhatsapp
+      security:
+      - bearer: []
+      description: To activate this option, the restaurant must have an address
+      parameters:
+      - name: restaurant_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: included
+        in: query
+        required: false
+        example: phone,phone.restaurant
+        schema:
+          type: string
+      responses:
+        '202':
+          description: update whatsapp
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/tools_whatsapp"
+        '422':
+          description: update whatsapp fail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  phone_id:
+                    type: array
+                    items:
+                      type: string
+                      example: é inválido
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                whatsapp:
+                  type: object
+                  properties:
+                    phone_id:
+                      type: integer
+                      example: '1'
+                    active:
+                      type: boolean
+                  required:
+                  - phone_id
   "/v1/owners/restaurants":
     post:
       summary: Create
@@ -654,7 +738,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Vieira-Rameira
+                      example: Ramires-Arantes
                     active:
                       type: boolean
               required:
@@ -721,11 +805,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Marginal Maria Júlia Palhares
-                        neighborhood: Marginal Lorena
-                        complement: University Village
-                        number: '90076'
-                        reference: New
+                        street: Marginal Yuri Silveira
+                        neighborhood: Marginal Theo
+                        complement: Autumn Court
+                        number: '47854'
+                        reference: South
                         cep: 44900-000
                       relationships:
                         cities:
@@ -735,7 +819,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Coroaci
+                        name: Vila Lângaro
                         capital: false
                       relationships:
                         states:
@@ -745,7 +829,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Acre
+                        name: Piauí
                         acronym: BA
         '422':
           description: create failt
@@ -770,7 +854,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Mangueira e Associados
+                      example: Viana LTDA
                     active:
                       type: boolean
                     phones_attributes:
@@ -788,16 +872,16 @@ paths:
                       properties:
                         street:
                           type: string
-                          example: Avenida Malu
+                          example: Travessa Meire
                         neighborhood:
                           type: string
                           example: Center
                         complement:
                           type: string
-                          example: Royal Village
+                          example: Willow Gardens
                         number:
                           type: string
-                          example: '473'
+                          example: '8776'
                         reference:
                           type: string
                         cep:
@@ -877,7 +961,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: eligendi-labore
+                      example: doloremque-tenetur
               required:
               - name
               - active
@@ -923,7 +1007,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: mariah@emmerich.co
+                      example: ching.bartoletti@ward-lindgren.name
                     password:
                       type: string
                       example: '12345678'
@@ -986,7 +1070,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: jospeh@lindgren.org
+                      example: gricelda_witting@prohaska.org
                     password:
                       type: string
                       example: '12345678'
@@ -1056,7 +1140,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: kiana@lowe-bayer.info
+                      example: miguel.marvin@fahey-hayes.co
                     password:
                       type: string
                       example: '12345678'
@@ -1129,7 +1213,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: fairy@walter-fahey.info
+                      example: meg@breitenberg.biz
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1188,6 +1272,59 @@ paths:
                   - password_confirmation
 components:
   schemas:
+    tools_whatsapp:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: tool_whatsapps
+            attributes:
+              type: object
+              properties:
+                active:
+                  type: boolean
+                created_at:
+                  type: datetime
+                  example: '2020-09-23 16:23:00 -0300'
+                updated_at:
+                  type: datetime
+                  example: '2020-09-23 16:23:00 -0300'
+            relationships:
+              type: object
+              properties:
+                phones:
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                      example:
+                      - id: '1'
+                        type: phones
+        included:
+          type: array
+          items:
+            type: object
+          example:
+          - id: '1'
+            type: phones
+            attributes:
+              number: 11-9999-9999
+            relationships:
+              data:
+                restaurants:
+                  data:
+                    id: '1'
+                    type: restaurants
+          - id: '1'
+            type: restaurants
+            attributes:
+              name: da Penha S.A.
+              slug: odio-quasi
     phone:
       type: object
       properties:
@@ -1216,7 +1353,7 @@ components:
           properties:
             email:
               type: string
-              example: ramon@hodkiewicz-crooks.biz
+              example: todd_schuster@beier-greenholt.name
             name:
               type: string
               nullable: true
@@ -1225,10 +1362,10 @@ components:
               example: 1
             created_at:
               type: string
-              example: '2020-09-21 11:00:20 -0300'
+              example: '2020-09-23 16:23:00 -0300'
             updated_at:
               type: string
-              example: '2020-09-21 11:00:20 -0300'
+              example: '2020-09-23 16:23:00 -0300'
           required:
           - email
           - login_count
@@ -1249,22 +1386,14 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Pizza
+              example: Teriyaki Chicken Donburi
             description:
               type: string
-              example: Yoshinoya is in business to create the structure and systems
-                needed to allow our customers access to the majority of their away-from-home
-                daily meal requirements on a one-stop-shop basis. All our products
-                shall be of the highest quality and value, be healthy, nutritious
-                and provided with outstanding personal services at the lowest possible
-                prices consistent with a fair return on investment for our shareholders,
-                job enhancementsecurity for our employees and a level of community
-                involvement by everyone connected with our business. All of our products
-                and services shall be delivered consistently and measured one satisfied
-                customer at a time, whether by company-owned or franchised operations,
-                in superior, clean, convenient, fun and friendly neighborhood environments.
-                We pledge to make Yoshinoya the best place to eat and the best place
-                to work.
+              example: Culver’s Restaurant was founded by the Culver family in 1984,
+                which eventually branched out to more than 300 franchised restaurants
+                all over the US. Culver’s is well-known for its ButterBurger, which
+                made the restaurant extremely famous. They also have other items which
+                include salads, sandwiches, desserts, etc.
               nullable: true
             position:
               type: integer

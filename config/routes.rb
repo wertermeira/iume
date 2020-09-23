@@ -14,6 +14,10 @@ Rails.application.routes.draw do
         resources :sections, module: :restaurants do
           put 'sort', to: 'sections#sort', on: :collection
         end
+        namespace :tools, module: 'restaurants/tools' do
+          get 'whatsapp', to: 'whatsapp#index'
+          match 'whatsapp', to: 'whatsapp#update', via: %i[put patch]
+        end
       end
       namespace :restaurants, path: 'restaurants/sections/:section_id' do
         resources :products, controller: 'sections/products' do

@@ -15,7 +15,7 @@ RSpec.describe 'v1/restaurants', type: :request do
       parameter name: :by_id, in: :query, type: :string, required: false
       parameter name: :preview, in: :query, type: :string, required: false
       parameter name: :included, in: :query, type: :string, required: false,
-                example: 'phones,address,address.city,address.city.state'
+                example: 'tool_whatsapp,phones,address,address.city,address.city.state'
 
       response 200, 'restaurant found' do
         before do
@@ -30,6 +30,18 @@ RSpec.describe 'v1/restaurants', type: :request do
                    type: :array,
                    items: { type: :object },
                    example: [
+                     {
+                       id: '1',
+                       type: 'tools_whatsapps',
+                       attributes: {
+                         active: true
+                       },
+                       relationships: {
+                         phones: {
+                           data: { id: '1', type: 'phones' }
+                         }
+                       }
+                     },
                      {
                        id: '1',
                        type: 'phones',
