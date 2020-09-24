@@ -59,4 +59,21 @@ RSpec.describe Product, type: :model do
       end
     end
   end
+
+  context 'whens scope' do
+    let!(:product_active) { create(:product) }
+    let!(:product_deleted) { create(:product, deleted: true) }
+
+    it 'sort_by_position' do
+      expect(described_class.sort_by_position.to_sql).to eq(described_class.order(position: :asc).to_sql)
+    end
+
+    it 'default scope deleted' do
+      expect(described_class.all).to match_array([product_active])
+    end
+
+    it 'unarchive (unscope' do
+      expect(described_class.in_the_trash.all).to match_array([product_deleted])
+    end
+  end
 end

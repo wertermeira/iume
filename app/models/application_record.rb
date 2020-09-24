@@ -2,6 +2,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   scope :sort_by_position, -> { order(position: :asc) }
+  scope :in_the_trash, -> { unscope(where: :deleted).where(deleted: true) }
 
 
   def for_trash
