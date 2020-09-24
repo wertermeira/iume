@@ -6,7 +6,7 @@ class Address < ApplicationRecord
   validates :street, :neighborhood, length: { maximum: 200 }
   validates :cep, cep: true, if: -> { cep.present? }
 
-  after_validation :save_location, if: -> { errors.empty? }
+  after_validation :save_location, if: -> { errors.blank? }
 
   private
 

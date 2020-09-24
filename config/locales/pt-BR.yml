@@ -118,6 +118,8 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      invalid_phone:  Telefone inválido
+      tools_address_required: Endereço é necessário para ativar essa opção
       correios:
         not_exists: Não é um cep existente
         connection_failed: Falha na conexão com a API dos correios

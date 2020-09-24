@@ -113,6 +113,8 @@ en:
       year: Year
   errors:
     format: "%{attribute} %{message}"
+    invalid_phone:  Phone invalid
+    tools_address_required: Address is required to activate this option
     messages:
       correios:
         not_exists: Not an existing zip code
