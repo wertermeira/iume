@@ -4,7 +4,7 @@ RSpec.describe Section, type: :model do
   context 'when db schema' do
     let(:model) { described_class.column_names }
 
-    %w[restaurant_id name position active].each do |column|
+    %w[restaurant_id name position active deleted].each do |column|
       it "have column #{column}" do
         expect(model).to include(column)
       end
@@ -50,8 +50,19 @@ RSpec.describe Section, type: :model do
   end
 
   context 'whens scope' do
+    let!(:section_active) { create(:section) }
+    let!(:section_deleted) { create(:section, deleted: true) }
+
     it 'sort_by_position' do
       expect(described_class.sort_by_position.to_sql).to eq(described_class.order(position: :asc).to_sql)
+    end
+
+    it 'default scope deleted' do
+      expect(described_class.all).to match_array([section_active])
+    end
+
+    it 'unarchive (unscope' do
+      expect(described_class.in_the_trash.all).to match_array([section_deleted])
     end
   end
 end

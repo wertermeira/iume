@@ -5,5 +5,6 @@ FactoryBot.define do
     restaurant { create(:restaurant) }
     position { 0 }
     active { true }
+    deleted { false }
   end
 end

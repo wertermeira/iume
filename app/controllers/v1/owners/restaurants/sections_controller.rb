@@ -49,7 +49,7 @@ module V1
         end
 
         def destroy
-          @section.destroy
+          @section.for_trash
           head :no_content
         end
 

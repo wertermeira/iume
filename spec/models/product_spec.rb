@@ -4,7 +4,7 @@ RSpec.describe Product, type: :model do
   context 'when db schema' do
     let(:model) { described_class.column_names }
 
-    %w[section_id name description active position].each do |column|
+    %w[section_id name description active position deleted].each do |column|
       it "have column #{column}" do
         expect(model).to include(column)
       end

@@ -9,6 +9,8 @@ class Section < ApplicationRecord
   validate :max_sections_restaurant, on: :create
 
   scope :published, -> { joins(:restaurant).where(active: true, restaurants: { active: true }) }
+  default_scope { where(deleted: false) }
+  scope :in_the_trash, -> { unscope(where: :deleted).where(deleted: true) }
 
   before_create do
     self.position = restaurant.sections.count if position.blank?
