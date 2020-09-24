@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_123308) do
     t.string "name"
     t.bigint "restaurant_id", null: false
     t.integer "position"
-    t.boolean "active"
+    t.boolean "active", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"

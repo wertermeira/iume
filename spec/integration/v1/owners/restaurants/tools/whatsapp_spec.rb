@@ -35,6 +35,7 @@ RSpec.describe '/v1/owners/restaurants/:restaurant_id/tools/whatsapp', type: :re
       before do
         create(:address, addressable: restaurant)
       end
+      let(:included) { 'phone,phone.restaurant' }
       let(:restaurant_id) { restaurant.uid }
       let(:whatsapp_attributes) {
         {

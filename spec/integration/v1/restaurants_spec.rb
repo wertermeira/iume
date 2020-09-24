@@ -54,6 +54,7 @@ RSpec.describe 'v1/restaurants', type: :request do
                        type: 'sections',
                        attributes: {
                          name: 'Drinks',
+                         description: 'Txt here',
                          position: 1
                        }
                      },

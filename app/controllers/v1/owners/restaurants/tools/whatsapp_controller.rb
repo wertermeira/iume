@@ -11,7 +11,7 @@ module V1
           def index
             if @whatsapp.present?
               render json: @whatsapp, serializer: V1::Tools::WhatsappSerializer, status: :ok,
-                     include: 'phone'
+                     include: params[:included]
             else
               render json: '', status: :no_content
             end
@@ -21,7 +21,7 @@ module V1
             ToolWhatsapp.create_with(tool_whatsapp_params)
                         .find_or_create_by(restaurant: @restaurant).tap do |whatsapp|
               if whatsapp.update(tool_whatsapp_params)
-                render json: whatsapp, serializer: V1::Tools::WhatsappSerializer, status: :accepted, include: 'phone'
+                render json: whatsapp, serializer: V1::Tools::WhatsappSerializer, status: :accepted, include: params[:included]
               else
                 render json: whatsapp.errors, status: :unprocessable_entity
               end
