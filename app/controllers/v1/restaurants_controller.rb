@@ -5,7 +5,7 @@ module V1
 
     def show
       render json: @resturant, serializer: V1::Public::RestaurantSerializer, status: :ok,
-             include: included_serializer, scope: { current_user: current_user }
+             include: params[:included], scope: { current_user: current_user }
     end
 
     private
@@ -23,12 +23,6 @@ module V1
 
     def preview
       params[:preview].present?
-    end
-
-    def included_serializer
-      return params[:included] if request.get?
-
-      'sections,phones,address,address.city,address.city.state'
     end
   end
 end
