@@ -1,7 +1,8 @@
 class Section < ApplicationRecord
   belongs_to :restaurant, touch: true
 
-  has_many :products, dependent: :destroy
+  has_many :products
+  has_many :unscope_products, -> { unscope(where: :deleted) }, class_name: 'Product', inverse_of: :section, dependent: :nullify
 
   validates :name, presence: true
   validates :name, length: { minimum: 3, maximum: 200 }, allow_blank: true
@@ -9,6 +10,7 @@ class Section < ApplicationRecord
   validate :max_sections_restaurant, on: :create
 
   scope :published, -> { joins(:restaurant).where(active: true, restaurants: { active: true }) }
+  default_scope { where(deleted: false) }
 
   before_create do
     self.position = restaurant.sections.count if position.blank?

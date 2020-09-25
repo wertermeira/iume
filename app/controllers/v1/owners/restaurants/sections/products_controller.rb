@@ -50,7 +50,7 @@ module V1
           end
 
           def destroy
-            @product.destroy
+            @product.for_trash
             head :no_content
           end
 

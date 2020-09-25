@@ -195,6 +195,7 @@ RSpec.describe 'v1/owners/restaurants/{restaurant_id}/sections', type: :request,
         let(:id) { section_item.id }
         run_test! do
           expect(user.sections.find_by(id: section_item.id)).to be_nil
+          expect(user.sections.in_the_trash.find_by(id: section_item.id)).to be_truthy
         end
       end
     end
