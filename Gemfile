@@ -33,6 +33,7 @@ gem 'redis', '~> 4.0'
 gem 'cancancan'
 # Simple, efficient background processing for Ruby
 gem 'sidekiq', '6.0.4'
+gem 'sidekiq-cron', '~> 1.1'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 

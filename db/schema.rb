@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_123308) do
+ActiveRecord::Schema.define(version: 2020_09_24_191409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_123308) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "login_count", default: 0
     t.integer "lock_version", default: 0
+    t.integer "remarketing", default: 0
     t.index ["email"], name: "index_owners_on_email", unique: true
   end
 
@@ -125,6 +126,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_123308) do
     t.boolean "active", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "deleted", default: false
     t.index ["section_id"], name: "index_products_on_section_id"
   end
 
@@ -151,10 +153,11 @@ ActiveRecord::Schema.define(version: 2020_09_23_123308) do
     t.string "name"
     t.bigint "restaurant_id", null: false
     t.integer "position"
-    t.boolean "active", default: false
+    t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
+    t.boolean "deleted", default: false
     t.index ["position"], name: "index_sections_on_position"
     t.index ["restaurant_id"], name: "index_sections_on_restaurant_id"
   end

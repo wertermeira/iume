@@ -21,4 +21,12 @@ class Owner < ApplicationRecord
   validates :password, confirmation: true
   validates :email, email: true, allow_blank: true
   validates :email, uniqueness: true
+
+  def self.remarketings
+    or_owner = Owner.left_joins(:products)
+                    .where('remarketing = 1 AND products.id IS NULL AND owners.created_at < :tree_days', tree_days: Time.now.utc - 3.days)
+    Owner.left_joins(:products)
+         .where('remarketing = 0 AND products.id IS NULL AND owners.created_at < :tree_days', tree_days: Time.now.utc - 1.day)
+         .or(or_owner)
+  end
 end
