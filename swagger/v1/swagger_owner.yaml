@@ -91,7 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Neque rerum animi beatae alias odit eum et unde in?
+                      example: Asperiores enim minima tempora amet qui fugiat itaque
+                        et laboriosam?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -173,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Porto-Beltrão
+                      example: Esteves Comércio
                     description:
                       type: string
-                      example: Et commodi aut. Iure corrupti nam. Nisi rerum a. Ad
-                        veritatis optio. Tempore praesentium eos. Ut ea.
+                      example: Consectetur voluptas dolorem. Nemo nulla quaerat. Beatae
+                        minus a. Ut earum expedita. Ad harum occae.
                     image:
                       type: object
                       properties:
@@ -282,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Caldas, Velasques e Diegues
+                      example: da Rocha-Munhoz
                     description:
                       type: string
-                      example: Libero id expedita. Voluptas impedit et. Qui quasi
-                        dolores. Aliquam voluptas quis. Debitis cumque m.
+                      example: Numquam qui dolor. Libero eum eum. Voluptatem consectetur
+                        assumenda. Eos officiis eligendi. Quia eu.
                     image:
                       type: object
                       properties:
@@ -442,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Moreira, Aguiar e da Terra
+                      example: Porteira, da Fronteira e Ramos
                     position:
                       type: integer
                       example: 1
@@ -541,7 +542,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Rodrigues Comércio
+                      example: Velasques S.A.
                     position:
                       type: integer
                       example: 1
@@ -743,7 +744,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Longuinho, Pinheira e Reis
+                      example: da Fontoura-Ximenes
                     active:
                       type: boolean
               required:
@@ -810,11 +811,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Avenida João Lucas Barbosa
-                        neighborhood: Viela Heloísa Siqueira
-                        complement: Autumn Creek
-                        number: '621'
-                        reference: West
+                        street: Travessa Bianca Junqueira
+                        neighborhood: Marginal Elísio Carneiro
+                        complement: Park Village
+                        number: '13950'
+                        reference: New
                         cep: 44900-000
                       relationships:
                         cities:
@@ -824,7 +825,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: São Lourenço da Serra
+                        name: Quixaba
                         capital: false
                       relationships:
                         states:
@@ -834,7 +835,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Rio Grande do Sul
+                        name: Tocantins
                         acronym: BA
         '422':
           description: create failt
@@ -859,7 +860,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Carreira-de Assunção
+                      example: Peixoto LTDA
                     active:
                       type: boolean
                     phones_attributes:
@@ -877,16 +878,16 @@ paths:
                       properties:
                         street:
                           type: string
-                          example: Viela Adriana da Costa
+                          example: Rodovia Luna Garcez
                         neighborhood:
                           type: string
                           example: Center
                         complement:
                           type: string
-                          example: Summer Place
+                          example: Summer Square
                         number:
                           type: string
-                          example: '480'
+                          example: '8371'
                         reference:
                           type: string
                         cep:
@@ -966,7 +967,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: tempora-provident
+                      example: dicta-sunt
               required:
               - name
               - active
@@ -1012,7 +1013,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: dona@wyman-kihn.com
+                      example: rod@jakubowski.io
                     password:
                       type: string
                       example: '12345678'
@@ -1075,7 +1076,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: shanti@bruen.biz
+                      example: earlean.feil@prosacco-emard.co
                     password:
                       type: string
                       example: '12345678'
@@ -1145,7 +1146,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: lilla@collier-jaskolski.co
+                      example: michal_nicolas@doyle-herman.org
                     password:
                       type: string
                       example: '12345678'
@@ -1218,7 +1219,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: tommy_greenholt@cole.net
+                      example: darrel.kertzmann@walsh.com
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1293,10 +1294,10 @@ components:
                   type: boolean
                 created_at:
                   type: datetime
-                  example: '2020-09-23 19:16:15 -0300'
+                  example: '2020-09-25 17:48:17 -0300'
                 updated_at:
                   type: datetime
-                  example: '2020-09-23 19:16:15 -0300'
+                  example: '2020-09-25 17:48:17 -0300'
             relationships:
               type: object
               properties:
@@ -1328,8 +1329,8 @@ components:
           - id: '1'
             type: restaurants
             attributes:
-              name: Simão, Conceição e da Gama
-              slug: sequi_est
+              name: Silveira e Associados
+              slug: cumque_et
     phone:
       type: object
       properties:
@@ -1358,7 +1359,7 @@ components:
           properties:
             email:
               type: string
-              example: chas.koepp@nikolaus-rippin.co
+              example: velva.rowe@cummerata-schmeler.com
             name:
               type: string
               nullable: true
@@ -1367,10 +1368,10 @@ components:
               example: 1
             created_at:
               type: string
-              example: '2020-09-23 19:16:15 -0300'
+              example: '2020-09-25 17:48:17 -0300'
             updated_at:
               type: string
-              example: '2020-09-23 19:16:15 -0300'
+              example: '2020-09-25 17:48:17 -0300'
           required:
           - email
           - login_count
@@ -1391,14 +1392,22 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Salmon Nigiri
+              example: Pasta and Beans
             description:
               type: string
-              example: Culver’s Restaurant was founded by the Culver family in 1984,
-                which eventually branched out to more than 300 franchised restaurants
-                all over the US. Culver’s is well-known for its ButterBurger, which
-                made the restaurant extremely famous. They also have other items which
-                include salads, sandwiches, desserts, etc.
+              example: Yoshinoya is in business to create the structure and systems
+                needed to allow our customers access to the majority of their away-from-home
+                daily meal requirements on a one-stop-shop basis. All our products
+                shall be of the highest quality and value, be healthy, nutritious
+                and provided with outstanding personal services at the lowest possible
+                prices consistent with a fair return on investment for our shareholders,
+                job enhancementsecurity for our employees and a level of community
+                involvement by everyone connected with our business. All of our products
+                and services shall be delivered consistently and measured one satisfied
+                customer at a time, whether by company-owned or franchised operations,
+                in superior, clean, convenient, fun and friendly neighborhood environments.
+                We pledge to make Yoshinoya the best place to eat and the best place
+                to work.
               nullable: true
             position:
               type: integer

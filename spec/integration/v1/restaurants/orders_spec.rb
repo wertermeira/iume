@@ -23,7 +23,7 @@ RSpec.describe 'v1/restaurants/{restaurant_id}/orders', type: :request do
       tags 'Restaurants/Orders'
       consumes 'application/json'
       produces 'application/json'
-      parameter name: :restaurant_id, in: :path, type: :integer
+      parameter name: :restaurant_id, in: :path, type: :string
       parameter name: :order, in: :body, schema: {
         type: :object,
         properties: {
@@ -68,6 +68,13 @@ RSpec.describe 'v1/restaurants/{restaurant_id}/orders', type: :request do
       end
 
       response 422, 'create fail order invalid product' do
+        schema type: :object,
+               properties: {
+                 'order_details.product_id': {
+                   type: :array,
+                   items: { type: :string, example: I18n.t('errors.messages.invalid') }
+                 }
+               }
         let(:order_attributes) {
           {
             order: {

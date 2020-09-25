@@ -5,6 +5,56 @@ info:
   version: v1
   description: Public endpoints
 paths:
+  "/v1/restaurants/{restaurant_id}/orders":
+    post:
+      summary: Create order
+      tags:
+      - Restaurants/Orders
+      parameters:
+      - name: restaurant_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: created order
+          content: {}
+        '422':
+          description: create fail order invalid product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order_details.product_id:
+                    type: array
+                    items:
+                      type: string
+                      example: é inválido
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order:
+                  type: object
+                  properties:
+                    order_details_attributes:
+                      type: array
+                      items:
+                        type: object
+                      example:
+                      - product_id: 1
+                        quantity: 1
+                      - product_id: 2
+                        quantity: 3
+                  required:
+                  - product_id
+                  - quantity
+              required:
+              - order_details_attributes
   "/v1/restaurants/sections/{section_id}/products":
     get:
       summary: All products of a section
@@ -144,11 +194,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Rua Yasmin Melo
-                        neighborhood: Viela Luan
-                        complement: University Oaks
-                        number: '889'
-                        reference: Port
+                        street: Travessa Heloísa
+                        neighborhood: Rua Eduardo Martins
+                        complement: Autumn Square
+                        number: '495'
+                        reference: New
                         cep: 44900-000
                       relationships:
                         cities:
@@ -158,7 +208,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Bom Despacho
+                        name: Senhor do Bonfim
                         capital: false
                       relationships:
                         states:
@@ -168,7 +218,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Pernambuco
+                        name: Pará
                         acronym: BA
         '404':
           description: restaurant not found
@@ -192,12 +242,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Ricotta Stuffed Ravioli
+              example: Poke
             description:
               type: string
-              example: Our Mission at Denny’s is to establish beneficial business
-                relationships with diverse suppliers who share our commitment to customer
-                service, quality and competitive pricing.
+              example: Our mission has been to help people achieve their health and
+                wellness goals. though weve changed over the years, our values have
+                remained the same.
               nullable: true
             position:
               type: integer
