@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'sidekiq/cron/web'
 Rails.application.routes.default_url_options[:host] = ENV.fetch('APP_URL') { 'localhost:3000' }
 Rails.application.routes.draw do
   if ENV.fetch('API_DOCS_ENABLED', '').present?
