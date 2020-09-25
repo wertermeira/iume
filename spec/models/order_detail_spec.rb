@@ -24,13 +24,14 @@ RSpec.describe OrderDetail, type: :model do
       expect(order_detail.unit_price).to eq(order_detail.product.price)
     end
 
-    context 'when validate products' do
+    describe 'when validate products' do
       let(:order) { create(:order) }
       let(:section) { create(:section, restaurant: order.restaurant) }
+      let(:product) { create(:product, section: section) }
       let(:attributes) {
         {
           order: order,
-          product: create(:product, section: section),
+          product: product,
           quantity: 1
         }
       }
@@ -40,10 +41,18 @@ RSpec.describe OrderDetail, type: :model do
         expect(new_order_detail).to be_valid
       end
 
-      it 'invalid' do
-        attributes[:product] = create(:product)
-        new_order_detail.valid?
-        expect(new_order_detail.errors[:product_id]).to match_array([I18n.t('errors.messages.invalid')])
+      context 'when is invalid' do
+        it 'other product' do
+          attributes[:product] = create(:product)
+          new_order_detail.valid?
+          expect(new_order_detail.errors[:product_id]).to match_array([I18n.t('errors.messages.invalid')])
+        end
+
+        it 'product inactive' do
+          attributes[:product] = create(:product, section: section, active: false)
+          new_order_detail.valid?
+          expect(new_order_detail.errors[:product_id]).to match_array([I18n.t('errors.messages.invalid')])
+        end
       end
     end
   end

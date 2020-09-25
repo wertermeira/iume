@@ -13,7 +13,7 @@ class OrderDetail < ApplicationRecord
   private
 
   def validate_order_restaurant
-    return if order.restaurant.products.find_by(id: product_id)
+    return if order.restaurant.products.find_by(id: product_id) && product.active
 
     errors.add(:product_id, I18n.t('errors.messages.invalid'))
   end
