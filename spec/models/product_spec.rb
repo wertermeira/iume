@@ -4,7 +4,7 @@ RSpec.describe Product, type: :model do
   context 'when db schema' do
     let(:model) { described_class.column_names }
 
-    %w[section_id name description active position].each do |column|
+    %w[section_id name description active position deleted].each do |column|
       it "have column #{column}" do
         expect(model).to include(column)
       end
@@ -57,6 +57,23 @@ RSpec.describe Product, type: :model do
         product_new.valid?
         expect(product_new.errors[:max_products]).to match_array([message])
       end
+    end
+  end
+
+  context 'whens scope' do
+    let!(:product_active) { create(:product) }
+    let!(:product_deleted) { create(:product, deleted: true) }
+
+    it 'sort_by_position' do
+      expect(described_class.sort_by_position.to_sql).to eq(described_class.order(position: :asc).to_sql)
+    end
+
+    it 'default scope deleted' do
+      expect(described_class.all).to match_array([product_active])
+    end
+
+    it 'unarchive (unscope' do
+      expect(described_class.in_the_trash.all).to match_array([product_deleted])
     end
   end
 end
