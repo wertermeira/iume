@@ -104,7 +104,7 @@ paths:
       - name: included
         in: query
         required: false
-        example: phones,address,address.city,address.city.state
+        example: tool_whatsapp,phones,address,address.city,address.city.state
         schema:
           type: string
       responses:
@@ -123,6 +123,15 @@ paths:
                       type: object
                     example:
                     - id: '1'
+                      type: tools_whatsapps
+                      attributes:
+                        active: true
+                      relationships:
+                        phones:
+                          data:
+                            id: '1'
+                            type: phones
+                    - id: '1'
                       type: phones
                       attributes:
                         number: 11-9999-9999
@@ -135,11 +144,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Rodovia João Victor
-                        neighborhood: Travessa Lavínia Bernardes
-                        complement: Autumn Creek
-                        number: '32226'
-                        reference: North
+                        street: Rua Yasmin Melo
+                        neighborhood: Viela Luan
+                        complement: University Oaks
+                        number: '889'
+                        reference: Port
                         cep: 44900-000
                       relationships:
                         cities:
@@ -149,7 +158,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Tracunhaém
+                        name: Bom Despacho
                         capital: false
                       relationships:
                         states:
@@ -159,7 +168,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Amazonas
+                        name: Pernambuco
                         acronym: BA
         '404':
           description: restaurant not found
@@ -183,13 +192,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: French Fries with Sausages
+              example: Ricotta Stuffed Ravioli
             description:
               type: string
-              example: To deliver an exceptional shopping experience by offering the
-                best service, value, quality, and freshest products while being good
-                stewards of our environment and giving back to the communities we
-                serve.
+              example: Our Mission at Denny’s is to establish beneficial business
+                relationships with diverse suppliers who share our commitment to customer
+                service, quality and competitive pricing.
               nullable: true
             position:
               type: integer
@@ -278,6 +286,8 @@ components:
                     type: sections
                   - id: '1'
                     type: phones
+                  - id: '1'
+                    type: tool_whatsapps
   securitySchemes:
     bearer:
       type: http

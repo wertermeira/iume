@@ -15,6 +15,7 @@
 !/tmp/.keep
 .env
 .env.development
+.vscode
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*

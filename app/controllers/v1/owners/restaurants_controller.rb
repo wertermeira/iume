@@ -67,7 +67,7 @@ module V1
       def included_serializer
         return params[:included] if request.get?
 
-        'phones,address,address.city,address.city.state'
+        'sections,phones,address,address.city,address.city.state'
       end
     end
   end

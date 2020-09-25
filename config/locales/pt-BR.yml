@@ -13,6 +13,9 @@ pt-BR:
         subject: Recuperar senha
         summary: Parece que você perdeu a sua senha. Vamos te ajudar.
       check_your_mailbox: Confira sua caixa de email
+      complete_menu:
+        subject: 👋 Você precisa de ajuda?
+        summary: Vamos te dar uma forcinha!
       welcome:
         subject: Bem-vindo!
         summary: Agora você faz parte da comunidade de donos de restaurante que querem melhorar a experiência dos seus clientes.
@@ -118,6 +121,8 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      invalid_phone:  Telefone inválido
+      tools_address_required: Endereço é necessário para ativar essa opção
       correios:
         not_exists: Não é um cep existente
         connection_failed: Falha na conexão com a API dos correios

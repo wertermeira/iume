@@ -15,7 +15,11 @@ RSpec.describe Section, type: :model do
     subject { create(:section) }
 
     it { is_expected.to belong_to(:restaurant) }
-    it { is_expected.to have_many(:products).dependent(:destroy) }
+    it { is_expected.to have_many(:products) }
+
+    it 'has many unscope_products' do
+      expect(subject).to have_many(:unscope_products).class_name('Product').inverse_of(:section).dependent(:nullify)
+    end
   end
 
   describe 'when validation' do

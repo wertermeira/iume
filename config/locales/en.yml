@@ -9,9 +9,16 @@ en:
           has_many: Cannot delete record because dependent %{record} exist
   mailer:
     messages:
-      reset_password: Reset your password
-      check_your_mailbox: Check your mailbox
-      welcome: Welcome
+      reset_password:
+        subject: Recover Password
+        summary: It looks like you lost your password. We will help you.
+      check_your_mailbox: Check your inbox
+      complete_menu:
+        subject: 👋 You need help?
+        summary: Let's give you a helping hand!
+      welcome:
+        subject: Welcome
+        summary: You are now part of the community of restaurant owners who want to improve their customers' experience.
   date:
     abbr_day_names:
     - Sun
@@ -113,6 +120,8 @@ en:
       year: Year
   errors:
     format: "%{attribute} %{message}"
+    invalid_phone:  Phone invalid
+    tools_address_required: Address is required to activate this option
     messages:
       correios:
         not_exists: Not an existing zip code

@@ -13,9 +13,11 @@ RSpec.describe OwnerAbility, type: :model do
     it { is_expected.to be_able_to(:manage, Section.new(restaurant: restaurant)) }
     it { is_expected.to be_able_to(:manage, Restaurant.new(owner: owner)) }
     it { is_expected.to be_able_to(:manage, Product.new(section: section)) }
+    it { is_expected.to be_able_to(:manage, ToolWhatsapp.new(restaurant: restaurant)) }
 
     it { is_expected.not_to be_able_to(:manage, Restaurant.new(owner: other_owner)) }
     it { is_expected.not_to be_able_to(:manage, Section.new(restaurant: create(:restaurant))) }
     it { is_expected.not_to be_able_to(:manage, Product.new(section: create(:section))) }
+    it { is_expected.not_to be_able_to(:manage, ToolWhatsapp.new(restaurant: create(:restaurant))) }
   end
 end

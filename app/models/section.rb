@@ -1,7 +1,8 @@
 class Section < ApplicationRecord
   belongs_to :restaurant, touch: true
 
-  has_many :products, dependent: :destroy
+  has_many :products
+  has_many :unscope_products, -> { unscope(where: :deleted) }, class_name: 'Product', inverse_of: :section, dependent: :nullify
 
   validates :name, presence: true
   validates :name, length: { minimum: 3, maximum: 200 }, allow_blank: true

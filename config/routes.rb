@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'sidekiq/cron/web'
 Rails.application.routes.default_url_options[:host] = ENV.fetch('APP_URL') { 'localhost:3000' }
 Rails.application.routes.draw do
   if ENV.fetch('API_DOCS_ENABLED', '').present?
@@ -13,6 +14,10 @@ Rails.application.routes.draw do
         put 'availability_slug', to: 'restaurants#availability_slug', on: :collection
         resources :sections, module: :restaurants do
           put 'sort', to: 'sections#sort', on: :collection
+        end
+        namespace :tools, module: 'restaurants/tools' do
+          get 'whatsapp', to: 'whatsapp#index'
+          match 'whatsapp', to: 'whatsapp#update', via: %i[put patch]
         end
       end
       namespace :restaurants, path: 'restaurants/sections/:section_id' do
