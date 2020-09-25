@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Scheduled::RemarketingJob, type: :job do
+RSpec.describe RemarketingCronJob, type: :job do
   let(:owner_count) { rand(1..10) }
   let!(:remarketing_0) { create_list(:owner, owner_count) }
   let!(:remarketing_1) { create_list(:owner, owner_count, remarketing: 1) }

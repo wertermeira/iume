@@ -1,4 +1,4 @@
 owner_remarketing_mailer:
-  cron: "0 13 * * * *"
-  class: "Scheduled::RemarketingJob"
+  cron: "0 10 * * * America/Sao_Paulo"
+  class: "RemarketingCronJob"
   queue: default
