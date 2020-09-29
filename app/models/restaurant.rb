@@ -3,7 +3,8 @@ class Restaurant < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
   belongs_to :owner
 
-  has_many :sections, dependent: :destroy
+  has_many :sections
+  has_many :unscope_sections, -> { unscope(where: :deleted) }, class_name: 'Section', inverse_of: :restaurant, dependent: :destroy
   has_many :products, through: :sections
   has_many :phones, as: :phoneable, dependent: :destroy
   has_one :address, as: :addressable, dependent: :destroy
