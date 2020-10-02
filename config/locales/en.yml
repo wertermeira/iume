@@ -122,6 +122,7 @@ en:
     format: "%{attribute} %{message}"
     invalid_phone:  Phone invalid
     tools_address_required: Address is required to activate this option
+    tools_whatsapp_required: This place does not accept orders
     messages:
       correios:
         not_exists: Not an existing zip code

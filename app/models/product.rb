@@ -19,7 +19,7 @@ class Product < ApplicationRecord
             content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'],
             size: { less_than: 4.megabytes }
 
-  scope :published, -> { where(active: true) }
+  scope :published, -> { joins(:section).where(active: true, sections: { active: true }) }
   default_scope { where(deleted: false) }
 
   before_update :purge_image, if: -> { image_destroy }

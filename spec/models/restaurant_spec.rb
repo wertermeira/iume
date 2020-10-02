@@ -18,13 +18,19 @@ RSpec.describe Restaurant, type: :model do
     it { is_expected.to have_many(:sections) }
     it { is_expected.to have_many(:products).through(:sections) }
     it { is_expected.to have_many(:phones).dependent(:destroy) }
+    it { is_expected.to have_one(:address).dependent(:destroy) }
+    it { is_expected.to have_many(:orders).dependent(:nullify) }
 
     it 'has many unscope_sections' do
       expect(subject).to have_many(:unscope_sections).class_name('Section').inverse_of(:restaurant).dependent(:destroy)
     end
 
-    it do
+    it 'accept_nested_attributes_for phones' do
       expect(subject).to accept_nested_attributes_for(:phones).limit(4).allow_destroy(true).update_only(true)
+    end
+
+    it 'accept_nested_attributes_for address' do
+      expect(subject).to accept_nested_attributes_for(:address).allow_destroy(false).update_only(true)
     end
   end
 

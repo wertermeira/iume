@@ -123,6 +123,7 @@ pt-BR:
     messages:
       invalid_phone:  Telefone inválido
       tools_address_required: Endereço é necessário para ativar essa opção
+      tools_whatsapp_required: Esse local não aceita pedidos
       correios:
         not_exists: Não é um cep existente
         connection_failed: Falha na conexão com a API dos correios

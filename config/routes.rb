@@ -31,7 +31,9 @@ Rails.application.routes.draw do
     end
     resources :recover_password, path: 'recover_password/:model', only: %i[create update]
     resources :products, controller: 'restaurants/sections/products', only: %i[index show], path: 'restaurants/sections/:section_id/products'
-    resources :restaurants, only: :show
+    resources :restaurants, only: :show do
+      resources :orders, only: :create, module: :restaurants
+    end
   end
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV.fetch('SIDEKIQ_USERNAME', 'admin'))) &

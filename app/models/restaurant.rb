@@ -7,6 +7,7 @@ class Restaurant < ApplicationRecord
   has_many :unscope_sections, -> { unscope(where: :deleted) }, class_name: 'Section', inverse_of: :restaurant, dependent: :destroy
   has_many :products, through: :sections
   has_many :phones, as: :phoneable, dependent: :destroy
+  has_many :orders, dependent: :nullify
   has_one :address, as: :addressable, dependent: :destroy
   has_one :tool_whatsapp, dependent: :destroy
 
