@@ -4,7 +4,6 @@ RSpec.describe '/v1/owners/restaurants/:restaurant_id/tools/whatsapp', type: :re
   TAG = 'ToolsWhatsapp'.freeze
   let(:user) { create(:owner) }
   let(:restaurant) { create(:restaurant, owner: user) }
-  let(:phone) { create(:phone, phoneable: restaurant) }
   let(:Authorization) { authentication(user) }
 
   path '/v1/owners/restaurants/{restaurant_id}/tools/whatsapp' do
@@ -55,7 +54,7 @@ RSpec.describe '/v1/owners/restaurants/:restaurant_id/tools/whatsapp', type: :re
       description 'To activate this option, the restaurant must have an address'
       parameter name: :restaurant_id, in: :path, type: :string
       parameter name: :included, in: :query, type: :string, required: false,
-                example: 'phone,phone.restaurant'
+                example: 'phone'
       parameter name: :whatsapp, in: :body, schema: {
         type: :object,
         properties: {
@@ -78,7 +77,7 @@ RSpec.describe '/v1/owners/restaurants/:restaurant_id/tools/whatsapp', type: :re
       response 202, 'update whatsapp existing' do
         before do
           whatsapp_attributes[:whatsapp][:active] = false
-          create(:tool_whatsapp, restaurant: restaurant, phone: phone, active: true)
+          create(:tool_whatsapp, restaurant: restaurant, active: true)
         end
         let(:whatsapp) { whatsapp_attributes }
 
