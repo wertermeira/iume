@@ -194,11 +194,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Travessa Heloísa
-                        neighborhood: Rua Eduardo Martins
-                        complement: Autumn Square
-                        number: '495'
-                        reference: New
+                        street: Alameda Henry
+                        neighborhood: Rodovia Ofélia Carreira
+                        complement: Autumn Acres
+                        number: s/n
+                        reference: Lake
                         cep: 44900-000
                       relationships:
                         cities:
@@ -208,7 +208,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Senhor do Bonfim
+                        name: Nicolau Vergueiro
                         capital: false
                       relationships:
                         states:
@@ -218,7 +218,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Pará
+                        name: Acre
                         acronym: BA
         '404':
           description: restaurant not found
@@ -242,12 +242,13 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Poke
+              example: Mushroom Risotto
             description:
               type: string
-              example: Our mission has been to help people achieve their health and
-                wellness goals. though weve changed over the years, our values have
-                remained the same.
+              example: SVIs mission is to deliver quality products at affordable prices
+                to our independent retailers, wholesalers and food service partners
+                around the world by providing international procurement, distribution,
+                marketing and supply chain management.
               nullable: true
             position:
               type: integer

@@ -31,7 +31,7 @@ module V1
           private
 
           def tool_whatsapp_params
-            params.require(:whatsapp).permit(:active, :phone_id)
+            params.require(:whatsapp).permit(:active, phone_attributes: %i[number])
           end
 
           def set_whatsapp
