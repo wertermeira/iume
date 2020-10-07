@@ -194,11 +194,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Alameda Henry
-                        neighborhood: Rodovia Ofélia Carreira
-                        complement: Autumn Acres
-                        number: s/n
-                        reference: Lake
+                        street: Travessa Levi
+                        neighborhood: Marginal Enzo Thiago da Paz
+                        complement: Park Oaks
+                        number: '91715'
+                        reference: West
                         cep: 44900-000
                       relationships:
                         cities:
@@ -208,7 +208,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Nicolau Vergueiro
+                        name: Soure
                         capital: false
                       relationships:
                         states:
@@ -218,7 +218,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Acre
+                        name: Rio de Janeiro
                         acronym: BA
         '404':
           description: restaurant not found
@@ -242,13 +242,14 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Mushroom Risotto
+              example: Som Tam
             description:
               type: string
-              example: SVIs mission is to deliver quality products at affordable prices
-                to our independent retailers, wholesalers and food service partners
-                around the world by providing international procurement, distribution,
-                marketing and supply chain management.
+              example: Culver’s Restaurant was founded by the Culver family in 1984,
+                which eventually branched out to more than 300 franchised restaurants
+                all over the US. Culver’s is well-known for its ButterBurger, which
+                made the restaurant extremely famous. They also have other items which
+                include salads, sandwiches, desserts, etc.
               nullable: true
             position:
               type: integer

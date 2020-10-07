@@ -21,7 +21,7 @@ module V1
             ToolWhatsapp.create_with(tool_whatsapp_params)
                         .find_or_create_by(restaurant: @restaurant).tap do |whatsapp|
               if whatsapp.update(tool_whatsapp_params)
-                render json: whatsapp, serializer: V1::Tools::WhatsappSerializer, status: :accepted, include: params[:included]
+                render json: whatsapp.reload, serializer: V1::Tools::WhatsappSerializer, status: :accepted, include: params[:included]
               else
                 render json: whatsapp.errors, status: :unprocessable_entity
               end
@@ -31,7 +31,7 @@ module V1
           private
 
           def tool_whatsapp_params
-            params.require(:whatsapp).permit(:active, phone_attributes: %i[number])
+            params.require(:whatsapp).permit(:active, :phone_destroy, phone_attributes: %i[number _destroy])
           end
 
           def set_whatsapp
