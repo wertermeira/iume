@@ -64,7 +64,8 @@ RSpec.describe '/v1/owners/restaurants/:restaurant_id/tools/whatsapp', type: :re
               phone_attributes: {
                 type: :object,
                 properties: {
-                  number: { type: :string, example: '11-9999-9999' }
+                  number: { type: :string, example: '11-9999-9999' },
+                  _destroy: { type: :boolean }
                 },
                 required: %w[number]
               },
@@ -85,6 +86,22 @@ RSpec.describe '/v1/owners/restaurants/:restaurant_id/tools/whatsapp', type: :re
         run_test! do
           expect(json_body.dig('data', 'attributes', 'active')).to be_falsey
           expect(json_body.dig('included').select { |item| item['type'] == 'phones' }).to be_truthy
+        end
+      end
+
+      response 202, 'update whatsapp remove phone' do
+        let!(:tool_whatsapp) {
+          create(:tool_whatsapp, restaurant: restaurant, active: true)
+        }
+        before do
+          whatsapp_attributes[:whatsapp][:phone_attributes][:_destroy] = true
+        end
+        let(:whatsapp) { whatsapp_attributes }
+
+        schema '$ref' => '#/components/schemas/tools_whatsapp'
+        run_test! do
+          expect(json_body.dig('data', 'attributes', 'active')).to be_falsey
+          expect(tool_whatsapp.reload.phone).to be_falsey
         end
       end
 
