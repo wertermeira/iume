@@ -3,7 +3,7 @@ class ToolWhatsapp < ApplicationRecord
 
   has_one :phone, as: :phoneable, dependent: :destroy
 
-  accepts_nested_attributes_for :phone, allow_destroy: false, reject_if: :all_blank
+  accepts_nested_attributes_for :phone, allow_destroy: false, reject_if: :all_blank, update_only: true
 
   validate :validate_restaurant_address, if: -> { active }
   validates :phone, presence: true, on: :create
