@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :theme_color do
-    color { '#ffffff' }
+    color { Faker::Color.hex_color }
   end
 end

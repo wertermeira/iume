@@ -31,9 +31,13 @@ class Restaurant < ApplicationRecord
             size: { less_than: 4.megabytes }
 
   before_update :purge_image, if: -> { image_destroy }
-  before_create :generate_uid
+  before_create :generate_uid, :save_color_default
 
   private
+
+  def save_color_default
+    self.theme_color = ThemeColor.first
+  end
 
   def purge_image
     self.image = nil if image.attached?

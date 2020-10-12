@@ -198,11 +198,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Viela Ana Vitória Videira
-                        neighborhood: Viela Norberto
-                        complement: Park Village
-                        number: '5567'
-                        reference: Port
+                        street: Avenida Marcos Roseira
+                        neighborhood: Avenida João Vitor
+                        complement: Willow Acres
+                        number: '8865'
+                        reference: North
                         cep: 44900-000
                       relationships:
                         cities:
@@ -212,7 +212,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Jaguaré
+                        name: Presidente Juscelino
                         capital: false
                       relationships:
                         states:
@@ -222,7 +222,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Rondônia
+                        name: Ceará
                         acronym: BA
         '404':
           description: restaurant not found
@@ -246,17 +246,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Teriyaki Chicken Donburi
+              example: Barbecue Ribs
             description:
               type: string
-              example: Delhaize Group will achieve leading positions in food retailing
-                in key mature and emerging markets. We accomplish our goal by developing
-                strong regional companies benefiting from and contributing to the
-                Groups strength, expertise and successful practices. Delhaize Group
-                goes to market with a variety of food store formats. The Group is
-                committed to offer a locally differentiated shopping experience to
-                its customers in each of its markets, to deliver superior value and
-                to maintain high social, environmental and ethical standards.
+              example: Our mission has been to help people achieve their health and
+                wellness goals. though weve changed over the years, our values have
+                remained the same.
               nullable: true
             position:
               type: integer

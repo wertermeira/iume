@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   namespace :v1, default: { format: :json } do
     namespace :owners do
-      resources :theme_color, only: :index
+      resources :theme_colors, only: :index
       resources :feedbacks, only: :create
       resources :sessions, only: %i[create destroy]
       resources :restaurants, only: %i[index create update show] do

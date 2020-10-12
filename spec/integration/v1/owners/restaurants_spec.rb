@@ -3,7 +3,7 @@ require 'swagger_helper'
 RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', type: :request do
   TAG_NAME = 'Restaurants'.freeze
   let(:user) { create(:owner) }
-  let!(:theme_color) { create(:theme_color) }
+  let(:theme_color) { create(:theme_color) }
   let(:slug) { Faker::Internet.slug }
   let(:restaurant_item) { create(:restaurant, owner: user) }
   let(:Authorization) { authentication(user) }
@@ -344,12 +344,12 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
                        }
                      },
                      {
-                      id: '1',
-                      type: 'theme_colors',
-                      attributes: {
-                        color: '#000000'
-                      }
-                    }
+                       id: '1',
+                       type: 'theme_colors',
+                       attributes: {
+                         color: '#000000'
+                       }
+                     }
                    ]
                  }
                }

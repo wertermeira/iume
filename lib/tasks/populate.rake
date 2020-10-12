@@ -28,7 +28,7 @@ namespace :populate do
   task colors: :environment do
     file = Rails.root.join('vendor', 'files', 'colors.txt')
     File.open(file).each do |color|
-      ThemeColor.create_with(color: color.strip).find_or_create_by(color: color.strip)
+      ThemeColor.find_or_create_by(color: color.strip)
     end
   end
 end
