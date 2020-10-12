@@ -152,7 +152,7 @@ pt-BR:
       slugger_invalid: Url inválida
       email_not_found: Email não encontrado
       accepted: deve ser aceito
-      blank: não pode ser vázio
+      blank: não pode ser vazio
       confirmation: não corresponde %{attribute}
       empty: não pode ficar vázio
       equal_to: deve ser igual a %{count}
