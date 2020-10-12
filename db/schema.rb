@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_205630) do
+ActiveRecord::Schema.define(version: 2020_10_12_124751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,8 +164,10 @@ ActiveRecord::Schema.define(version: 2020_10_06_205630) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "active", default: false
     t.string "uid"
+    t.bigint "theme_color_id", default: 1
     t.index ["owner_id"], name: "index_restaurants_on_owner_id"
     t.index ["slug"], name: "index_restaurants_on_slug", unique: true
+    t.index ["theme_color_id"], name: "index_restaurants_on_theme_color_id"
     t.index ["uid"], name: "index_restaurants_on_uid", unique: true
   end
 
@@ -191,6 +193,12 @@ ActiveRecord::Schema.define(version: 2020_10_06_205630) do
     t.index ["region_id"], name: "index_states_on_region_id"
   end
 
+  create_table "theme_colors", force: :cascade do |t|
+    t.string "color"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tool_whatsapps", force: :cascade do |t|
     t.bigint "restaurant_id", null: false
     t.boolean "active", default: false
@@ -208,6 +216,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_205630) do
   add_foreign_key "orders", "restaurants"
   add_foreign_key "products", "sections"
   add_foreign_key "restaurants", "owners"
+  add_foreign_key "restaurants", "theme_colors"
   add_foreign_key "sections", "restaurants"
   add_foreign_key "states", "regions"
   add_foreign_key "tool_whatsapps", "restaurants"

@@ -1,7 +1,11 @@
 class Restaurant < ApplicationRecord
+  include ActiveStorageSupport::SupportForBase64
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   belongs_to :owner
+  belongs_to :theme_color, optional: true
+
+  attr_accessor :image_destroy
 
   has_many :sections
   has_many :unscope_sections, -> { unscope(where: :deleted) }, class_name: 'Section', inverse_of: :restaurant, dependent: :destroy
@@ -21,9 +25,23 @@ class Restaurant < ApplicationRecord
   validates :slug, slugger: true, on: :update, allow_blank: true
   validates :slug, length: { minimum: 3, maximum: 200 }, allow_blank: true, on: :update
 
-  before_create :generate_uid
+  has_one_base64_attached :image
+  validates :image,
+            content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'],
+            size: { less_than: 4.megabytes }
+
+  before_update :purge_image, if: -> { image_destroy }
+  before_create :generate_uid, :save_color_default
 
   private
+
+  def save_color_default
+    self.theme_color = ThemeColor.first
+  end
+
+  def purge_image
+    self.image = nil if image.attached?
+  end
 
   def slug_candidates
     [

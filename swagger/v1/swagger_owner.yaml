@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Dignissimos nobis voluptas beatae quae eligendi totam
-                        aut et libero?
+                      example: Est laborum ut fugiat non aspernatur iusto laboriosam
+                        mollitia tempore?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Dias, Godins e Parreira
+                      example: Vasques, Meireles e Alves
                     description:
                       type: string
-                      example: Vel deserunt sit. Aut repellendus vero. Doloremque
-                        ut laborum. Est non eos. Corporis ea officia. Ve.
+                      example: Sed voluptatum id. Perferendis repudiandae itaque.
+                        Vel voluptas aut. Fugit et aut. Dolor assumenda .
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Hernandes LTDA
+                      example: Caldeira, Sá e Veles
                     description:
                       type: string
-                      example: Neque officia fugiat. Dolorem laboriosam natus. Sed
-                        quis asperiores. Qui itaque culpa. Tempora anim.
+                      example: Esse et iusto. Sunt qui quo. Sint repudiandae voluptas.
+                        Perspiciatis soluta accusamus. Quaerat quod.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Peres LTDA
+                      example: Reis, Mangueira e da Cruz
                     position:
                       type: integer
                       example: 1
@@ -542,7 +542,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: de Lins-Fontinhas
+                      example: Caldas, Datena e da Cunha
                     position:
                       type: integer
                       example: 1
@@ -751,7 +751,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Soeira-Longuinho
+                      example: Guedes-do Prado
                     active:
                       type: boolean
               required:
@@ -789,6 +789,7 @@ paths:
       - Restaurants
       security:
       - bearer: []
+      description: Use image_destroy only if you need delete image
       parameters:
       - name: id
         in: path
@@ -818,11 +819,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Avenida Maria Vitória Lobos
-                        neighborhood: Alameda Malu Bentes
-                        complement: Park Place
-                        number: '550'
-                        reference: West
+                        street: Avenida Theo
+                        neighborhood: Avenida Cecília Laranjeira
+                        complement: Pine Estates
+                        number: '65872'
+                        reference: New
                         cep: 44900-000
                       relationships:
                         cities:
@@ -832,7 +833,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Eugenópolis
+                        name: América Dourada
                         capital: false
                       relationships:
                         states:
@@ -842,8 +843,12 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Mato Grosso
+                        name: Piauí
                         acronym: BA
+                    - id: '1'
+                      type: theme_colors
+                      attributes:
+                        color: "#000000"
         '422':
           description: create failt
           content:
@@ -867,9 +872,22 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Aldeia-Sales
+                      example: Custódio-Conceição
                     active:
                       type: boolean
+                    theme_color_id:
+                      type: integer
+                      example: 1
+                    image:
+                      type: object
+                      properties:
+                        data:
+                          type: string
+                          description: Only base64 date
+                          example: data:image/jpeg;base64,/9j/4RiDRXhpZgAATU0AKgA...
+                    image_destroy:
+                      type: boolean
+                      description: If you need delete image
                     phones_attributes:
                       type: array
                       items:
@@ -885,16 +903,16 @@ paths:
                       properties:
                         street:
                           type: string
-                          example: Ponte Maria Alice
+                          example: Alameda Arthur Henrique Neves
                         neighborhood:
                           type: string
                           example: Center
                         complement:
                           type: string
-                          example: Willow Crossing
+                          example: Autumn Estates
                         number:
                           type: string
-                          example: s/n
+                          example: '5431'
                         reference:
                           type: string
                         cep:
@@ -974,7 +992,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: reprehenderit_cum
+                      example: optio-sit
               required:
               - name
               - active
@@ -1020,7 +1038,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: alicia.lemke@rutherford.co
+                      example: marlena.abernathy@fahey.name
                     password:
                       type: string
                       example: '12345678'
@@ -1041,6 +1059,25 @@ paths:
         '401':
           description: when owner is not logged in
           content: {}
+  "/v1/owners/theme_colors":
+    get:
+      summary: All colors
+      tags:
+      - ThemeColors
+      security:
+      - bearer: []
+      responses:
+        '200':
+          description: return array
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/theme_color"
   "/v1/owners":
     post:
       summary: Creates a owner
@@ -1083,7 +1120,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: nanci_wilkinson@huels-lind.org
+                      example: diann@schowalter.info
                     password:
                       type: string
                       example: '12345678'
@@ -1153,7 +1190,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: claudio@west-johnson.org
+                      example: osvaldo.bashirian@ziemann.net
                     password:
                       type: string
                       example: '12345678'
@@ -1226,7 +1263,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: rene.jenkins@wolf.info
+                      example: vito@bauch-beier.org
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1285,6 +1322,20 @@ paths:
                   - password_confirmation
 components:
   schemas:
+    theme_color:
+      type: object
+      properties:
+        type:
+          type: string
+          example: theme_colors
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "#000000"
     tools_whatsapp:
       type: object
       properties:
@@ -1301,10 +1352,10 @@ components:
                   type: boolean
                 created_at:
                   type: datetime
-                  example: '2020-10-07 17:28:17 -0300'
+                  example: '2020-10-12 12:06:01 -0300'
                 updated_at:
                   type: datetime
-                  example: '2020-10-07 17:28:17 -0300'
+                  example: '2020-10-12 12:06:01 -0300'
             relationships:
               type: object
               properties:
@@ -1336,8 +1387,8 @@ components:
           - id: '1'
             type: restaurants
             attributes:
-              name: Vieira-Caldas
-              slug: totam-sed
+              name: Ordonhes LTDA
+              slug: quia_reiciendis
     phone:
       type: object
       properties:
@@ -1366,7 +1417,7 @@ components:
           properties:
             email:
               type: string
-              example: sharleen_cronin@greenholt-terry.com
+              example: margareta@senger.info
             name:
               type: string
               nullable: true
@@ -1375,10 +1426,10 @@ components:
               example: 1
             created_at:
               type: string
-              example: '2020-10-07 17:28:17 -0300'
+              example: '2020-10-12 12:06:01 -0300'
             updated_at:
               type: string
-              example: '2020-10-07 17:28:17 -0300'
+              example: '2020-10-12 12:06:01 -0300'
           required:
           - email
           - login_count
@@ -1399,12 +1450,13 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Chicken Fajitas
+              example: Scotch Eggs
             description:
               type: string
-              example: Our Mission at Denny’s is to establish beneficial business
-                relationships with diverse suppliers who share our commitment to customer
-                service, quality and competitive pricing.
+              example: To deliver an exceptional shopping experience by offering the
+                best service, value, quality, and freshest products while being good
+                stewards of our environment and giving back to the communities we
+                serve.
               nullable: true
             position:
               type: integer
@@ -1499,7 +1551,3 @@ servers:
   variables:
     defaultHost:
       default: https://imenu-dev.herokuapp.com
-- url: https://iume-api-stage.herokuapp.com
-  variables:
-    defaultHost:
-      default: https://iume-api-stage.herokuapp.com
