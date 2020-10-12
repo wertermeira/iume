@@ -1,7 +1,7 @@
 module V1
   module Public
-    class RestaurantSerializer < ActiveModel::Serializer
-      attributes :id, :name, :slug, :active
+    class RestaurantSerializer < V1::BaseSerializer
+      attributes :id, :name, :slug, :active, :image
       has_many :sections, serializer: V1::Public::SectionSerializer
       has_many :phones, serializer: V1::PhoneSerializer
       has_one :address, serializer: V1::Public::AddressSerializer

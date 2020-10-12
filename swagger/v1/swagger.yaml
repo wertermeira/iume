@@ -194,11 +194,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Travessa Heloísa
-                        neighborhood: Rua Eduardo Martins
-                        complement: Autumn Square
-                        number: '495'
-                        reference: New
+                        street: Travessa Laura Passarinho
+                        neighborhood: Rua Juliana Brites
+                        complement: Pine Heights
+                        number: '706'
+                        reference: East
                         cep: 44900-000
                       relationships:
                         cities:
@@ -208,7 +208,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Senhor do Bonfim
+                        name: Lamim
                         capital: false
                       relationships:
                         states:
@@ -218,7 +218,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Pará
+                        name: Tocantins
                         acronym: BA
         '404':
           description: restaurant not found
@@ -242,12 +242,11 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Poke
+              example: Cauliflower Penne
             description:
               type: string
-              example: Our mission has been to help people achieve their health and
-                wellness goals. though weve changed over the years, our values have
-                remained the same.
+              example: We are committed to using the finest ingredients in our recipes.
+                No food leaves our kitchen that we ourselves would not eat.
               nullable: true
             position:
               type: integer
@@ -317,6 +316,16 @@ components:
               type: string
             active:
               type: boolean
+            image:
+              type: object
+              nullable: true
+              properties:
+                original:
+                  type: string
+                  example: https://loremflickr.com/300/300
+                small:
+                  type: string
+                  example: https://loremflickr.com/300/300
           required:
           - name
           - slug

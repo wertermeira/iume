@@ -55,9 +55,9 @@ module V1
 
       def restaurant_params
         address_attributes = %i[id street neighborhood complement reference number cep]
-        params.require(:restaurant).permit(:name, :slug, :active,
-                                           phones_attributes: %i[id number _destroy],
-                                           address_attributes: address_attributes)
+        params.require(:restaurant).permit(:name, :slug, :active, :image_destroy, image: [:data],
+                                                                                  phones_attributes: %i[id number _destroy],
+                                                                                  address_attributes: address_attributes)
       end
 
       def current_ability

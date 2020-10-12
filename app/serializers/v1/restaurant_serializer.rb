@@ -1,6 +1,6 @@
 module V1
-  class RestaurantSerializer < ActiveModel::Serializer
-    attributes :id, :name, :slug, :active, :products_remaining
+  class RestaurantSerializer < V1::BaseSerializer
+    attributes :id, :name, :slug, :active, :products_remaining, :image
     has_many :phones, serializer: V1::PhoneSerializer
     has_one :address, serializer: V1::AddressSerializer
     has_one :tool_whatsapp, serializer: V1::Tools::WhatsappSerializer

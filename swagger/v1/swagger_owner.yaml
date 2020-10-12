@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Asperiores enim minima tempora amet qui fugiat itaque
-                        et laboriosam?
+                      example: Et dolorum harum veritatis odit facere deleniti eius
+                        unde quos?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Esteves Comércio
+                      example: Bulhões-Dorneles
                     description:
                       type: string
-                      example: Consectetur voluptas dolorem. Nemo nulla quaerat. Beatae
-                        minus a. Ut earum expedita. Ad harum occae.
+                      example: Molestiae quasi natus. Rem quis qui. Impedit voluptas
+                        culpa. Tenetur molestiae laboriosam. Sapiente.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Rocha-Munhoz
+                      example: da Aldeia, Figueira e Ordonhes
                     description:
                       type: string
-                      example: Numquam qui dolor. Libero eum eum. Voluptatem consectetur
-                        assumenda. Eos officiis eligendi. Quia eu.
+                      example: Autem nulla quis. Voluptatem occaecati corporis. Qui
+                        aut deleniti. Eligendi laborum ea. Qui ea id. .
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Porteira, da Fronteira e Ramos
+                      example: da Barranca-das Neves
                     position:
                       type: integer
                       example: 1
@@ -542,7 +542,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Velasques S.A.
+                      example: das Neves, Ramalho e da Maia
                     position:
                       type: integer
                       example: 1
@@ -744,7 +744,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Fontoura-Ximenes
+                      example: Arantes, Souza e Cruz
                     active:
                       type: boolean
               required:
@@ -782,6 +782,7 @@ paths:
       - Restaurants
       security:
       - bearer: []
+      description: Use image_destroy only if you need delete image
       parameters:
       - name: id
         in: path
@@ -811,11 +812,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Travessa Bianca Junqueira
-                        neighborhood: Marginal Elísio Carneiro
-                        complement: Park Village
-                        number: '13950'
-                        reference: New
+                        street: Alameda Olívia Mendanha
+                        neighborhood: Viela Ryan Jaques
+                        complement: Summer Village
+                        number: '450'
+                        reference: East
                         cep: 44900-000
                       relationships:
                         cities:
@@ -825,7 +826,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Quixaba
+                        name: Alvinópolis
                         capital: false
                       relationships:
                         states:
@@ -835,7 +836,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Tocantins
+                        name: Minas Gerais
                         acronym: BA
         '422':
           description: create failt
@@ -860,9 +861,19 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Peixoto LTDA
+                      example: Assumpção Comércio
                     active:
                       type: boolean
+                    image:
+                      type: object
+                      properties:
+                        data:
+                          type: string
+                          description: Only base64 date
+                          example: data:image/jpeg;base64,/9j/4RiDRXhpZgAATU0AKgA...
+                    image_destroy:
+                      type: boolean
+                      description: If you need delete image
                     phones_attributes:
                       type: array
                       items:
@@ -878,16 +889,16 @@ paths:
                       properties:
                         street:
                           type: string
-                          example: Rodovia Luna Garcez
+                          example: Travessa Pedro Tobias Neves
                         neighborhood:
                           type: string
                           example: Center
                         complement:
                           type: string
-                          example: Summer Square
+                          example: Royal Oaks
                         number:
                           type: string
-                          example: '8371'
+                          example: s/n
                         reference:
                           type: string
                         cep:
@@ -967,7 +978,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: dicta-sunt
+                      example: sit-saepe
               required:
               - name
               - active
@@ -1013,7 +1024,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: rod@jakubowski.io
+                      example: armandina.hintz@pagac.com
                     password:
                       type: string
                       example: '12345678'
@@ -1076,7 +1087,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: earlean.feil@prosacco-emard.co
+                      example: roy_kilback@white-yundt.net
                     password:
                       type: string
                       example: '12345678'
@@ -1146,7 +1157,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: michal_nicolas@doyle-herman.org
+                      example: olimpia_balistreri@kemmer.io
                     password:
                       type: string
                       example: '12345678'
@@ -1219,7 +1230,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: darrel.kertzmann@walsh.com
+                      example: miles.wyman@stoltenberg.com
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1294,10 +1305,10 @@ components:
                   type: boolean
                 created_at:
                   type: datetime
-                  example: '2020-09-25 17:48:17 -0300'
+                  example: '2020-10-12 09:41:03 -0300'
                 updated_at:
                   type: datetime
-                  example: '2020-09-25 17:48:17 -0300'
+                  example: '2020-10-12 09:41:03 -0300'
             relationships:
               type: object
               properties:
@@ -1329,8 +1340,8 @@ components:
           - id: '1'
             type: restaurants
             attributes:
-              name: Silveira e Associados
-              slug: cumque_et
+              name: Caseira EIRELI
+              slug: id-debitis
     phone:
       type: object
       properties:
@@ -1359,7 +1370,7 @@ components:
           properties:
             email:
               type: string
-              example: velva.rowe@cummerata-schmeler.com
+              example: juan.pfeffer@hamill.net
             name:
               type: string
               nullable: true
@@ -1368,10 +1379,10 @@ components:
               example: 1
             created_at:
               type: string
-              example: '2020-09-25 17:48:17 -0300'
+              example: '2020-10-12 09:41:03 -0300'
             updated_at:
               type: string
-              example: '2020-09-25 17:48:17 -0300'
+              example: '2020-10-12 09:41:03 -0300'
           required:
           - email
           - login_count
@@ -1392,22 +1403,24 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Pasta and Beans
+              example: Ebiten maki
             description:
               type: string
-              example: Yoshinoya is in business to create the structure and systems
-                needed to allow our customers access to the majority of their away-from-home
-                daily meal requirements on a one-stop-shop basis. All our products
-                shall be of the highest quality and value, be healthy, nutritious
-                and provided with outstanding personal services at the lowest possible
-                prices consistent with a fair return on investment for our shareholders,
-                job enhancementsecurity for our employees and a level of community
-                involvement by everyone connected with our business. All of our products
-                and services shall be delivered consistently and measured one satisfied
-                customer at a time, whether by company-owned or franchised operations,
-                in superior, clean, convenient, fun and friendly neighborhood environments.
-                We pledge to make Yoshinoya the best place to eat and the best place
-                to work.
+              example: To sell delicious and remarkable food and drinks. That the
+                food and drink we sell meets the highest standards of quality, freshness
+                and seasonality and combines both modern-creative and traditional
+                southern styles of cooking. To consistently provide our customers
+                with impeccable service by demonstrating warmth, graciousness, efficiency,
+                knowledge, professionalism and integrity in our work. To have every
+                customer who comes through our doors leave impressed by Maxie’s and
+                excited to come back again. To create and maintain a restaurant that
+                is comprehensive and exceptional in its attention to every detail
+                of operation. To provide all who work with us a friendly, cooperative
+                and rewarding environment which encourages long- term, satisfying,
+                growth employment. To keep our concept fresh, exciting and on the
+                cutting edge of the hospitality and entertainment industry. To be
+                a giving member of the Ithaca community and to use our restaurant
+                to improve the quality of life in the Finger Lakes region.
               nullable: true
             position:
               type: integer

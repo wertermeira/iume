@@ -88,7 +88,15 @@ RSpec.configure do |config|
                 properties: {
                   name: { type: :string },
                   slug: { type: :string },
-                  active: { type: :boolean }
+                  active: { type: :boolean },
+                  image: {
+                    type: :object,
+                    nullable: true,
+                    properties: {
+                      original: { type: :string, example: Faker::LoremFlickr.image },
+                      small: { type: :string, example: Faker::LoremFlickr.image }
+                    }
+                  }
                 },
                 required: %w[name slug active]
               },

@@ -30,7 +30,10 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
     {
       restaurant: {
         name: Faker::Company.name,
-        active: true
+        active: true,
+        image: {
+          data: image_base_64
+        }
       }
     }
   }
@@ -65,6 +68,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
 
         run_test! do
           expect(json_body.dig('data', 'attributes', 'name')).to eq(valid_attrs[:restaurant][:name])
+          expect(json_body.dig('data', 'attributes', 'image')).not_to be_nil
         end
       end
 
@@ -148,6 +152,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
       consumes 'application/json'
       produces 'application/json'
       security [bearer: []]
+      description 'Use image_destroy only if you need delete image'
       parameter name: :id, in: :path, type: :string
       parameter name: :restaurant, in: :body, schema: {
         type: :object,
@@ -157,6 +162,17 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
             properties: {
               name: { type: :string, example: Faker::Company.name },
               active: { type: :boolean },
+              image: {
+                type: :object,
+                properties: {
+                  data: {
+                    type: :string,
+                    description: 'Only base64 date',
+                    example: 'data:image/jpeg;base64,/9j/4RiDRXhpZgAATU0AKgA...'
+                  }
+                }
+              },
+              image_destroy: { type: :boolean, description: 'If you need delete image' },
               phones_attributes: {
                 type: :array,
                 items: {
@@ -181,6 +197,25 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
         },
         required: %w[name active]
       }
+
+      response 202, 'update remove image' do
+        let(:restaurant) {
+          {
+            restaurant: {
+              image_destroy: true
+            }
+          }
+        }
+
+        schema type: :object,
+               properties: {
+                 data: { '$ref' => '#/components/schemas/restaurant' }
+               }
+
+        run_test! do
+          expect(json_body.dig('data', 'attributes', 'image')).to be_nil
+        end
+      end
 
       response 202, 'update success only phones' do
         let(:restaurant) {
