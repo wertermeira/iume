@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Et dolorum harum veritatis odit facere deleniti eius
-                        unde quos?
+                      example: Cum quo voluptatem accusamus quas aut perferendis libero
+                        eum temporibus?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Bulhões-Dorneles
+                      example: Cavalcanti, Cabreira e Gabeira
                     description:
                       type: string
-                      example: Molestiae quasi natus. Rem quis qui. Impedit voluptas
-                        culpa. Tenetur molestiae laboriosam. Sapiente.
+                      example: Mollitia ab consequatur. Dolore est delectus. Voluptatem
+                        ea vitae. Labore pariatur et. Dignissimos .
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Aldeia, Figueira e Ordonhes
+                      example: da Silveira-Gomes
                     description:
                       type: string
-                      example: Autem nulla quis. Voluptatem occaecati corporis. Qui
-                        aut deleniti. Eligendi laborum ea. Qui ea id. .
+                      example: Id eligendi qui. Sed eum aliquam. Esse explicabo unde.
+                        Iusto molestias aliquam. Error sed labore. D.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Barranca-das Neves
+                      example: Aparício-do Prado
                     position:
                       type: integer
                       example: 1
@@ -542,7 +542,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: das Neves, Ramalho e da Maia
+                      example: Rolim-Pinheira
                     position:
                       type: integer
                       example: 1
@@ -744,7 +744,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Arantes, Souza e Cruz
+                      example: Santana LTDA
                     active:
                       type: boolean
               required:
@@ -812,11 +812,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Alameda Olívia Mendanha
-                        neighborhood: Viela Ryan Jaques
-                        complement: Summer Village
-                        number: '450'
-                        reference: East
+                        street: Rua Lucca
+                        neighborhood: Marginal Juliana Nascimento
+                        complement: Autumn Crossing
+                        number: '3640'
+                        reference: North
                         cep: 44900-000
                       relationships:
                         cities:
@@ -826,7 +826,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Alvinópolis
+                        name: Itapejara d'Oeste
                         capital: false
                       relationships:
                         states:
@@ -836,8 +836,12 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Minas Gerais
+                        name: Santa Catarina
                         acronym: BA
+                    - id: '1'
+                      type: theme_colors
+                      attributes:
+                        color: "#000000"
         '422':
           description: create failt
           content:
@@ -861,9 +865,12 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Assumpção Comércio
+                      example: Roriz S.A.
                     active:
                       type: boolean
+                    theme_color_id:
+                      type: integer
+                      example: 1
                     image:
                       type: object
                       properties:
@@ -889,7 +896,7 @@ paths:
                       properties:
                         street:
                           type: string
-                          example: Travessa Pedro Tobias Neves
+                          example: Rua Meire
                         neighborhood:
                           type: string
                           example: Center
@@ -978,7 +985,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: sit-saepe
+                      example: dolor-qui
               required:
               - name
               - active
@@ -1024,7 +1031,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: armandina.hintz@pagac.com
+                      example: sheldon@kozey.biz
                     password:
                       type: string
                       example: '12345678'
@@ -1087,7 +1094,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: roy_kilback@white-yundt.net
+                      example: georgia@gorczany.io
                     password:
                       type: string
                       example: '12345678'
@@ -1157,7 +1164,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: olimpia_balistreri@kemmer.io
+                      example: branden@carroll.com
                     password:
                       type: string
                       example: '12345678'
@@ -1230,7 +1237,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: miles.wyman@stoltenberg.com
+                      example: sunni@murray-corkery.info
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1305,10 +1312,10 @@ components:
                   type: boolean
                 created_at:
                   type: datetime
-                  example: '2020-10-12 09:41:03 -0300'
+                  example: '2020-10-12 11:35:37 -0300'
                 updated_at:
                   type: datetime
-                  example: '2020-10-12 09:41:03 -0300'
+                  example: '2020-10-12 11:35:37 -0300'
             relationships:
               type: object
               properties:
@@ -1340,8 +1347,8 @@ components:
           - id: '1'
             type: restaurants
             attributes:
-              name: Caseira EIRELI
-              slug: id-debitis
+              name: Aguiar-Videira
+              slug: et-architecto
     phone:
       type: object
       properties:
@@ -1370,7 +1377,7 @@ components:
           properties:
             email:
               type: string
-              example: juan.pfeffer@hamill.net
+              example: loriann@ratke-lindgren.com
             name:
               type: string
               nullable: true
@@ -1379,10 +1386,10 @@ components:
               example: 1
             created_at:
               type: string
-              example: '2020-10-12 09:41:03 -0300'
+              example: '2020-10-12 11:35:37 -0300'
             updated_at:
               type: string
-              example: '2020-10-12 09:41:03 -0300'
+              example: '2020-10-12 11:35:37 -0300'
           required:
           - email
           - login_count
@@ -1403,24 +1410,11 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Ebiten maki
+              example: Linguine with Clams
             description:
               type: string
-              example: To sell delicious and remarkable food and drinks. That the
-                food and drink we sell meets the highest standards of quality, freshness
-                and seasonality and combines both modern-creative and traditional
-                southern styles of cooking. To consistently provide our customers
-                with impeccable service by demonstrating warmth, graciousness, efficiency,
-                knowledge, professionalism and integrity in our work. To have every
-                customer who comes through our doors leave impressed by Maxie’s and
-                excited to come back again. To create and maintain a restaurant that
-                is comprehensive and exceptional in its attention to every detail
-                of operation. To provide all who work with us a friendly, cooperative
-                and rewarding environment which encourages long- term, satisfying,
-                growth employment. To keep our concept fresh, exciting and on the
-                cutting edge of the hospitality and entertainment industry. To be
-                a giving member of the Ithaca community and to use our restaurant
-                to improve the quality of life in the Finger Lakes region.
+              example: We are committed to using the finest ingredients in our recipes.
+                No food leaves our kitchen that we ourselves would not eat.
               nullable: true
             position:
               type: integer
@@ -1515,7 +1509,3 @@ servers:
   variables:
     defaultHost:
       default: https://imenu-dev.herokuapp.com
-- url: https://iume-api-stage.herokuapp.com
-  variables:
-    defaultHost:
-      default: https://iume-api-stage.herokuapp.com

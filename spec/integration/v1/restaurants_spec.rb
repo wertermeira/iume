@@ -51,6 +51,13 @@ RSpec.describe 'v1/restaurants', type: :request do
                      },
                      {
                        id: '1',
+                       type: 'theme_colors',
+                       attributes: {
+                         color: '#000000'
+                       }
+                     },
+                     {
+                       id: '1',
                        type: 'sections',
                        attributes: {
                          name: 'Drinks',

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-
+restaurant_relationships = %w[sections phones tool_whatsapps theme_colors].map { |type| { id: '1', type: type} }
 RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated
   # NOTE: If you're using the rswag-api to serve API descriptions, you'll need
@@ -111,7 +111,7 @@ RSpec.configure do |config|
                         items: {
                           type: :object
                         },
-                        example: [{ id: '1', type: 'sections' }, { id: '1', type: 'phones' }, { id: '1', type: 'tool_whatsapps' }]
+                        example: restaurant_relationships
                       }
                     }
                   }
@@ -351,14 +351,6 @@ RSpec.configure do |config|
           variables: {
             defaultHost: {
               default: 'https://imenu-dev.herokuapp.com'
-            }
-          }
-        },
-        {
-          url: 'https://iume-api-stage.herokuapp.com',
-          variables: {
-            defaultHost: {
-              default: 'https://iume-api-stage.herokuapp.com'
             }
           }
         }

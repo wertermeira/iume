@@ -4,6 +4,7 @@ FactoryBot.define do
     owner { create(:owner) }
     name { Faker::Company.name }
     image { { data: "data:image/jpeg;base64,#{image}" } }
+    theme_color { create(:theme_color) }
     active { true }
 
     factory :restaurant_with_tool_whatsapp do

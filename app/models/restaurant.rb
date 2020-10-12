@@ -3,6 +3,7 @@ class Restaurant < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   belongs_to :owner
+  belongs_to :theme_color, optional: true
 
   attr_accessor :image_destroy
 
