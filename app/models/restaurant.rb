@@ -21,6 +21,7 @@ class Restaurant < ApplicationRecord
   validates :slug, slugger: true, on: :update, allow_blank: true
   validates :slug, length: { minimum: 3, maximum: 200 }, allow_blank: true, on: :update
 
+  after_create :nofication_slack
   before_create :generate_uid
 
   private
@@ -37,5 +38,10 @@ class Restaurant < ApplicationRecord
       random_token = SecureRandom.alphanumeric(10)
       break random_token unless Restaurant.exists?(uid: random_token)
     end
+  end
+
+  def notification_slack
+    message = "oi, <a href='#{ENV['FRONTEND_URL']}/qr/#{uid}'>#{name}</a>, acabou de ser registrado"
+    SlackNotificationJob.perform_later(message: message, channel: '#iume-notifications')
   end
 end
