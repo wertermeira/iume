@@ -30,8 +30,9 @@ class Restaurant < ApplicationRecord
             content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'],
             size: { less_than: 4.megabytes }
 
+  after_create :notification_slack
   before_update :purge_image, if: -> { image_destroy }
-  before_create :generate_uid, :save_color_default
+  before_create :generate_uid
 
   private
 
@@ -55,5 +56,10 @@ class Restaurant < ApplicationRecord
       random_token = SecureRandom.alphanumeric(10)
       break random_token unless Restaurant.exists?(uid: random_token)
     end
+  end
+
+  def notification_slack
+    message = "Olá! <#{ENV['FRONTEND_URL']}/qr/#{uid}|#{name}> acabou de ser registrado :smile:"
+    SlackNotifyJob.perform_later(message: message, channel: ENV.fetch('SLACK_NOTIFY_CHANNEL', '#iume-notifications'))
   end
 end

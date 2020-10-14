@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 2020_10_12_124751) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "active", default: false
     t.string "uid"
-    t.bigint "theme_color_id", default: 1
+    t.bigint "theme_color_id"
     t.index ["owner_id"], name: "index_restaurants_on_owner_id"
     t.index ["slug"], name: "index_restaurants_on_slug", unique: true
     t.index ["theme_color_id"], name: "index_restaurants_on_theme_color_id"
