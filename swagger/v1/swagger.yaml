@@ -186,6 +186,10 @@ paths:
                       attributes:
                         number: 11-9999-9999
                     - id: '1'
+                      type: theme_colors
+                      attributes:
+                        color: "#000000"
+                    - id: '1'
                       type: sections
                       attributes:
                         name: Drinks
@@ -194,11 +198,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Travessa Heloísa
-                        neighborhood: Rua Eduardo Martins
-                        complement: Autumn Square
-                        number: '495'
-                        reference: New
+                        street: Avenida Marcos Roseira
+                        neighborhood: Avenida João Vitor
+                        complement: Willow Acres
+                        number: '8865'
+                        reference: North
                         cep: 44900-000
                       relationships:
                         cities:
@@ -208,7 +212,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Senhor do Bonfim
+                        name: Presidente Juscelino
                         capital: false
                       relationships:
                         states:
@@ -218,7 +222,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Pará
+                        name: Ceará
                         acronym: BA
         '404':
           description: restaurant not found
@@ -242,7 +246,7 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Poke
+              example: Barbecue Ribs
             description:
               type: string
               example: Our mission has been to help people achieve their health and
@@ -317,6 +321,16 @@ components:
               type: string
             active:
               type: boolean
+            image:
+              type: object
+              nullable: true
+              properties:
+                original:
+                  type: string
+                  example: https://loremflickr.com/300/300
+                small:
+                  type: string
+                  example: https://loremflickr.com/300/300
           required:
           - name
           - slug
@@ -338,6 +352,8 @@ components:
                     type: phones
                   - id: '1'
                     type: tool_whatsapps
+                  - id: '1'
+                    type: theme_colors
   securitySchemes:
     bearer:
       type: http

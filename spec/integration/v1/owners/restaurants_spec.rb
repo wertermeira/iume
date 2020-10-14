@@ -3,6 +3,7 @@ require 'swagger_helper'
 RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', type: :request do
   TAG_NAME = 'Restaurants'.freeze
   let(:user) { create(:owner) }
+  let(:theme_color) { create(:theme_color) }
   let(:slug) { Faker::Internet.slug }
   let(:restaurant_item) { create(:restaurant, owner: user) }
   let(:Authorization) { authentication(user) }
@@ -30,7 +31,10 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
     {
       restaurant: {
         name: Faker::Company.name,
-        active: true
+        active: true,
+        image: {
+          data: image_base_64
+        }
       }
     }
   }
@@ -65,6 +69,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
 
         run_test! do
           expect(json_body.dig('data', 'attributes', 'name')).to eq(valid_attrs[:restaurant][:name])
+          expect(json_body.dig('data', 'attributes', 'image')).not_to be_nil
         end
       end
 
@@ -148,6 +153,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
       consumes 'application/json'
       produces 'application/json'
       security [bearer: []]
+      description 'Use image_destroy only if you need delete image'
       parameter name: :id, in: :path, type: :string
       parameter name: :restaurant, in: :body, schema: {
         type: :object,
@@ -157,6 +163,18 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
             properties: {
               name: { type: :string, example: Faker::Company.name },
               active: { type: :boolean },
+              theme_color_id: { type: :integer, example: 1 },
+              image: {
+                type: :object,
+                properties: {
+                  data: {
+                    type: :string,
+                    description: 'Only base64 date',
+                    example: 'data:image/jpeg;base64,/9j/4RiDRXhpZgAATU0AKgA...'
+                  }
+                }
+              },
+              image_destroy: { type: :boolean, description: 'If you need delete image' },
               phones_attributes: {
                 type: :array,
                 items: {
@@ -181,6 +199,25 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
         },
         required: %w[name active]
       }
+
+      response 202, 'update remove image' do
+        let(:restaurant) {
+          {
+            restaurant: {
+              image_destroy: true
+            }
+          }
+        }
+
+        schema type: :object,
+               properties: {
+                 data: { '$ref' => '#/components/schemas/restaurant' }
+               }
+
+        run_test! do
+          expect(json_body.dig('data', 'attributes', 'image')).to be_nil
+        end
+      end
 
       response 202, 'update success only phones' do
         let(:restaurant) {
@@ -250,6 +287,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
       response 202, 'update success' do
         before {
           valid_attrs[:restaurant][:slug] = slug
+          valid_attrs[:restaurant][:theme_color_id] = theme_color.id
           valid_attrs[:restaurant][:phones_attributes] = phones_attributes
           valid_attrs[:restaurant][:address_attributes] = address_attributes
         }
@@ -303,6 +341,13 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
                        attributes: {
                          name: Faker::Address.state,
                          acronym: 'BA'
+                       }
+                     },
+                     {
+                       id: '1',
+                       type: 'theme_colors',
+                       attributes: {
+                         color: '#000000'
                        }
                      }
                    ]

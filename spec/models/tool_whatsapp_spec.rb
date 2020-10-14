@@ -4,7 +4,7 @@ RSpec.describe ToolWhatsapp, type: :model do
   context 'when db schema' do
     let(:model) { described_class.column_names }
 
-    %w[restaurant_id phone_id active].each do |column|
+    %w[restaurant_id active].each do |column|
       it "have column #{column}" do
         expect(model).to include(column)
       end
@@ -13,17 +13,18 @@ RSpec.describe ToolWhatsapp, type: :model do
 
   context 'when have associations' do
     it { is_expected.to belong_to(:restaurant) }
-    it { is_expected.to belong_to(:phone) }
+    it { is_expected.to have_one(:phone).dependent(:destroy) }
   end
 
   describe 'when validation' do
     let(:restaurant) { create(:restaurant) }
-    let(:phone) { create(:phone, phoneable: restaurant) }
     let(:attributes) {
       {
         restaurant: restaurant,
-        phone: phone,
-        active: false
+        active: false,
+        phone_attributes: {
+          number: '11-9999-9999'
+        }
       }
     }
     let(:new_whatsapp) { described_class.new(attributes) }
@@ -32,12 +33,16 @@ RSpec.describe ToolWhatsapp, type: :model do
       expect(new_whatsapp).to be_valid
     end
 
-    context 'when phone invalid' do
-      let(:phone) { create(:phone) }
+    context 'when without number' do
+      let(:attributes) {
+        {
+          restaurant: restaurant,
+          active: false
+        }
+      }
 
-      it 'when valid phone' do
-        new_whatsapp.valid?
-        expect(new_whatsapp.errors[:phone_id]).to match_array([I18n.t('errors.messages.invalid')])
+      it do
+        expect(new_whatsapp).not_to be_valid
       end
     end
 
@@ -48,16 +53,6 @@ RSpec.describe ToolWhatsapp, type: :model do
       end
       it 'when valid phone' do
         expect(new_whatsapp).to be_valid
-      end
-    end
-
-    context 'when active option is invalid' do
-      before do
-        attributes[:active] = true
-      end
-      it 'when valid phone' do
-        new_whatsapp.valid?
-        expect(new_whatsapp.errors[:active]).to match_array([I18n.t('errors.messages.tools_address_required')])
       end
     end
   end

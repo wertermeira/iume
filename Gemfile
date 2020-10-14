@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 # A simple wrapper for posting to slack channels
-gem "slack-notifier"
+gem 'slack-notifier'
 # Find Brazilian addresses by zipcode, directly from Correios database. No HTML parsers.\
 gem 'correios-cep'
 # ActiveModel::Serializer implementation and Rails hooks

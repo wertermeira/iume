@@ -43,5 +43,13 @@ RSpec.describe Restaurant, type: :model do
     it { is_expected.to allow_value('xx22-xx2').for(:slug) }
     it { is_expected.not_to allow_value('Xx1').for(:slug) }
     it { is_expected.to validate_uniqueness_of(:slug) }
+
+    context 'when image' do
+      let(:types_allow) { %w[image/png image/gif image/jpg image/jpeg] }
+
+      it { is_expected.to validate_size_of(:image).less_than(4.megabytes) }
+      it { is_expected.to validate_content_type_of(:image).allowing(types_allow) }
+      it { is_expected.not_to validate_content_type_of(:image).allowing(%w[image/tif doc/pdf]) }
+    end
   end
 end

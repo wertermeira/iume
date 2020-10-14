@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-
+restaurant_relationships = %w[sections phones tool_whatsapps theme_colors].map { |type| { id: '1', type: type } }
 RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated
   # NOTE: If you're using the rswag-api to serve API descriptions, you'll need
@@ -88,7 +88,15 @@ RSpec.configure do |config|
                 properties: {
                   name: { type: :string },
                   slug: { type: :string },
-                  active: { type: :boolean }
+                  active: { type: :boolean },
+                  image: {
+                    type: :object,
+                    nullable: true,
+                    properties: {
+                      original: { type: :string, example: Faker::LoremFlickr.image },
+                      small: { type: :string, example: Faker::LoremFlickr.image }
+                    }
+                  }
                 },
                 required: %w[name slug active]
               },
@@ -103,7 +111,7 @@ RSpec.configure do |config|
                         items: {
                           type: :object
                         },
-                        example: [{ id: '1', type: 'sections' }, { id: '1', type: 'phones' }, { id: '1', type: 'tool_whatsapps' }]
+                        example: restaurant_relationships
                       }
                     }
                   }
@@ -148,6 +156,19 @@ RSpec.configure do |config|
       paths: {},
       components: {
         schemas: {
+          theme_color: {
+            type: :object,
+            properties: {
+              type: { type: :string, example: 'theme_colors' },
+              id: { type: :string },
+              attributes: {
+                type: :object,
+                properties: {
+                  name: { type: :string, example: '#000000' }
+                }
+              }
+            }
+          },
           tools_whatsapp: {
             type: :object,
             properties: {
@@ -343,14 +364,6 @@ RSpec.configure do |config|
           variables: {
             defaultHost: {
               default: 'https://imenu-dev.herokuapp.com'
-            }
-          }
-        },
-        {
-          url: 'https://iume-api-stage.herokuapp.com',
-          variables: {
-            defaultHost: {
-              default: 'https://iume-api-stage.herokuapp.com'
             }
           }
         }
