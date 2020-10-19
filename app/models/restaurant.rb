@@ -8,6 +8,7 @@ class Restaurant < ApplicationRecord
   attr_accessor :image_destroy
 
   has_many :sections
+  has_many :social_networks, dependent: :destroy
   has_many :unscope_sections, -> { unscope(where: :deleted) }, class_name: 'Section', inverse_of: :restaurant, dependent: :destroy
   has_many :products, through: :sections
   has_many :phones, as: :phoneable, dependent: :destroy
@@ -16,6 +17,7 @@ class Restaurant < ApplicationRecord
   has_one :tool_whatsapp, dependent: :destroy
 
   accepts_nested_attributes_for :phones, allow_destroy: true, limit: 4, reject_if: :all_blank, update_only: true
+  accepts_nested_attributes_for :social_networks, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :address, allow_destroy: false, reject_if: :all_blank, update_only: true
 
   validates :name, presence: true

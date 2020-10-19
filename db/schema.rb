@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_124751) do
+ActiveRecord::Schema.define(version: 2020_10_16_194008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,6 +184,16 @@ ActiveRecord::Schema.define(version: 2020_10_12_124751) do
     t.index ["restaurant_id"], name: "index_sections_on_restaurant_id"
   end
 
+  create_table "social_networks", force: :cascade do |t|
+    t.integer "provider", null: false
+    t.bigint "restaurant_id", null: false
+    t.string "username"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id", "provider"], name: "index_restaurant_id_provider", unique: true
+    t.index ["restaurant_id"], name: "index_social_networks_on_restaurant_id"
+  end
+
   create_table "states", force: :cascade do |t|
     t.string "name"
     t.string "acronym"
@@ -218,6 +228,7 @@ ActiveRecord::Schema.define(version: 2020_10_12_124751) do
   add_foreign_key "restaurants", "owners"
   add_foreign_key "restaurants", "theme_colors"
   add_foreign_key "sections", "restaurants"
+  add_foreign_key "social_networks", "restaurants"
   add_foreign_key "states", "regions"
   add_foreign_key "tool_whatsapps", "restaurants"
 end

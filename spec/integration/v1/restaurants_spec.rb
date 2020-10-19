@@ -58,6 +58,14 @@ RSpec.describe 'v1/restaurants', type: :request do
                      },
                      {
                        id: '1',
+                       type: 'social_networks',
+                       attributes: {
+                         provider: 'facebook',
+                         username: 'fb_brasil'
+                       }
+                     },
+                     {
+                       id: '1',
                        type: 'sections',
                        attributes: {
                          name: 'Drinks',
