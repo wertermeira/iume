@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-restaurant_relationships = %w[sections phones tool_whatsapps theme_colors].map { |type| { id: '1', type: type } }
+restaurant_relationships = %w[sections phones tool_whatsapps theme_colors social_networks].map { |type| { id: '1', type: type } }
 RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated
   # NOTE: If you're using the rswag-api to serve API descriptions, you'll need
@@ -47,6 +47,20 @@ RSpec.configure do |config|
                   }
                 },
                 required: %w[price name]
+              }
+            }
+          },
+          social_network: {
+            type: :object,
+            properties: {
+              id: { type: :string },
+              type: { type: :string, example: 'social_networks' },
+              attributes: {
+                type: :object,
+                properties: {
+                  provider: { type: :string, example: 'facebook' },
+                  username: { type: :string, example: 'iume' }
+                }
               }
             }
           },
@@ -330,11 +344,9 @@ RSpec.configure do |config|
                       data: {
                         type: :array,
                         items: {
-                          properties: {
-                            id: { type: :string },
-                            type: { type: :string, example: 'phones' }
-                          }
-                        }
+                          type: :object
+                        },
+                        example: restaurant_relationships
                       }
                     }
                   }

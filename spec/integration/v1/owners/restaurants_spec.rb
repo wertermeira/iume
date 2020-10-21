@@ -3,35 +3,28 @@ require 'swagger_helper'
 RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', type: :request do
   TAG_NAME = 'Restaurants'.freeze
   let(:user) { create(:owner) }
+  let(:user_name) { Faker::Internet.username }
   let(:theme_color) { create(:theme_color) }
   let(:slug) { Faker::Internet.slug }
   let(:restaurant_item) { create(:restaurant, owner: user) }
   let(:Authorization) { authentication(user) }
   let(:phones_attributes) {
-    [
-      {
-        number: '11-9999-9999'
-      },
-      {
-        number: '11-9999-9999'
-      }
-    ]
+    [{ number: '11-9999-9999' }, { number: '11-9999-9999' }]
+  }
+  let(:social_networks_attributes) {
+    [{ provider: 'facebook', username: user_name }, { provider: 'instagram', username: user_name }]
   }
   let(:address_attributes) {
     {
-      street: Faker::Address.street_name,
-      neighborhood: Faker::Address.street_name,
-      complement: Faker::Address.community,
-      number: Faker::Address.building_number,
-      reference: Faker::Address.city_prefix,
-      cep: '44900-000'
+      street: Faker::Address.street_name, neighborhood: Faker::Address.street_name,
+      omplement: Faker::Address.community, number: Faker::Address.building_number,
+      reference: Faker::Address.city_prefix, cep: '44900-000'
     }
   }
   let(:valid_attrs) {
     {
       restaurant: {
-        name: Faker::Company.name,
-        active: true,
+        name: Faker::Company.name, active: true,
         image: {
           data: image_base_64
         }
@@ -182,6 +175,13 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
                 },
                 example: [{ number: '11-9999-9999' }, { id: 1, number: '11-9999-9999' }, { id: 2, _destroy: true }]
               },
+              social_networks_attributes: {
+                type: :array,
+                items: {
+                  type: :object
+                },
+                example: [{ provider: 'facebook', user_name: 'restaurant_x' }, { provider: 'instagram', user_name: 'restaurant_x' }]
+              },
               address_attributes: {
                 type: :object,
                 properties: {
@@ -240,6 +240,36 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
         run_test!
       end
 
+      response 202, 'update success only phones' do
+        let(:social_network) {
+          create(:social_network, restaurant: restaurant_item, provider: 'facebook')
+        }
+        let(:social_network_remove) {
+          create(:social_network, restaurant: restaurant_item, provider: 'instagram')
+        }
+        let(:restaurant) {
+          {
+            restaurant: {
+              social_networks_attributes: [
+                {
+                  id: social_network.id,
+                  username: user_name
+                },
+                {
+                  id: social_network_remove.id,
+                  _destroy: true
+                }
+              ]
+            }
+          }
+        }
+
+        run_test! do
+          expect(social_network.reload.username).to eq(user_name)
+          expect(SocialNetwork.find_by(id: social_network_remove.id)).to be_nil
+        end
+      end
+
       response 202, 'update success only address' do
         before do
           create(:address, addressable: restaurant_item)
@@ -289,6 +319,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
           valid_attrs[:restaurant][:slug] = slug
           valid_attrs[:restaurant][:theme_color_id] = theme_color.id
           valid_attrs[:restaurant][:phones_attributes] = phones_attributes
+          valid_attrs[:restaurant][:social_networks_attributes] = social_networks_attributes
           valid_attrs[:restaurant][:address_attributes] = address_attributes
         }
         schema type: :object,
@@ -309,12 +340,9 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
                        id: '1',
                        type: 'addresses',
                        attributes: {
-                         street: Faker::Address.street_name,
-                         neighborhood: Faker::Address.street_name,
-                         complement: Faker::Address.community,
-                         number: Faker::Address.building_number,
-                         reference: Faker::Address.city_prefix,
-                         cep: '44900-000'
+                         street: Faker::Address.street_name, neighborhood: Faker::Address.street_name,
+                         complement: Faker::Address.community, number: Faker::Address.building_number,
+                         reference: Faker::Address.city_prefix, cep: '44900-000'
                        },
                        relationships: {
                          cities: {
@@ -323,11 +351,9 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
                        }
                      },
                      {
-                       id: '1',
-                       type: 'cities',
+                       id: '1', type: 'cities',
                        attributes: {
-                         name: Faker::Address.city,
-                         capital: false
+                         name: Faker::Address.city, capital: false
                        },
                        relationships: {
                          states: {
@@ -336,18 +362,23 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
                        }
                      },
                      {
-                       id: '1',
-                       type: 'states',
+                       id: '1', type: 'states',
                        attributes: {
                          name: Faker::Address.state,
                          acronym: 'BA'
                        }
                      },
                      {
-                       id: '1',
-                       type: 'theme_colors',
+                       id: '1', type: 'theme_colors',
                        attributes: {
                          color: '#000000'
+                       }
+                     },
+                     {
+                       id: '1', type: 'social_networks',
+                       attributes: {
+                         provider: 'facebook',
+                         username: Faker::Internet.user_name
                        }
                      }
                    ]
@@ -357,6 +388,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
         run_test! do
           expect(json_body.dig('data', 'attributes', 'slug')).to eq(slug)
           expect(json_body.dig('data', 'relationships', 'address', 'data')).to be_truthy
+          expect(json_body.dig('data', 'relationships', 'social_networks', 'data')).to be_truthy
         end
       end
     end

@@ -4,6 +4,7 @@ module V1
       attributes :id, :name, :slug, :active, :image
       has_many :sections, serializer: V1::Public::SectionSerializer
       has_many :phones, serializer: V1::PhoneSerializer
+      has_many :social_networks, serializer: V1::SocialNetworkSerializer
       has_one :address, serializer: V1::Public::AddressSerializer
       has_one :tool_whatsapp, serializer: V1::Public::WhatsappSerializer
       has_one :theme_color, serializer: V1::ThemeColorSerializer

@@ -18,6 +18,7 @@ RSpec.describe Restaurant, type: :model do
     it { is_expected.to have_many(:sections) }
     it { is_expected.to have_many(:products).through(:sections) }
     it { is_expected.to have_many(:phones).dependent(:destroy) }
+    it { is_expected.to have_many(:social_networks).dependent(:destroy) }
     it { is_expected.to have_one(:address).dependent(:destroy) }
     it { is_expected.to have_many(:orders).dependent(:nullify) }
 
@@ -27,6 +28,10 @@ RSpec.describe Restaurant, type: :model do
 
     it 'accept_nested_attributes_for phones' do
       expect(subject).to accept_nested_attributes_for(:phones).limit(4).allow_destroy(true).update_only(true)
+    end
+
+    it 'accept_nested_attributes_for social_networks' do
+      expect(subject).to accept_nested_attributes_for(:social_networks).allow_destroy(true)
     end
 
     it 'accept_nested_attributes_for address' do
