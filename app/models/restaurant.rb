@@ -32,9 +32,9 @@ class Restaurant < ApplicationRecord
             content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'],
             size: { less_than: 4.megabytes }
 
-  after_create :notification_slack, :save_color_default
+  after_create :notification_slack
   before_update :purge_image, if: -> { image_destroy }
-  before_create :generate_uid
+  before_create :generate_uid, :save_color_default
 
   private
 
