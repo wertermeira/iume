@@ -5,6 +5,7 @@ class SocialNetwork < ApplicationRecord
 
   validates :restaurant_id, uniqueness: { scope: :provider }
   validates :username, :provider, presence: true
+  validates :username, username: true, allow_blank: true
   validates :username, length: { maximum: 200 }, allow_blank: true
 
   after_create :notification_slack

@@ -20,6 +20,8 @@ RSpec.describe SocialNetwork, type: :model do
     let(:provider) { { facebook: 0, instagram: 1 } }
 
     it { is_expected.to define_enum_for(:provider).with_values(provider) }
+    it { is_expected.to allow_value('xx22.xx2').for(:username) }
+    it { is_expected.not_to allow_value('Xx1/').for(:username) }
 
     it { is_expected.to validate_length_of(:username).is_at_most(200) }
     it { is_expected.to validate_uniqueness_of(:restaurant_id).scoped_to(:provider) }

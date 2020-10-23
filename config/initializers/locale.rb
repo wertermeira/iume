@@ -9,6 +9,6 @@ I18n.default_locale = :'pt-BR'
 
 if Rails.env.development? || Rails.env.test?
   I18n.exception_handler = lambda do |exception, locale, key, options|
-    raise "missing translation: #{key} in #{locate.to_s}"
+    raise "missing translation: #{key} in #{locale.to_s}"
   end
 end
