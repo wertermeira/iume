@@ -149,6 +149,7 @@ pt-BR:
       aspect_ratio_not_landscape: "deve ser uma imagem em modo paisagem"
       aspect_ratio_is_not: "deve ter uma proporção de %{aspect_ratio}"
       aspect_ratio_unknown: "tem uma proporção desconhecida"
+      username_invalid: Username inválido
       slugger_invalid: Url inválida
       email_not_found: Email não encontrado
       accepted: deve ser aceito
