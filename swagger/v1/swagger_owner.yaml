@@ -91,8 +91,8 @@ paths:
                       example: Home
                     body:
                       type: string
-                      example: Animi error ea dolor impedit non accusamus velit omnis
-                        nisi?
+                      example: Consequuntur perspiciatis a dolores at neque ea veritatis
+                        impedit eos?
               required:
               - body
   "/v1/owners/restaurants/sections/{section_id}/products":
@@ -174,11 +174,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Monteira LTDA
+                      example: Garcês, da Nóbrega e Domingues
                     description:
                       type: string
-                      example: Molestiae maiores est. Eaque quibusdam illum. Esse
-                        perferendis nulla. Nihil blanditiis modi. Quos r.
+                      example: Dolorem et similique. Illo rerum eius. Temporibus quisquam
+                        cum. Sint alias autem. Illo quibusdam en.
                     image:
                       type: object
                       properties:
@@ -283,11 +283,11 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Moniz, Oliveira e Marins
+                      example: Limeira Comércio
                     description:
                       type: string
-                      example: Id ea quibusdam. Quo blanditiis similique. Sint ut
-                        earum. Voluptas aliquid sed. Sit nam culpa. Illo.
+                      example: Cum ea rerum. Perspiciatis voluptas eveniet. Quos aut
+                        deserunt. Omnis id cum. Nobis omnis libero. Q.
                     image:
                       type: object
                       properties:
@@ -443,7 +443,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: da Rocha, Carvalheira e Godinho
+                      example: Mendes, Saraiva e da Paz
                     position:
                       type: integer
                       example: 1
@@ -542,7 +542,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Castanho, Viana e Antena
+                      example: Godinho-Guedes
                     position:
                       type: integer
                       example: 1
@@ -751,7 +751,7 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Passarinho EIRELI
+                      example: Meireles-Aroeira
                     active:
                       type: boolean
               required:
@@ -819,11 +819,11 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Viela Vinícius Bomdia
-                        neighborhood: Marginal Talita Fontes
-                        complement: Willow Square
-                        number: '650'
-                        reference: Lake
+                        street: Travessa Carlos Domingues
+                        neighborhood: Rua Núbia da Silva
+                        complement: Royal Oaks
+                        number: '583'
+                        reference: New
                         cep: 44900-000
                       relationships:
                         cities:
@@ -833,7 +833,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Paes Landim
+                        name: Aiuruoca
                         capital: false
                       relationships:
                         states:
@@ -843,7 +843,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: São Paulo
+                        name: Maranhão
                         acronym: BA
                     - id: '1'
                       type: theme_colors
@@ -853,7 +853,7 @@ paths:
                       type: social_networks
                       attributes:
                         provider: facebook
-                        username: fausto
+                        username: delphine
         '422':
           description: create failt
           content:
@@ -877,8 +877,10 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Nascimento, Munhoz e Caldas
+                      example: Braga, Antena e Gomes
                     active:
+                      type: boolean
+                    show_address:
                       type: boolean
                     theme_color_id:
                       type: integer
@@ -917,16 +919,16 @@ paths:
                       properties:
                         street:
                           type: string
-                          example: Travessa Gael Moreno
+                          example: Ponte Giovanna Barros
                         neighborhood:
                           type: string
                           example: Center
                         complement:
                           type: string
-                          example: Eagle Place
+                          example: University Creek
                         number:
                           type: string
-                          example: s/n
+                          example: '372'
                         reference:
                           type: string
                         cep:
@@ -1006,7 +1008,7 @@ paths:
                   properties:
                     slug:
                       type: string
-                      example: quia_laudantium
+                      example: dolorem_sit
               required:
               - name
               - active
@@ -1052,7 +1054,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: napoleon@grimes-satterfield.info
+                      example: ninfa@klein.io
                     password:
                       type: string
                       example: '12345678'
@@ -1134,7 +1136,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: katherina@okon-bosco.net
+                      example: erasmo_crooks@boyer.io
                     password:
                       type: string
                       example: '12345678'
@@ -1204,7 +1206,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: elias_schinner@cummerata.name
+                      example: reid_gleason@windler.com
                     password:
                       type: string
                       example: '12345678'
@@ -1277,7 +1279,7 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: chelsea@krajcik-kuhlman.com
+                      example: kenneth_connelly@roob.io
                   required:
                   - email
   "/v1/recover_password/{model}/{id}":
@@ -1366,10 +1368,10 @@ components:
                   type: boolean
                 created_at:
                   type: datetime
-                  example: '2020-10-19 16:00:40 -0300'
+                  example: '2020-11-03 15:28:32 -0300'
                 updated_at:
                   type: datetime
-                  example: '2020-10-19 16:00:40 -0300'
+                  example: '2020-11-03 15:28:32 -0300'
             relationships:
               type: object
               properties:
@@ -1401,8 +1403,8 @@ components:
           - id: '1'
             type: restaurants
             attributes:
-              name: Marques e Associados
-              slug: est-dolores
+              name: Barros-da Madureira
+              slug: omnis-est
     phone:
       type: object
       properties:
@@ -1431,7 +1433,7 @@ components:
           properties:
             email:
               type: string
-              example: guillermina_brekke@mosciski.biz
+              example: stephen@stoltenberg-effertz.co
             name:
               type: string
               nullable: true
@@ -1440,10 +1442,10 @@ components:
               example: 1
             created_at:
               type: string
-              example: '2020-10-19 16:00:40 -0300'
+              example: '2020-11-03 15:28:32 -0300'
             updated_at:
               type: string
-              example: '2020-10-19 16:00:40 -0300'
+              example: '2020-11-03 15:28:32 -0300'
           required:
           - email
           - login_count
@@ -1464,17 +1466,12 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Chicken Parm
+              example: Hummus
             description:
               type: string
-              example: Delhaize Group will achieve leading positions in food retailing
-                in key mature and emerging markets. We accomplish our goal by developing
-                strong regional companies benefiting from and contributing to the
-                Groups strength, expertise and successful practices. Delhaize Group
-                goes to market with a variety of food store formats. The Group is
-                committed to offer a locally differentiated shopping experience to
-                its customers in each of its markets, to deliver superior value and
-                to maintain high social, environmental and ethical standards.
+              example: To provide an exceptional dining experience that satisfies
+                our guests’ grown-up tastes by being a Cut-Above in everything we
+                do.
               nullable: true
             position:
               type: integer
