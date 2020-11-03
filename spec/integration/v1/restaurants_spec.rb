@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'v1/restaurants', type: :request do
   let(:user) { create(:owner) }
-  let(:restaurant) { create(:restaurant, owner: user) }
+  let(:restaurant) { create(:restaurant_with_tool_whatsapp, owner: user) }
   let(:Authorization) { '' }
 
   path '/v1/restaurants/{id}' do
@@ -129,6 +129,23 @@ RSpec.describe 'v1/restaurants', type: :request do
         let(:id) { restaurant.uid }
         run_test! do
           expect(json_body.dig('data', 'relationships', 'sections', 'data').length).to eq(0)
+        end
+      end
+
+      response 200, 'restaurant found with address active' do
+        let(:by_id) { 'true' }
+        let(:id) { restaurant.uid }
+        run_test! do
+          expect(json_body.dig('data', 'relationships', 'address', 'data')).to be_truthy
+        end
+      end
+
+      response 200, 'restaurant found with address active false' do
+        before { restaurant.update(show_address: false) }
+        let(:by_id) { 'true' }
+        let(:id) { restaurant.uid }
+        run_test! do
+          expect(json_body.dig('data', 'relationships', 'address', 'data')).to be_falsey
         end
       end
 

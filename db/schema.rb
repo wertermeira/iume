@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_16_194008) do
+ActiveRecord::Schema.define(version: 2020_11_02_161909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,9 @@ ActiveRecord::Schema.define(version: 2020_10_16_194008) do
     t.string "uid", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "payment_method_id"
+    t.decimal "whole_money", precision: 8, scale: 2
+    t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
     t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
     t.index ["uid"], name: "index_orders_on_uid", unique: true
   end
@@ -126,6 +129,13 @@ ActiveRecord::Schema.define(version: 2020_10_16_194008) do
     t.integer "lock_version", default: 0
     t.integer "remarketing", default: 0
     t.index ["email"], name: "index_owners_on_email", unique: true
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string "name"
+    t.integer "kind"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "phones", force: :cascade do |t|
@@ -156,6 +166,16 @@ ActiveRecord::Schema.define(version: 2020_10_16_194008) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "restaurant_payment_methods", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.bigint "payment_method_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["payment_method_id"], name: "index_restaurant_payment_methods_on_payment_method_id"
+    t.index ["restaurant_id", "payment_method_id"], name: "index_on_restaurant_id_and_payment_method_id", unique: true
+    t.index ["restaurant_id"], name: "index_restaurant_payment_methods_on_restaurant_id"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.bigint "owner_id", null: false
     t.string "name"
@@ -164,7 +184,8 @@ ActiveRecord::Schema.define(version: 2020_10_16_194008) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "active", default: false
     t.string "uid"
-    t.bigint "theme_color_id"
+    t.bigint "theme_color_id", default: 1
+    t.boolean "show_address", default: true
     t.index ["owner_id"], name: "index_restaurants_on_owner_id"
     t.index ["slug"], name: "index_restaurants_on_slug", unique: true
     t.index ["theme_color_id"], name: "index_restaurants_on_theme_color_id"
@@ -223,8 +244,11 @@ ActiveRecord::Schema.define(version: 2020_10_16_194008) do
   add_foreign_key "feedbacks", "owners"
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "products"
+  add_foreign_key "orders", "payment_methods"
   add_foreign_key "orders", "restaurants"
   add_foreign_key "products", "sections"
+  add_foreign_key "restaurant_payment_methods", "payment_methods"
+  add_foreign_key "restaurant_payment_methods", "restaurants"
   add_foreign_key "restaurants", "owners"
   add_foreign_key "restaurants", "theme_colors"
   add_foreign_key "sections", "restaurants"

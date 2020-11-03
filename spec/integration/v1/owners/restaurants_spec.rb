@@ -25,6 +25,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
     {
       restaurant: {
         name: Faker::Company.name, active: true,
+        show_address: false,
         image: {
           data: image_base_64
         }
@@ -156,6 +157,7 @@ RSpec.describe 'v1/owners/restaurants', swagger_doc: 'v1/swagger_owner.yaml', ty
             properties: {
               name: { type: :string, example: Faker::Company.name },
               active: { type: :boolean },
+              show_address: { type: :boolean },
               theme_color_id: { type: :integer, example: 1 },
               image: {
                 type: :object,
