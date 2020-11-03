@@ -56,10 +56,11 @@ module V1
       def restaurant_params
         address_attr = %i[id street neighborhood complement reference number cep]
         social_network_attr = %i[id provider username _destroy]
-        params.require(:restaurant).permit(:name, :slug, :active, :image_destroy, :theme_color_id, image: [:data],
-                                                                                                   phones_attributes: %i[id number _destroy],
-                                                                                                   address_attributes: address_attr,
-                                                                                                   social_networks_attributes: social_network_attr)
+        params.require(:restaurant).permit(:name, :slug, :active, :image_destroy, :theme_color_id, :show_address,
+                                           image: [:data],
+                                           phones_attributes: %i[id number _destroy],
+                                           address_attributes: address_attr,
+                                           social_networks_attributes: social_network_attr)
       end
 
       def current_ability

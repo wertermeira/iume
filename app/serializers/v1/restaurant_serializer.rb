@@ -1,6 +1,6 @@
 module V1
   class RestaurantSerializer < V1::BaseSerializer
-    attributes :id, :name, :slug, :active, :products_remaining, :image
+    attributes :id, :name, :slug, :active, :products_remaining, :image, :show_address
     has_many :phones, serializer: V1::PhoneSerializer
     has_many :social_networks, serializer: V1::SocialNetworkSerializer
     has_one :address, serializer: V1::AddressSerializer

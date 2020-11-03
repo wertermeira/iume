@@ -31,7 +31,7 @@ RSpec.describe Order, type: :model do
     end
 
     context 'when order is invalid' do
-      let(:restaurant) { create(:restaurant_with_tool_whatsapp, active: false) }
+      let(:restaurant) { create(:restaurant_with_tool_whatsapp, whatsapp_active: false) }
 
       it do
         new_order.valid?

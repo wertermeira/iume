@@ -203,10 +203,10 @@ paths:
                     - id: '1'
                       type: addresses
                       attributes:
-                        street: Travessa Benício
-                        neighborhood: Viela Manuela
-                        complement: Royal Square
-                        number: '5079'
+                        street: Travessa Lucas
+                        neighborhood: Rua Enzo Gabriel
+                        complement: Pine Gardens
+                        number: '67125'
                         reference: East
                         cep: 44900-000
                       relationships:
@@ -217,7 +217,7 @@ paths:
                     - id: '1'
                       type: cities
                       attributes:
-                        name: Faina
+                        name: Paranapanema
                         capital: false
                       relationships:
                         states:
@@ -227,7 +227,7 @@ paths:
                     - id: '1'
                       type: states
                       attributes:
-                        name: Pernambuco
+                        name: Mato Grosso do Sul
                         acronym: BA
         '404':
           description: restaurant not found
@@ -251,17 +251,17 @@ components:
               example: '10.0'
             name:
               type: string
-              example: Cheeseburger
+              example: Meatballs with Sauce
             description:
               type: string
-              example: Delhaize Group will achieve leading positions in food retailing
-                in key mature and emerging markets. We accomplish our goal by developing
-                strong regional companies benefiting from and contributing to the
-                Groups strength, expertise and successful practices. Delhaize Group
-                goes to market with a variety of food store formats. The Group is
-                committed to offer a locally differentiated shopping experience to
-                its customers in each of its markets, to deliver superior value and
-                to maintain high social, environmental and ethical standards.
+              example: To ensure that each guest receives prompt, professional, friendly
+                and courteous service. To maintain a clean, comfortable and well maintained
+                premises for our guests and staff. To provide at a fair price – nutritional,
+                well-prepared meals – using only quality ingredients. To ensure that
+                all guests and staff are treated with the respect and dignity they
+                deserve. To thank each guest for the opportunity to serve them. By
+                maintaining these objectives we shall be assured of a fair profit
+                that will allow us to contribute to the community we serve.
               nullable: true
             position:
               type: integer
